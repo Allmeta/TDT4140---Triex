@@ -1,1 +1,1 @@
-This is a readme file
+This is the project folder for group 36 - TDT4140.
