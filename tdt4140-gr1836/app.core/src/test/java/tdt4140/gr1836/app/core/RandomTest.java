@@ -7,7 +7,7 @@ import org.junit.Test;
 public class RandomTest {
 	@Test
 	public void test() {
-		assertEquals(1,1);
+		assertEquals(0,1);
 		
 	}
 
