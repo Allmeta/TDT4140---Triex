@@ -28,7 +28,6 @@ import javafx.scene.Group;
 
 public class FxApp extends Application {
 	
-	Scene scene1,scene2;
 
     @SuppressWarnings("restriction")
 	public void start(Stage primaryStage) throws Exception{
@@ -78,19 +77,11 @@ public class FxApp extends Application {
             public void handle(ActionEvent e) {
                 actiontarget.setFill(Color.FIREBRICK);
                 actiontarget.setText("Something should happen");
-                primaryStage.setScene(scene2);
                 
             }
         });
         
         
-      //Scene 2
-        Label label2= new Label("This is the second scene");
-        label2.relocate(600, 400);
-        Group layout2= new Group();
-        layout2.getChildren().addAll(label2);
-        scene2= new Scene(layout2, 1200, 800);
-       
 
         Scene loginScene = new Scene(grid, 1200, 800);
         primaryStage.setScene(loginScene);
