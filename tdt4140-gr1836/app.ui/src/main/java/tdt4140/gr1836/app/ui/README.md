@@ -1,1 +1,1 @@
-# The UI source code, a minimal JavaFX/FXML UI
+# The UI source code, a JavaFX/FXML UI.
