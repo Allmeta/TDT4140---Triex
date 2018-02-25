@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.MainItemsController">
+   <center>
+      <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goNewWorkout" prefHeight="100.0" prefWidth="150.0" text="Add new workout" />
+            <Button mnemonicParsing="false" onAction="#goPastWorkout" prefHeight="100.0" prefWidth="150.0" text="Past workouts" />
+         </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+      </FlowPane>
+   </center>
+</BorderPane>
