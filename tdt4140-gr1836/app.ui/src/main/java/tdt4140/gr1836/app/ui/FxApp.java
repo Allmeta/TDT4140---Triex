@@ -85,6 +85,8 @@ public class FxApp extends Application{
 		addDialogStage.show();
 	}
 	
+	//TODO: if dialogstagecontroller.submitbutton is pressed -> close dialogStage
+	
 	public static void showLoginStage() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("Login.fxml"));
@@ -97,6 +99,10 @@ public class FxApp extends Application{
 		Scene scene = new Scene(Login);
 		LoginStage.setScene(scene);
 		LoginStage.show();
+		
+		
+		
+		//TODO: if logincontroller.submitbutton is pressed -> close LoginStage
 	}
 	
 	
