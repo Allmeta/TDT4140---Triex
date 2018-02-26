@@ -6,18 +6,15 @@ import javafx.fxml.FXML;
 
 public class MainItemsController {
 	
-	private FxApp main;
-	
-	
 	@FXML
 	private void goNewWorkout() throws IOException {
-		main.showNewWorkoutScene();
+		FxApp.showNewWorkoutScene();
 	}
 	
 	
 	@FXML
 	private void goPastWorkout() throws IOException {
-		main.showPastWorkoutScene();
+		FxApp.showPastWorkoutScene();
 	}
 
 }

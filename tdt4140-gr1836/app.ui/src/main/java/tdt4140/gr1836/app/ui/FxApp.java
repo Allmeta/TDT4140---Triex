@@ -17,8 +17,8 @@ public class FxApp extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Training App");
+		FxApp.primaryStage = primaryStage;
+		FxApp.primaryStage.setTitle("Training App");
 		
 		
 		showMainView();
@@ -56,6 +56,19 @@ public class FxApp extends Application{
 		loader.setLocation(FxApp.class.getResource("pastWorkout.fxml"));
 		BorderPane pastWorkout = loader.load();
 		mainLayout.setCenter(pastWorkout);
+	}
+	
+	public static void showStrengthWorkoutScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(FxApp.class.getResource("strengthWorkout.fxml"));
+		BorderPane strengthWorkout = loader.load();
+		mainLayout.setCenter(strengthWorkout);
+		
+	}	public static void showCardioWorkoutScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(FxApp.class.getResource("cardioWorkout.fxml"));
+		BorderPane cardioWorkout = loader.load();
+		mainLayout.setCenter(cardioWorkout);
 	}
 	
 	public static void showAddStage() throws IOException {

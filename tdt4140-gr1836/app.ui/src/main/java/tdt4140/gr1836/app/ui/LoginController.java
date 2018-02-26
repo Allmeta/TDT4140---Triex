@@ -11,6 +11,9 @@ public class LoginController {
 	@FXML
 	private TextField passwordField;
 	
+	
+	
+	//TODO: Function that checks login information against users in database.
 
 
 }

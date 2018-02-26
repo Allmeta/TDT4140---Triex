@@ -6,21 +6,18 @@ import javafx.fxml.FXML;
 
 public class MainViewController {
 	
-	private FxApp main;
-	
-	
 	@FXML
 	private void goHome() throws IOException {
-		main.showMainItems();
+		FxApp.showMainItems();
 	}
 	
 	@FXML
 	private void addBtn() throws IOException {
-		main.showAddStage();
+		FxApp.showAddStage();
 	}
 	
 	@FXML
 	private void LoginBtn() throws IOException {
-		main.showLoginStage();
+		FxApp.showLoginStage();
 	}
 }

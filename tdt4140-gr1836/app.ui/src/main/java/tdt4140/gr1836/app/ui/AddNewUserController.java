@@ -25,5 +25,8 @@ public class AddNewUserController {
 	@FXML
 	private TextField emailField;
 	
+	
+	//TODO: ON submit: Function that stores the information in the database
+	
 
 }
