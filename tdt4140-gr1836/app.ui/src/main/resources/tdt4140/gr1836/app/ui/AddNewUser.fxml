@@ -11,8 +11,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="OK" />
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#closeNewUserStage" prefWidth="80.0" text="OK" />
+            <Button mnemonicParsing="false" onAction="#closeNewUserStage" prefWidth="80.0" text="Cancel" />
          </children>
       </HBox>
    </bottom>

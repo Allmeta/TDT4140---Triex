@@ -18,12 +18,12 @@
    <center>
       <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="CardioBtn" mnemonicParsing="false" onAction="#goCardioWorkout" prefHeight="100.0" prefWidth="120.0" style="-fx-background-radius: 20;" text="Cardio">
+            <Button fx:id="CardioBtn" mnemonicParsing="false" onAction="#goCardioWorkout" prefHeight="100.0" prefWidth="120.0" text="Cardio">
                <FlowPane.margin>
                   <Insets left="10.0" />
                </FlowPane.margin>
             </Button>
-            <Button fx:id="StrengthBtn" mnemonicParsing="false" onAction="#goStrengthWorkout" prefHeight="100.0" prefWidth="120.0" style="-fx-background-radius: 20;" text="Strength">
+            <Button fx:id="StrengthBtn" mnemonicParsing="false" onAction="#goStrengthWorkout" prefHeight="100.0" prefWidth="120.0" text="Strength">
                <FlowPane.margin>
                   <Insets left="10.0" />
                </FlowPane.margin>
