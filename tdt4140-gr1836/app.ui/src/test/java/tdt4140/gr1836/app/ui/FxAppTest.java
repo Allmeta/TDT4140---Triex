@@ -7,6 +7,7 @@ import org.testfx.framework.junit.ApplicationTest;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class FxAppTest extends ApplicationTest {
@@ -17,7 +18,6 @@ public class FxAppTest extends ApplicationTest {
 		GitlabCISupport.headless();
 	}
 	
-    private MainViewController controller;
     
 	//@Override
     //public void start(Stage stage) throws Exception {
@@ -28,12 +28,12 @@ public class FxAppTest extends ApplicationTest {
     //}
 	@Override
     public void start(Stage stage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
-        Parent root = loader.load();
-        this.controller = loader.getController();
-        Scene scene = new Scene(root);
-        
-        stage.setTitle("JavaFX and Maven");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(FxApp.class.getResource("MainView.fxml"));
+		
+		
+        BorderPane root = loader.load();
+        Scene scene = new Scene(root,600,600);        
         stage.setScene(scene);
         stage.show();
     }
