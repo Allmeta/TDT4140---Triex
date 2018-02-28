@@ -10,6 +10,27 @@ import javafx.stage.Stage;
 
 public class StrengthWorkoutController {
 	
+	public static void main(String[] args) throws Exception {
+		        Calendar cal = Calendar.getInstance();
+		        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm a");
+		        File file = new File("CardioWorkout.txt"); 
+		        if (!file.exists() || file.isDirectory()) {
+		            PrintWriter writer = new PrintWriter("CardioWorkout.txt", "UTF-8");
+		            writer.close();
+		        }
+		        
+		        final PrintWriter output = new PrintWriter(new FileWriter(file, true));
+		        output.println("\n" + sdf.format(cal.getTime())); 
+		        JFrame frame = new CardioWorkoutController();
+		        frame.setTitle("Cardio Workout");
+		
+		output.close();
+		System.exit(0);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	
 	@FXML
 	public Button SubmitStrengthWorkout;
 	
@@ -17,19 +38,22 @@ public class StrengthWorkoutController {
 	public Button CancelStrengthWorkout;
 	
 	@FXML
-	public TextField duration;
+	public TextField Duration;
 	
 	@FXML
-	public TextField goal;
+	public TextField Set;
 	
 	@FXML
-	public TextField other;
+	public TextField Rep;
 	
 	@FXML
-	public TextField type;
+	public TextField Performance;
 	
 	@FXML
-	public TextField bodypart;
+	public TextField Shape;
+	
+	@FXML
+	public TextField Information;
 
 	
 	
