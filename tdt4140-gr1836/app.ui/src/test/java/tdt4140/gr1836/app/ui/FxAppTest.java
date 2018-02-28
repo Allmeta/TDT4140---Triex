@@ -19,21 +19,10 @@ public class FxAppTest extends ApplicationTest {
 	}
 	
     
-	//@Override
-    //public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        //Scene scene = new Scene(root);
-       // stage.setScene(scene);
-      //  stage.show();
-    //}
 	@Override
     public void start(Stage stage) throws Exception {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("MainView.fxml"));
-		
-		
-        BorderPane root = loader.load();
-        Scene scene = new Scene(root,600,600);        
+        Parent root = FXMLLoader.load(getClass().getResource("AddNewUser.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
