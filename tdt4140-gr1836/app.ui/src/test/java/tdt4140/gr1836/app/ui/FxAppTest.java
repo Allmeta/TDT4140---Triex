@@ -17,6 +17,26 @@ public class FxAppTest extends ApplicationTest {
 		GitlabCISupport.headless();
 	}
 	
+    private MainViewController controller;
+    
+	//@Override
+    //public void start(Stage stage) throws Exception {
+        //Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        //Scene scene = new Scene(root);
+       // stage.setScene(scene);
+      //  stage.show();
+    //}
+	@Override
+    public void start(Stage stage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+        Parent root = loader.load();
+        this.controller = loader.getController();
+        Scene scene = new Scene(root);
+        
+        stage.setTitle("JavaFX and Maven");
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Test
     public void testFxApp() {
