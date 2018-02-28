@@ -34,11 +34,11 @@ public class StrengthWorkoutController {
 	
 	
 	public void SubmitStrengthWorkout() throws IOException {
-		FxApp.showMainItems();
+		FxApp.showScene("MainItems.fxml");
 	}
 	
 	public void CancelStrengthWorkout() throws IOException {
-		FxApp.showMainItems();
+		FxApp.showScene("MainItems.fxml");
 	}
 	
 

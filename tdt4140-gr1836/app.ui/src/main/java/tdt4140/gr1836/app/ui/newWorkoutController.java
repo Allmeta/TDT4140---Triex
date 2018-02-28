@@ -9,12 +9,12 @@ public class newWorkoutController {
 
 	@FXML
 	private void goStrengthWorkout() throws IOException {
-		FxApp.showStrengthWorkoutScene();
+		FxApp.showScene("StrengthWorkout.fxml");
 	}
 	
 	@FXML
 	private void goCardioWorkout() throws IOException {
-		FxApp.showCardioWorkoutScene();
+		FxApp.showScene("cardioWorkout.fxml");
 	}
 	
 

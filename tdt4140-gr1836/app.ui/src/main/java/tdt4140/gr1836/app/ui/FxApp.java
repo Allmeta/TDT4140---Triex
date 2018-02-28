@@ -22,7 +22,7 @@ public class FxApp extends Application{
 		
 		//Loads the two main menu scenes into the primary stage
 		showMainView();
-		showMainItems();
+		showScene("MainItems.fxml");
 		
 	}
 	
@@ -36,47 +36,16 @@ public class FxApp extends Application{
 		primaryStage.show();
 	}
 	
-	//Shows the main menu
-	public static void showMainItems() throws IOException {
+	
+	//Shows the MainItems.fxml, pastWorkout.fxml, strengthWorkout.fxml, cardioWorkout.fxml
+	public static void showScene(String scene) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("MainItems.fxml"));
+		loader.setLocation(FxApp.class.getResource(scene));
 		BorderPane mainItems = loader.load();
 		mainLayout.setCenter(mainItems);
 	}
+
 	
-	//Shows the new workout scene
-	public static void showNewWorkoutScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("newWorkout.fxml"));
-		BorderPane newWorkout = loader.load();
-		mainLayout.setCenter(newWorkout);
-		
-		
-	}
-	//Shows the part workouts scene
-	public static void showPastWorkoutScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("pastWorkout.fxml"));
-		BorderPane pastWorkout = loader.load();
-		mainLayout.setCenter(pastWorkout);
-	}
-	
-	//Shows the strength workout scene
-	public static void showStrengthWorkoutScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("strengthWorkout.fxml"));
-		BorderPane strengthWorkout = loader.load();
-		mainLayout.setCenter(strengthWorkout);
-		
-	}	
-	
-	//Shows the cardio workout scene
-	public static void showCardioWorkoutScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("cardioWorkout.fxml"));
-		BorderPane cardioWorkout = loader.load();
-		mainLayout.setCenter(cardioWorkout);
-	}
 	//Loads and shows the add new user stage
 	public static void showAddStage() throws IOException {
 		FXMLLoader loader = new FXMLLoader();

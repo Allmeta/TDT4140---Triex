@@ -8,13 +8,13 @@ public class MainItemsController {
 	
 	@FXML
 	private void goNewWorkout() throws IOException {
-		FxApp.showNewWorkoutScene();
+		FxApp.showScene("newWorkout.fxml");
 	}
 	
 	
 	@FXML
 	private void goPastWorkout() throws IOException {
-		FxApp.showPastWorkoutScene();
+		FxApp.showScene("pastWorkout.fxml");
 	}
 
 }

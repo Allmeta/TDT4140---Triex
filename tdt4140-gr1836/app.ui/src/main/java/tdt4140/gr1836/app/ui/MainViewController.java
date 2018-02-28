@@ -3,12 +3,16 @@ package tdt4140.gr1836.app.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class MainViewController {
 	
 	@FXML
+	private Button LoginBtn;
+	
+	@FXML
 	private void goHome() throws IOException {
-		FxApp.showMainItems();
+		FxApp.showScene("MainItems.fxml");
 	}
 	
 	@FXML
