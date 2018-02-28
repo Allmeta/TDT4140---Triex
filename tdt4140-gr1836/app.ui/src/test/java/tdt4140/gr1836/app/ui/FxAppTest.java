@@ -17,15 +17,7 @@ public class FxAppTest extends ApplicationTest {
 		if (Boolean.valueOf(System.getProperty("gitlab-ci", "false")))
 		GitlabCISupport.headless();
 	}
-	
     
-	@Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @Test
     public void testFxApp() {
