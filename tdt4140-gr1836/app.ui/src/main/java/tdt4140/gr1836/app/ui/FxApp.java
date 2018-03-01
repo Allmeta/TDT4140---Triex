@@ -26,7 +26,7 @@ public class FxApp extends Application{
 		
 	}
 	
-	//Shows the toolbar menu at the bottom of the primary stage
+	//Shows the tool bar menu at the bottom of the primary stage
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("MainView.fxml"));
@@ -50,13 +50,13 @@ public class FxApp extends Application{
 	public static void showAddStage() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("AddNewUser.fxml"));
-		BorderPane addNewEmployee = loader.load();
+		BorderPane addNewUser = loader.load();
 		
 		Stage addDialogStage = new Stage();
 		addDialogStage.setTitle("Add new User");
 		addDialogStage.initModality(Modality.WINDOW_MODAL);
 		addDialogStage.initOwner(primaryStage);
-		Scene scene = new Scene(addNewEmployee);
+		Scene scene = new Scene(addNewUser);
 		addDialogStage.setScene(scene);
 		addDialogStage.show();
 	}
