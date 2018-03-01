@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 
-public class MainItemsController {
+public class MainMenuController {
 	
 	@FXML
 	private void goNewWorkout() throws IOException {

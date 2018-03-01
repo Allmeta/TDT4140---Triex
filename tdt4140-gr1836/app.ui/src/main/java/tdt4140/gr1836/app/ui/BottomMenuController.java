@@ -5,14 +5,14 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class MainViewController {
+public class BottomMenuController {
 	
 	@FXML
 	private Button LoginBtn;
 	
 	@FXML
 	private void goHome() throws IOException {
-		FxApp.showScene("MainItems.fxml");
+		FxApp.showScene("MainMenu.fxml");
 	}
 	
 	@FXML

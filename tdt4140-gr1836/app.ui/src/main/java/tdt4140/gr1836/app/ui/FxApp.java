@@ -22,14 +22,14 @@ public class FxApp extends Application{
 		
 		//Loads the two main menu scenes into the primary stage
 		showMainView();
-		showScene("MainItems.fxml");
+		showScene("MainMenu.fxml");
 		
 	}
 	
 	//Shows the tool bar menu at the bottom of the primary stage
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("MainView.fxml"));
+		loader.setLocation(FxApp.class.getResource("BottomMenu.fxml"));
 		mainLayout = loader.load();
 		Scene scene = new Scene(mainLayout,600,600);
 		primaryStage.setScene(scene);
