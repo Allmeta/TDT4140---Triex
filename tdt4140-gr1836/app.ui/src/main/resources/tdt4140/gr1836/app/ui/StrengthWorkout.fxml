@@ -49,11 +49,11 @@
                                     <Label text="Date" GridPane.rowIndex="1" />
                                     <Label text="Type" GridPane.rowIndex="3" />
                                     <Label text="Other" GridPane.rowIndex="4" />
-                                    <TextField fx:id="nameField" prefHeight="31.0" prefWidth="244.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
-                                    <TextField fx:id="addressField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="cityField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="phoneField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="emailField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="nameField" prefHeight="31.0" prefWidth="244.0" promptText="Length of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="addressField" promptText="Date of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="cityField" promptText="Which bodypart did you train?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="phoneField" promptText="What kind of workout?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="emailField" promptText="Other information" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>

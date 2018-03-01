@@ -61,11 +61,14 @@ public class StrengthWorkoutController {
 	public TextField Information;
 	
 	public void SubmitStrengthWorkout() throws IOException {
-		FxApp.showScene("MainItems.fxml");
+		FxApp.showScene("MainMenu.fxml");
+		
+		
+		//TODO: Function that sends the workout to data base.
 	}
 	
 	public void CancelStrengthWorkout() throws IOException {
-		FxApp.showScene("MainItems.fxml");
+		FxApp.showScene("MainMenu.fxml");
 	}
 	
 }
