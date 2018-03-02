@@ -2,8 +2,11 @@ package tdt4140.gr1836.app.ui;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -27,6 +30,14 @@ public class FxApp extends Application {
 
 	private static Stage primaryStage;
 	private static BorderPane mainLayout;
+	public class User implements Serializable{
+		public String name,food;
+		
+		public User(String name, String food) {
+			this.name=name;
+			this.food=food;
+		}
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -42,7 +53,7 @@ public class FxApp extends Application {
 
 		FirebaseApp.initializeApp(options);
 
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,6 +69,10 @@ public class FxApp extends Application {
 			}
 		});
 		
+		//Pushe til database
+		//DatabaseReference child=ref.push();
+		//User test= new User("Johan", "Eple");
+		//child.setValueAsync(test);
 		
 
 		// Loads the two main menu scenes into the primary stage
