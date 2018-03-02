@@ -42,6 +42,12 @@
 			<artifactId>tdt4140-gr1836.app.core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>com.google.firebase</groupId>
+    		<artifactId>firebase-admin</artifactId>
+    		<version>5.9.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
