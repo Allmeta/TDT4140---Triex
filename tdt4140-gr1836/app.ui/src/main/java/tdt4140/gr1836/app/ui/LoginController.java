@@ -28,6 +28,8 @@ public class LoginController {
 	}
 	
 	//TODO: Function that checks login information against users in database.
+	
+	//Database.login(String username, String password)
 
 	
 	 

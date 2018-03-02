@@ -16,6 +16,9 @@ public class AddNewUserController {
 	//Contact information
 	
 	@FXML
+	private TextField usernameField;
+	
+	@FXML
 	private TextField nameField;
 	
 	@FXML
@@ -53,6 +56,8 @@ public class AddNewUserController {
 	public void SubmitNewUser(ActionEvent event) throws IOException {
 		
 		//TODO: ON submit: Function that stores the information in the database
+		
+		//Database.register(String username,String name, int age, String city, String email, String adress,int phone, String password);
 		
 	    Stage stage = (Stage) confirmBtn.getScene().getWindow();
 	    stage.close();
