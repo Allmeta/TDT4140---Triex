@@ -9,7 +9,7 @@ public class newWorkoutController {
 
 	@FXML
 	private void goStrengthWorkout() throws IOException {
-		FxApp.showScene("StrengthWorkout.fxml");
+		FxApp.showScene("strengthWorkout.fxml");
 	}
 	
 	@FXML
