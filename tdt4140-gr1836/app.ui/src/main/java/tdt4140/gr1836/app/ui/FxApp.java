@@ -83,6 +83,7 @@ public class FxApp extends Application {
 		d.init();
 		//d.register("Allmeta2", "Thomas almestad", 20, "oslo", "ole@gmail.com", "bergveien 5c", 0, "123abc");
 		//d.deleteUser("Allmeta");
+		d.login("Karlf","5213");
 		
 		launch(args);
 		

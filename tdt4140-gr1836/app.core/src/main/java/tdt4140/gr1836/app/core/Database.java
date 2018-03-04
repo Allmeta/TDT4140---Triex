@@ -78,9 +78,11 @@ public class Database {
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
+				User b=dataSnapshot.getValue(user.getClass());
 				
-				if (dataSnapshot.getValue() != null) {
-					user = dataSnapshot.getValue(User.class);
+				System.out.println(b);
+				if (b != null) {
+					//user = dataSnapshot.getValue(User.class);
 					// user exists, check pw
 					//will hash soon pls
 					if (password != user.password) {
@@ -88,7 +90,6 @@ public class Database {
 						user=null;
 						System.out.println("wrong password");
 					}
-					System.out.println(user);
 				} else {
 					// user does not exist. login failed.
 					System.out.println("no reference");
