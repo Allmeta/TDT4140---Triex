@@ -3,7 +3,10 @@ package tdt4140.gr1836.app.core;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.google.api.client.util.Sleeper;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -16,11 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 public class Database {
 
 	public class User implements Serializable {
-		public String username, email, password, name,city,adress;
+		public String email, password, name,city,adress;
 		public int age, phone;
 
-		public User(String username,String name, int age, String city, String email, String adress,int phone, String password) {
-			this.username = username;
+		public User(String name, int age, String city, String email, String adress,int phone, String password) {
 			this.password = password;
 			this.name = name;
 			this.age = age;
@@ -43,12 +45,14 @@ public class Database {
 				.setDatabaseUrl("https://tdt4140-g36.firebaseio.com").build();
 
 		FirebaseApp.initializeApp(options);
+		System.out.println("did init ty");
 
 		/*DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				Object res = dataSnapshot.getValue();
+				System.out.println(res);
 			}
 
 			public void onCancelled(DatabaseError arg0) {
@@ -64,16 +68,17 @@ public class Database {
 		// child.setValueAsync(test);
 	}
 
-	public User login(String username, String password) {
+	public void login(String username, String password) {
 		// hash password, sjekk om de er stemmer med databasen
 		// hvis ikke, returner null
 		
 		//NB: Har ikke implementert hashing enda!
 		
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/" + username);
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/"+username);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
+				
 				if (dataSnapshot.getValue() != null) {
 					user = dataSnapshot.getValue(User.class);
 					// user exists, check pw
@@ -81,9 +86,12 @@ public class Database {
 					if (password != user.password) {
 						//return null if login failed
 						user=null;
+						System.out.println("wrong password");
 					}
+					System.out.println(user);
 				} else {
 					// user does not exist. login failed.
+					System.out.println("no reference");
 					user=null;
 				}
 			}
@@ -94,17 +102,17 @@ public class Database {
 
 			}
 		});
-
-		return user;// user klasse basert på dataene;
 	}
 
 	public User register(String username,String name, int age, String city, String email, String adress,int phone, String password) {
 		//hash password
-		User newUser=new User(username, name, age, city, email, adress,phone, password);
+		User newUser=new User(name, age, city, email, adress,phone, password);
+		Map<String, User> k=new HashMap<>();
+		k.put(username, newUser);
 		//Send to database
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-		DatabaseReference child=ref.push();
-		child.setValueAsync(newUser);
+		DatabaseReference s=ref.child(username);
+		s.setValueAsync(newUser);
 		return newUser;
 	}
 	public void deleteUser(String username) {

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.core.Database;
 
 public class FxApp extends Application {
 
@@ -77,8 +78,14 @@ public class FxApp extends Application {
 		LoginStage.show();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		Database d=new Database();
+		d.init();
+		//d.register("Allmeta2", "Thomas almestad", 20, "oslo", "ole@gmail.com", "bergveien 5c", 0, "123abc");
+		//d.deleteUser("Allmeta");
+		
 		launch(args);
+		
 	}
 
 }
