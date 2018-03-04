@@ -10,8 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.core.App;
 
-public class AddNewUserController {
+public class AddNewUserController extends Controller {
 	
 	//Contact information
 	
@@ -46,6 +47,7 @@ public class AddNewUserController {
 	@FXML 
 	public Button confirmBtn;
 	
+	
 	@FXML 
 	public void closeNewUserStage(ActionEvent event) throws IOException {
 	    Stage stage = (Stage) closeBtn.getScene().getWindow();
@@ -54,11 +56,9 @@ public class AddNewUserController {
 	
 	@FXML 
 	public void SubmitNewUser(ActionEvent event) throws IOException {
-		
-		//TODO: ON submit: Function that stores the information in the database
-		
+		this.app.register(usernameField.getText(), nameField.getText(), 20, cityField.getText(), emailField.getText(), addressField.getText(), Integer.parseInt(phoneField.getText()), passwordField.getText());
+		//age and phone must change
 		//Database.register(String username,String name, int age, String city, String email, String adress,int phone, String password);
-		
 	    Stage stage = (Stage) confirmBtn.getScene().getWindow();
 	    stage.close();
 	}

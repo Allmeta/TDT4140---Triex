@@ -18,26 +18,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Database {
 
-	public class User implements Serializable {
-		public String email, password, name,city,adress;
-		public int age, phone;
-
-		public User(String name, int age, String city, String email, String adress,int phone, String password) {
-			this.password = password;
-			this.name = name;
-			this.age = age;
-			this.phone = phone;
-			this.city=city;
-			this.email=email;
-			this.adress=adress;
-			
-		}
-	}
 	
 	User user = null;
 
 	public void init() throws IOException {
-
+	    try{
+	        FirebaseApp.getInstance();
+	    }
+	    catch (IllegalStateException e)
+	    {
+		
+		
 		FileInputStream serviceAccount = new FileInputStream("tdt4140-g36-firebase-adminsdk-u74mt-fa295def3e.json");
 
 		FirebaseOptions options = new FirebaseOptions.Builder()
@@ -66,9 +57,10 @@ public class Database {
 		// DatabaseReference child=ref.push();
 		// User test= new User("Johan", "Eple");
 		// child.setValueAsync(test);
+	    }
 	}
 
-	public void login(String username, String password) {
+	public User login(String username, String password) {
 		// hash password, sjekk om de er stemmer med databasen
 		// hvis ikke, returner null
 		
@@ -103,6 +95,7 @@ public class Database {
 
 			}
 		});
+		return user;
 	}
 
 	public User register(String username,String name, int age, String city, String email, String adress,int phone, String password) {

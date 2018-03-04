@@ -4,7 +4,8 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class StrengthWorkoutController {
+public class StrengthWorkoutController extends Controller {
+	
 	
 	
 	@FXML
@@ -15,7 +16,7 @@ public class StrengthWorkoutController {
 	
 	
 	public void SubmitStrengthWorkout() throws IOException {
-		FxApp.showScene("MainMenu.fxml");
+		this.fxAppParent.showScene("MainMenu.fxml");
 		
 		
 		//TODO: Function that sends the workout to data base.
@@ -24,7 +25,7 @@ public class StrengthWorkoutController {
 	
 	//Sends you back to menu
 	public void CancelStrengthWorkout() throws IOException {
-		FxApp.showScene("MainMenu.fxml");
+		this.fxAppParent.showScene("MainMenu.fxml");
 	}
 	
 }

@@ -11,8 +11,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="138.0" prefWidth="425.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#SubmitStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Submit" />
-            <Button mnemonicParsing="false" onAction="#CancelStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Cancel" />
+            <Button fx:id="SubmitStrengthWorkout" mnemonicParsing="false" onAction="#SubmitStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Submit" />
+            <Button fx:id="CancelStrengthWorkout" mnemonicParsing="false" onAction="#CancelStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Cancel" />
          </children>
       </HBox>
    </bottom>

@@ -3,18 +3,25 @@ package tdt4140.gr1836.app.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import tdt4140.gr1836.app.core.App;
 
-public class MainMenuController {
+public class MainMenuController extends Controller {
+	
+	@FXML
+	private Button goNew;
+	@FXML
+	private Button goPast;
 	
 	@FXML
 	private void goNewWorkout() throws IOException {
-		FxApp.showScene("newWorkout.fxml");
+		this.fxAppParent.showScene("newWorkout.fxml");
 	}
 	
 	
 	@FXML
 	private void goPastWorkout() throws IOException {
-		FxApp.showScene("pastWorkout.fxml");
+		this.fxAppParent.showScene("pastWorkout.fxml");
 	}
 
 }

@@ -12,9 +12,9 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#goHome" prefWidth="120.0" text="Home" />
+            <Button fx:id="HomeBtn" mnemonicParsing="false" onAction="#goHome" prefWidth="120.0" text="Home" />
             <Button fx:id="LoginBtn" mnemonicParsing="false" onAction="#LoginBtn" prefWidth="120.0" text="Log in" />
-            <Button mnemonicParsing="false" onAction="#addBtn" prefWidth="120.0" text="New User" />
+            <Button fx:id="RegisterBtn" mnemonicParsing="false" onAction="#addBtn" prefWidth="120.0" text="New User" />
          </children>
       </HBox>
    </bottom>

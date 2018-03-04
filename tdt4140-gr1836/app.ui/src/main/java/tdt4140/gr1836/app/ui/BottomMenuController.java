@@ -5,23 +5,28 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class BottomMenuController {
+public class BottomMenuController extends Controller {
 	
 	@FXML
 	private Button LoginBtn;
+	@FXML
+	private Button RegisterBtn;
+	@FXML
+	private Button HomeBtn;
+	
 	
 	@FXML
 	private void goHome() throws IOException {
-		FxApp.showScene("MainMenu.fxml");
+		this.fxAppParent.showScene("MainMenu.fxml");
 	}
 	
 	@FXML
 	private void addBtn() throws IOException {
-		FxApp.showAddStage();
+		this.fxAppParent.showAddStage();
 	}
 	
 	@FXML
 	private void LoginBtn() throws IOException {
-		FxApp.showLoginStage();
+		this.fxAppParent.showLoginStage();
 	}
 }

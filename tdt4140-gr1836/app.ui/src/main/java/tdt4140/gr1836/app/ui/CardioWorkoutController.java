@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class CardioWorkoutController {
+public class CardioWorkoutController extends Controller {
 	
 	
 	@FXML
@@ -15,7 +15,7 @@ public class CardioWorkoutController {
 	
 	
 	public void SubmitCardioWorkout() throws IOException {
-		FxApp.showScene("MainMenu.fxml");
+		this.fxAppParent.showScene("MainMenu.fxml");
 		
 		
 		//TODO: Function that sends the workout to data base.
@@ -24,7 +24,7 @@ public class CardioWorkoutController {
 	
 	//Sends you back to menu
 	public void CancelCardioWorkout() throws IOException {
-		FxApp.showScene("MainMenu.fxml");
+		this.fxAppParent.showScene("MainMenu.fxml");
 	}
 	
 }
