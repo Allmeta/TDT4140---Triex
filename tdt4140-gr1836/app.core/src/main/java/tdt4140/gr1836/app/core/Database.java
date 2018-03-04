@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Database {
-	public static Object data;
 
 	public class User implements Serializable {
 		public String username, email, password, name,city,adress;
@@ -45,13 +44,11 @@ public class Database {
 
 		FirebaseApp.initializeApp(options);
 
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+		/*DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				Object res = dataSnapshot.getValue();
-				Database.data = res;
-				System.out.println(res);
 			}
 
 			public void onCancelled(DatabaseError arg0) {
@@ -59,7 +56,7 @@ public class Database {
 				System.out.println("fk");
 
 			}
-		});
+		});*/
 
 		// Pushe til database
 		// DatabaseReference child=ref.push();
@@ -70,6 +67,8 @@ public class Database {
 	public User login(String username, String password) {
 		// hash password, sjekk om de er stemmer med databasen
 		// hvis ikke, returner null
+		
+		//NB: Har ikke implementert hashing enda!
 		
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/" + username);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -107,5 +106,10 @@ public class Database {
 		DatabaseReference child=ref.push();
 		child.setValueAsync(newUser);
 		return newUser;
+	}
+	public void deleteUser(String username) {
+		//return null på /username for å fjerne data
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		ref.child(username).setValueAsync(null);
 	}
 }
