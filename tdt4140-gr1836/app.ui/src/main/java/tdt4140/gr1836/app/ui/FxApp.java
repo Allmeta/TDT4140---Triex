@@ -106,9 +106,14 @@ public class FxApp extends Application {
 	public void deleteUser(String username) {
 		//Helper method for testing
 		this.app.deleteUser(username);
+	}
+	public void setApp(DummyApp app) throws IOException {
+		//Helper method for testing, setting app to a dummyApp communicating with a local JSON-file
+		this.app=app;
+		showMainView();
+		showScene("MainMenu.fxml");
 		
 	}
-
 	/*public static void main(String[] args) throws IOException {
 		//Database d=new Database();
 		//d.init();

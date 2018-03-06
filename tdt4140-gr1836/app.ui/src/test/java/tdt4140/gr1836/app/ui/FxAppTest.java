@@ -38,6 +38,9 @@ public class FxAppTest extends ApplicationTest {
         stage.show();*/
     	FxApp fxApp = new FxApp();
         fxApp.start(stage);
+        //Setter app til en dummyapp som kommuniserer med en lokal tekstfil
+        DummyApp app = new DummyApp();
+        fxApp.setApp(app);
         //Må gå tilbake til home etter hver test for at de skal plukke opp fra start
 		
 		
@@ -63,22 +66,22 @@ public class FxAppTest extends ApplicationTest {
 		//Goes to strength and cardio, clicks home cancel for both, goes to past, clicks home
 		Button button = new Button();
 		clickOn("#goNew");
-		sleep(1000);
+		sleep(100);
 		clickOn("#cardioBtn");
 		sleep(1000);
 		button = lookup("#CancelCardioWorkout").query();
 		assertEquals(button.getText(), "Cancel");
 		clickOn("#CancelCardioWorkout");
-		sleep(1000);
+		sleep(100);
 		clickOn("#goNew");
-		sleep(1000);
+		sleep(100);
 		clickOn("#strengthBtn");
 		sleep(1000);
 		button = lookup("#CancelStrengthWorkout").query();
 		assertEquals(button.getText(), "Cancel");
 		clickOn("#CancelStrengthWorkout");
 		//Test past workout
-		sleep(1000);
+		sleep(100);
 		clickOn("#goPast");
 		sleep(1500);
 		button = lookup("#HomeBtn").query();
@@ -108,6 +111,7 @@ public class FxAppTest extends ApplicationTest {
 		write("test");
 		clickOn("#confirmBtn");
 	}
+
 	
 	//TEster ikke login mye enda da login ikke fungerer
 	@Test 
@@ -119,7 +123,7 @@ public class FxAppTest extends ApplicationTest {
 		clickOn("#passwordField");
 		write("wrong");
 		clickOn("#confirmBtn");
-		sleep(3000);
+		sleep(500);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
 		clickOn("#closeBtn");
@@ -133,7 +137,7 @@ public class FxAppTest extends ApplicationTest {
 		clickOn("#passwordField");
 		write("test");
 		clickOn("#confirmBtn");
-		sleep(3000);
+		sleep(500);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
 		clickOn("#closeBtn");
@@ -144,11 +148,7 @@ public class FxAppTest extends ApplicationTest {
     	BorderPane rootNode = (BorderPane) this.scene.getRoot();//Testes som Parent
         Button button = from(rootNode).lookup("#LoginBtn").query();
         assertEquals("Log in", button.getText());*/
-    	//clickOn("#LoginBtn");
-        // expect:
-    	//Button btn = find("#LoginBtn");
-        //verifyThat("#LoginBtn", containsString("Log in"));
-        //assertEquals("test@gmail.com", lookup("#email").<TextField>().getText());
+
 	@Test 
 	public void log_in() {
 		clickOn("#LoginBtn");
@@ -158,18 +158,18 @@ public class FxAppTest extends ApplicationTest {
 		clickOn("#passwordField");
 		write("test");
 		clickOn("#confirmBtn");
-		sleep(3000);
+		sleep(500);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Logged in as Mr.TestFx");
 		clickOn("#closeBtn");
 	}
-
-    @Test
+/*
+    @Test Denne er kanskje ikke nødvendig for ui testing
     public void delete_user_try_login() {
     	//Sletter opprettet bruker for  deretter å teste login på nytt
+    	//Må endres til sletter i textfil
     	Database dbTest = new Database();
     	dbTest.deleteUser("testFxBoy");
-    	
     	clickOn("#LoginBtn");
 		sleep(500);
 		clickOn("#userNameField");
@@ -181,5 +181,5 @@ public class FxAppTest extends ApplicationTest {
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
 		clickOn("#closeBtn");
-    }
+    }*/
 }
