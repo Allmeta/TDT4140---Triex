@@ -27,7 +27,8 @@ public class LoginController extends Controller {
 	
 	@FXML //Function that closes the login stage when submit button is pressed
 	public void submitLoginStage(ActionEvent event) {
-		//This should check that information has been entered but sadly it does not work
+		//Works!
+		//Need to add functionality to wait for database input, it's not instantaneous
 		if (userNameField != null || userNameField.getLength() != 0) {
 			User user= this.app.login(userNameField.getText(), passwordField.getText());
 			if (user==null) {

@@ -36,7 +36,6 @@ public class Database {
 				.setDatabaseUrl("https://tdt4140-g36.firebaseio.com").build();
 
 		FirebaseApp.initializeApp(options);
-		System.out.println("did init ty");
 
 		/*DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -70,17 +69,20 @@ public class Database {
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
-				User b=dataSnapshot.getValue(user.getClass());
+				System.out.println(dataSnapshot);
 				
-				System.out.println(b);
-				if (b != null) {
+				user=dataSnapshot.getValue(User.class);
+				if (user != null) {
 					//user = dataSnapshot.getValue(User.class);
 					// user exists, check pw
 					//will hash soon pls
-					if (password != user.password) {
+					if (!password.equals(user.password)) {
+						
 						//return null if login failed
+						System.out.println("wrong password: "+user.password+" , "+password);
 						user=null;
-						System.out.println("wrong password");
+					}else {
+						System.out.println("correct! logged in!!");
 					}
 				} else {
 					// user does not exist. login failed.
@@ -98,7 +100,7 @@ public class Database {
 		return user;
 	}
 
-	public User register(String username,String name, int age, String city, String email, String adress,int phone, String password) {
+	public User register(String username,String name, int age, String city, String email, String adress,String phone, String password) {
 		//hash password
 		User newUser=new User(name, age, city, email, adress,phone, password);
 		Map<String, User> k=new HashMap<>();

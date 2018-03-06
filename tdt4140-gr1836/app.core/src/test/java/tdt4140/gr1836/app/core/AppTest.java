@@ -17,7 +17,7 @@ public class AppTest {
 	}
 	@Test
 	public void register_account() {
-		app.register("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", 987654321, "test");
+		app.register("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test");
 	}
 	@Test
 	public void try_login_wrong_input() {

@@ -56,7 +56,7 @@ public class AddNewUserController extends Controller {
 	
 	@FXML 
 	public void SubmitNewUser(ActionEvent event) throws IOException {
-		this.app.register(usernameField.getText(), nameField.getText(), 20, cityField.getText(), emailField.getText(), addressField.getText(), Integer.parseInt(phoneField.getText()), passwordField.getText());
+		this.app.register(usernameField.getText(), nameField.getText(), 20, cityField.getText(), emailField.getText(), addressField.getText(), phoneField.getText(), passwordField.getText());
 		//age and phone must change
 		//Database.register(String username,String name, int age, String city, String email, String adress,int phone, String password);
 	    Stage stage = (Stage) confirmBtn.getScene().getWindow();

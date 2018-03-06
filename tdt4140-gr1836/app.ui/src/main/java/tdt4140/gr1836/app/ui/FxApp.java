@@ -108,17 +108,17 @@ public class FxApp extends Application {
 		this.app.deleteUser(username);
 		
 	}
-/*
-	public static void main(String[] args) throws IOException {
+
+	/*public static void main(String[] args) throws IOException {
 		//Database d=new Database();
 		//d.init();
 		//d.register("Mathias4", "Thomas almestad", 20, "oslo", "ole@gmail.com", "bergveien 5c", 0, "123abc");
 		//d.deleteUser("Allmeta");
 		//d.login("Karlf","5213");
 		App app = new App();
-		app.deleteUser("Mathias7");
-		app.register("Mathias7", "Thomas almestad", 20, "oslo", "ole@gmail.com", "bergveien 5c", 0, "123abc");
-		app.login("Mathias7", "123abc");
+		//app.deleteUser("Mathias7");
+		//app.register("Mathias7", "Thomas almestad", 20, "oslo", "ole@gmail.com", "bergveien 5c", 0, "123abc");
+		app.login("Karlf", "5213");
 
 	}*/
 
