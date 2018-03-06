@@ -3,6 +3,7 @@ package tdt4140.gr1836.app.core;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,34 +37,12 @@ public class Database {
 				.setDatabaseUrl("https://tdt4140-g36.firebaseio.com").build();
 
 		FirebaseApp.initializeApp(options);
-
-		/*DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				Object res = dataSnapshot.getValue();
-				System.out.println(res);
-			}
-
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("fk");
-
-			}
-		});*/
-
-		// Pushe til database
-		// DatabaseReference child=ref.push();
-		// User test= new User("Johan", "Eple");
-		// child.setValueAsync(test);
 	    }
 	}
 
 	public User login(String username, String password) {
 		// hash password, sjekk om de er stemmer med databasen
 		// hvis ikke, returner null
-		
-		//NB: Har ikke implementert hashing enda!
 		
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/"+username);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,13 +52,13 @@ public class Database {
 				
 				user=dataSnapshot.getValue(User.class);
 				if (user != null) {
-					//user = dataSnapshot.getValue(User.class);
 					// user exists, check pw
 					//will hash soon pls
-					if (!password.equals(user.password)) {
+					String hashedPassword=Hash.hash(password, Hash.decodeSalt(user.salt));
+					if (!hashedPassword.equals(user.password)) {
 						
 						//return null if login failed
-						System.out.println("wrong password: "+user.password+" , "+password);
+						System.out.println("wrong password: "+user.password+" , "+hashedPassword);
 						user=null;
 					}else {
 						System.out.println("correct! logged in!!");
@@ -102,7 +81,18 @@ public class Database {
 
 	public User register(String username,String name, int age, String city, String email, String adress,String phone, String password) {
 		//hash password
-		User newUser=new User(name, age, city, email, adress,phone, password);
+		byte[] salt = null;
+		try {
+			salt = Hash.getSalt();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		String hashedPassword=Hash.hash(password,salt);
+		
+		User newUser=new User(name, age, city, email, adress,phone, hashedPassword);
+		
+		newUser.setSalt(Hash.convertSalt(salt));
+		
 		Map<String, User> k=new HashMap<>();
 		k.put(username, newUser);
 		//Send to database

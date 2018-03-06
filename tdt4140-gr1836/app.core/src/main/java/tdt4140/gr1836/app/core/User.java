@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 	public String email, password, name,city,adress,phone;
 	public int age;
+	public String salt;
 
 	public User(String name, int age, String city, String email, String adress,String phone, String password) {
 		this.password = password;
@@ -18,5 +19,8 @@ public class User implements Serializable {
 	}
 	public User() {
 		//empty constructor to make new object based on snapshot data from login function
+	}
+	public void setSalt(String salt) {
+		this.salt=salt;
 	}
 }
