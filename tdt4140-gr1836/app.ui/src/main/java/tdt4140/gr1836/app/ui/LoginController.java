@@ -1,6 +1,8 @@
 package tdt4140.gr1836.app.ui;
 
 
+import java.util.concurrent.TimeUnit;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +28,7 @@ public class LoginController extends Controller {
 	public Button confirmBtn;
 	
 	@FXML //Function that closes the login stage when submit button is pressed
-	public void submitLoginStage(ActionEvent event) {
+	public void submitLoginStage(ActionEvent event) throws InterruptedException {
 		//Works!
 		//Need to add functionality to wait for database input, it's not instantaneous
 		if (userNameField != null || userNameField.getLength() != 0) {

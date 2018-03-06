@@ -40,9 +40,10 @@ public class Database {
 	    }
 	}
 
-	public User login(String username, String password) {
+	public void login(String username, String password, App listenerApp) {
 		// hash password, sjekk om de er stemmer med databasen
 		// hvis ikke, returner null
+		// listenerApp er appen som logger inn 
 		
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/"+username);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -58,25 +59,30 @@ public class Database {
 					if (!hashedPassword.equals(user.password)) {
 						
 						//return null if login failed
+						//setter listenerApp sin user og variabel for venting
 						System.out.println("wrong password: "+user.password+" , "+hashedPassword);
-						user=null;
+						listenerApp.setUser(null);
+						listenerApp.waitForDatabase=false;
 					}else {
 						System.out.println("correct! logged in!!");
+						listenerApp.setUser(user);
+						listenerApp.waitForDatabase=false;
 					}
 				} else {
 					// user does not exist. login failed.
 					System.out.println("no reference");
-					user=null;
+					listenerApp.setUser(null);
+					listenerApp.waitForDatabase=false;
 				}
 			}
 
 			public void onCancelled(DatabaseError arg0) {
 				// return fant ikke users wtf
 				System.out.println("fk");
+				listenerApp.waitForDatabase=false;
 
 			}
 		});
-		return user;
 	}
 
 	public User register(String username,String name, int age, String city, String email, String adress,String phone, String password) {

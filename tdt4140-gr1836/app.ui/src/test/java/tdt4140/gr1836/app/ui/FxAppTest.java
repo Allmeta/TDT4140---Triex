@@ -36,20 +36,12 @@ public class FxAppTest extends ApplicationTest {
         root.getCo
         stage.setScene(this.scene);
         stage.show();*/
-		
-		//Setter opp appen og en database for å sjekke mot
-        //Database db = new Database();
-        //db.init();
     	FxApp fxApp = new FxApp();
         fxApp.start(stage);
         //Må gå tilbake til home etter hver test for at de skal plukke opp fra start
 		
 		
     }
-	//Må lage override som setter opp får kontroller og deretter legger til nye
-	//brukere og treningsøkter i en egen tom json fil, bruker deretter assert for å sjeke at
-	//det stemmer
-	
 	//private FxApp fxApp;
 			
 	//@Before
@@ -64,30 +56,35 @@ public class FxAppTest extends ApplicationTest {
 		assertEquals(button.getText(), "Cancel");
 		clickOn("#closeBtn");
 	}
-
-
 	@Test
 	public void navigate_useless_scenes() {
 		//Goes through scenes not currently in use, only to check that the system doesn't
 		//crash.
 		//Goes to strength and cardio, clicks home cancel for both, goes to past, clicks home
+		Button button = new Button();
 		clickOn("#goNew");
 		sleep(1000);
 		clickOn("#cardioBtn");
 		sleep(1000);
+		button = lookup("#CancelCardioWorkout").query();
+		assertEquals(button.getText(), "Cancel");
 		clickOn("#CancelCardioWorkout");
 		sleep(1000);
 		clickOn("#goNew");
 		sleep(1000);
 		clickOn("#strengthBtn");
 		sleep(1000);
+		button = lookup("#CancelStrengthWorkout").query();
+		assertEquals(button.getText(), "Cancel");
 		clickOn("#CancelStrengthWorkout");
 		//Test past workout
 		sleep(1000);
 		clickOn("#goPast");
 		sleep(1500);
+		button = lookup("#HomeBtn").query();
+		assertEquals(button.getText(), "Home");
 		clickOn("#HomeBtn");
-
+		
 	}
 	@Test
 	public void register_user() {
@@ -122,39 +119,67 @@ public class FxAppTest extends ApplicationTest {
 		clickOn("#passwordField");
 		write("wrong");
 		clickOn("#confirmBtn");
-		sleep(500);
+		sleep(3000);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
 		clickOn("#closeBtn");
-		
-		
+	}
+	@Test 
+	public void log_in_invalid_username() {
+		clickOn("#LoginBtn");
+		sleep(500);
+		clickOn("#userNameField");
+		write("nonexistant");
+		clickOn("#passwordField");
+		write("test");
+		clickOn("#confirmBtn");
+		sleep(3000);
+		Label label = lookup("#loginText").query();
+		assertEquals(label.getText(), "Wrong input");
+		clickOn("#closeBtn");
 	}
 	/*
 	@Test 
     public void log_in_invalid_name() {
-
     	BorderPane rootNode = (BorderPane) this.scene.getRoot();//Testes som Parent
         Button button = from(rootNode).lookup("#LoginBtn").query();
         assertEquals("Log in", button.getText());*/
     	//clickOn("#LoginBtn");
         // expect:
     	//Button btn = find("#LoginBtn");
-    	
         //verifyThat("#LoginBtn", containsString("Log in"));
         //assertEquals("test@gmail.com", lookup("#email").<TextField>().getText());
-	/*
-    }
-
 	@Test 
 	public void log_in() {
-		
+		clickOn("#LoginBtn");
+		sleep(500);
+		clickOn("#userNameField");
+		write("testFxBoy");
+		clickOn("#passwordField");
+		write("test");
+		clickOn("#confirmBtn");
+		sleep(3000);
+		Label label = lookup("#loginText").query();
+		assertEquals(label.getText(), "Logged in as Mr.TestFx");
+		clickOn("#closeBtn");
 	}
-	*/
+
     @Test
     public void delete_user_try_login() {
     	//Sletter opprettet bruker for  deretter å teste login på nytt
     	Database dbTest = new Database();
     	dbTest.deleteUser("testFxBoy");
-    
+    	
+    	clickOn("#LoginBtn");
+		sleep(500);
+		clickOn("#userNameField");
+		write("testFxBoy");
+		clickOn("#passwordField");
+		write("test");
+		clickOn("#confirmBtn");
+		sleep(3000);
+		Label label = lookup("#loginText").query();
+		assertEquals(label.getText(), "Wrong input");
+		clickOn("#closeBtn");
     }
 }
