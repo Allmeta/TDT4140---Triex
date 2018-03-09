@@ -15,13 +15,13 @@ public class MainMenuController extends Controller {
 	
 	@FXML
 	private void goNewWorkout() throws IOException {
-		this.fxAppParent.showScene("newWorkout.fxml");
+		showScene("newWorkout.fxml", this.getStage());
 	}
 	
 	
 	@FXML
 	private void goPastWorkout() throws IOException {
-		this.fxAppParent.showScene("pastWorkout.fxml");
+		showScene("pastWorkout.fxml",this.getStage());
 	}
 
 }

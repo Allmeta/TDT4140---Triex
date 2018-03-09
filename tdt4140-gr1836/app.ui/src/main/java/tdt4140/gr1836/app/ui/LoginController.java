@@ -1,6 +1,7 @@
 package tdt4140.gr1836.app.ui;
 
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
@@ -22,13 +23,15 @@ public class LoginController extends Controller {
 	@FXML
 	private Label loginText;
 	
-	@FXML
-	public Button closeBtn;
+
 	@FXML 
-	public Button confirmBtn;
+	public Button submitBtn;
+	
+	@FXML 
+	public Button registerBtn;
 	
 	@FXML //Function that closes the login stage when submit button is pressed
-	public void submitLoginStage(ActionEvent event) throws InterruptedException {
+	public void submitLoginStage(ActionEvent event) throws InterruptedException, IOException {
 		//Works!
 		//Need to add functionality to wait for database input, it's not instantaneous
 		if (userNameField != null || userNameField.getLength() != 0) {
@@ -38,13 +41,20 @@ public class LoginController extends Controller {
 			}
 			else {
 				loginText.setText("Logged in as " + user.name);
+				
+			    Stage stage = (Stage) submitBtn.getScene().getWindow();
+			    stage.close();
+				showMainStage("MainMenu.fxml");
 			}
 		}
+		
+
 	}
-	@FXML 
-	public void closeLoginStage(ActionEvent event) {
-		Stage stage = (Stage) closeBtn.getScene().getWindow();
-	    stage.close();
+	
+	@FXML
+	private void goRegister() throws IOException {
+		showRegisterStage();
 	}
+
 
 }

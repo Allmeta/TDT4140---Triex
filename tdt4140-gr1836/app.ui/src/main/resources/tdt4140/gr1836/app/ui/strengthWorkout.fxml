@@ -7,12 +7,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.StrengthWorkoutController">
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.StrengthWorkoutController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="138.0" prefWidth="425.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="SubmitStrengthWorkout" mnemonicParsing="false" onAction="#SubmitStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Submit" />
             <Button fx:id="CancelStrengthWorkout" mnemonicParsing="false" onAction="#CancelStrengthWorkout" prefHeight="50.0" prefWidth="120.0" text="Cancel" />
+            <Button fx:id="homtBtn" mnemonicParsing="false" onAction="#goHome" prefHeight="50.0" prefWidth="120.0" text="Home" />
          </children>
       </HBox>
    </bottom>
@@ -49,11 +50,11 @@
                                     <Label text="Date" GridPane.rowIndex="1" />
                                     <Label text="Type" GridPane.rowIndex="3" />
                                     <Label text="Other" GridPane.rowIndex="4" />
-                                    <TextField  prefHeight="31.0" prefWidth="244.0" promptText="Length of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
-                                    <TextField  promptText="Date of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField  promptText="Which bodypart did you train?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField  promptText="What kind of workout?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField  prefHeight="108.0" prefWidth="298.0" promptText="Other information" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField prefHeight="31.0" prefWidth="244.0" promptText="Length of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                                    <TextField promptText="Date of workout" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField promptText="Which bodypart did you train?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField promptText="What kind of workout?" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField prefHeight="108.0" prefWidth="298.0" promptText="Other information" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>

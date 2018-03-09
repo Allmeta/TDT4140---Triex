@@ -7,20 +7,30 @@ import javafx.scene.control.Button;
 import tdt4140.gr1836.app.ui.FxApp;
 
 public class newWorkoutController extends Controller {
+	
 	@FXML
 	private Button strengthBtn;
+	
 	@FXML
 	private Button cardioBtn;
+	
+	@FXML
+	private Button homeBtn;
 	
 
 	@FXML
 	private void goStrengthWorkout() throws IOException {
-		this.fxAppParent.showScene("strengthWorkout.fxml");
+		showScene("strengthWorkout.fxml", this.getStage());
 	}
 	
 	@FXML
 	private void goCardioWorkout() throws IOException {
-		this.fxAppParent.showScene("cardioWorkout.fxml");
+		showScene("cardioWorkout.fxml", this.getStage());
+	}
+	
+	@FXML
+	private void goHome() throws IOException {
+		showScene("MainMenu.fxml", this.getStage());
 	}
 	
 
