@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import tdt4140.gr1836.app.ui.FxApp;
 
 public class newWorkoutController extends Controller {
 	
@@ -20,17 +19,17 @@ public class newWorkoutController extends Controller {
 
 	@FXML
 	private void goStrengthWorkout() throws IOException {
-		showScene("strengthWorkout.fxml", this.getStage());
+		showScene("strengthWorkout.fxml", this.getStage(),this.app);
 	}
 	
 	@FXML
 	private void goCardioWorkout() throws IOException {
-		showScene("cardioWorkout.fxml", this.getStage());
+		showScene("cardioWorkout.fxml", this.getStage(),this.app);
 	}
 	
 	@FXML
 	private void goHome() throws IOException {
-		showScene("MainMenu.fxml", this.getStage());
+		showScene("MainMenu.fxml", this.getStage(),this.app);
 	}
 	
 

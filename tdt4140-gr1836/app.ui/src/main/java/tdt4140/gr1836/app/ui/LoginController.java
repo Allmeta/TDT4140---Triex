@@ -2,7 +2,6 @@ package tdt4140.gr1836.app.ui;
 
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +21,12 @@ public class LoginController extends Controller {
 	
 	@FXML
 	private Label loginText;
-	
 
 	@FXML 
 	public Button submitBtn;
 	
 	@FXML 
-	public Button registerBtn;
+	public Button RegisterBtn;
 	
 	@FXML //Function that closes the login stage when submit button is pressed
 	public void submitLoginStage(ActionEvent event) throws InterruptedException, IOException {
@@ -40,11 +38,11 @@ public class LoginController extends Controller {
 				loginText.setText("Wrong input");
 			}
 			else {
-				loginText.setText("Logged in as " + user.name);
+				//loginText.setText("Logged in as " + user.name);
 				
 			    Stage stage = (Stage) submitBtn.getScene().getWindow();
 			    stage.close();
-				showMainStage("MainMenu.fxml");
+				showMainStage(this.app);
 			}
 		}
 		
@@ -53,7 +51,7 @@ public class LoginController extends Controller {
 	
 	@FXML
 	private void goRegister() throws IOException {
-		showRegisterStage();
+		showRegisterStage(this.app);
 	}
 
 

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import tdt4140.gr1836.app.core.App;
 
 public class MainMenuController extends Controller {
 	
@@ -15,13 +14,13 @@ public class MainMenuController extends Controller {
 	
 	@FXML
 	private void goNewWorkout() throws IOException {
-		showScene("newWorkout.fxml", this.getStage());
+		showScene("newWorkout.fxml", this.getStage(),this.app);
 	}
 	
 	
 	@FXML
 	private void goPastWorkout() throws IOException {
-		showScene("pastWorkout.fxml",this.getStage());
+		showScene("pastWorkout.fxml",this.getStage(),this.app);
 	}
 
 }

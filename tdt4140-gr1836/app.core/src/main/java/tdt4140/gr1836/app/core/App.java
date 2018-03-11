@@ -9,6 +9,7 @@ public class App {
 	
 	private Database database;
 	private User user; 
+	private String currentUsername;
 	public boolean waitForDatabase;
 	
 	public App() throws IOException {
@@ -18,6 +19,7 @@ public class App {
 	}
 		
 	public void register(String username,String name, int age, String city, String email, String adress,String phone, String password) {
+		
 		this.user=this.database.register(username, name, age, city, email, adress, phone, password);
 	}
 	

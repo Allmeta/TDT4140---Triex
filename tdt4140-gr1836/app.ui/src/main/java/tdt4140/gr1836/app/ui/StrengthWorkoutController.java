@@ -19,7 +19,7 @@ public class StrengthWorkoutController extends Controller {
 	
 	
 	public void SubmitStrengthWorkout() throws IOException {
-		showScene("MainMenu.fxml", this.getStage());
+		showScene("MainMenu.fxml", this.getStage(),this.app);
 		
 		
 		//TODO: Function that sends the workout to data base.
@@ -28,12 +28,12 @@ public class StrengthWorkoutController extends Controller {
 	
 	//Sends you back to menu
 	public void CancelStrengthWorkout() throws IOException {
-		showScene("MainMenu.fxml", this.getStage());
+		showScene("MainMenu.fxml", this.getStage(),this.app);
 	}
 	
 	@FXML
 	private void goHome() throws IOException {
-		showScene("MainMenu.fxml", this.getStage());
+		showScene("MainMenu.fxml", this.getStage(),this.app);
 	}
 	
 }

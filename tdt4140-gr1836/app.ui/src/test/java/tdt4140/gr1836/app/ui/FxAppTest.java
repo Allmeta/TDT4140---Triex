@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -18,7 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import tdt4140.gr1836.app.core.Database;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class FxAppTest extends ApplicationTest {
 	
@@ -27,70 +31,42 @@ public class FxAppTest extends ApplicationTest {
 		if (Boolean.valueOf(System.getProperty("gitlab-ci", "false")))
 		GitlabCISupport.headless();
 	}
+	private static boolean startFlag=true;
 	
-    //private Scene scene;
 	@Override
     public void start(Stage stage) throws Exception {
-        /*Parent root = FXMLLoader.load(getClass().getResource("BottomMenu.fxml"));
-        this.scene = new Scene(root);
-        root.getCo
-        stage.setScene(this.scene);
-        stage.show();*/
-    	FxApp fxApp = new FxApp();
-        fxApp.start(stage);
-        //Setter app til en dummyapp som kommuniserer med en lokal tekstfil
+		if (startFlag==true) {
+		System.out.println("Start");
         DummyApp app = new DummyApp();
-        fxApp.setApp(app);
-        //Må gå tilbake til home etter hver test for at de skal plukke opp fra start
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(FxApp.class.getResource("Login.fxml"));	
+		Parent root = loader.load();
 		
+		Scene scene = new Scene(root, 380, 550);
+		stage.setScene(scene);
+		stage.setTitle("Testing training app");
 		
+		//Set app to controller
+		Controller controller = loader.getController();
+		controller.setApp(app);
+		
+		stage.show();
+		}
     }
-	//private FxApp fxApp;
-			
 	//@Before
-	//public void setUp(Stage stage) throws IOException {
-		
 	//}
 	@Test
-	public void go_to_register_and_cancel() {
+	public void t1_go_to_register_and_cancel() {
 		clickOn("#RegisterBtn");
 		sleep(1000);
 		Button button = lookup("#closeBtn").query();
 		assertEquals(button.getText(), "Cancel");
 		clickOn("#closeBtn");
 	}
+	
 	@Test
-	public void navigate_useless_scenes() {
-		//Goes through scenes not currently in use, only to check that the system doesn't
-		//crash.
-		//Goes to strength and cardio, clicks home cancel for both, goes to past, clicks home
-		Button button = new Button();
-		clickOn("#goNew");
-		sleep(100);
-		clickOn("#cardioBtn");
-		sleep(1000);
-		button = lookup("#CancelCardioWorkout").query();
-		assertEquals(button.getText(), "Cancel");
-		clickOn("#CancelCardioWorkout");
-		sleep(100);
-		clickOn("#goNew");
-		sleep(100);
-		clickOn("#strengthBtn");
-		sleep(1000);
-		button = lookup("#CancelStrengthWorkout").query();
-		assertEquals(button.getText(), "Cancel");
-		clickOn("#CancelStrengthWorkout");
-		//Test past workout
-		sleep(100);
-		clickOn("#goPast");
-		sleep(1500);
-		button = lookup("#HomeBtn").query();
-		assertEquals(button.getText(), "Home");
-		clickOn("#HomeBtn");
-		
-	}
-	@Test
-	public void register_user() {
+	public void t2_register_user() {
+		//Registrerer ikke med dummyapp, men tester bare javafx
 		clickOn("#RegisterBtn");
 		sleep(1000);
 		clickOn("#usernameField");
@@ -111,36 +87,29 @@ public class FxAppTest extends ApplicationTest {
 		write("test");
 		clickOn("#confirmBtn");
 	}
-
-	
 	//TEster ikke login mye enda da login ikke fungerer
 	@Test 
-	public void log_in_invalid_password() {
-		clickOn("#LoginBtn");
-		sleep(500);
+	public void t3_log_in_invalid_password() {
 		clickOn("#userNameField");
 		write("testFxBoy");
 		clickOn("#passwordField");
 		write("wrong");
-		clickOn("#confirmBtn");
+		clickOn("#submitBtn");
 		sleep(500);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
-		clickOn("#closeBtn");
 	}
 	@Test 
-	public void log_in_invalid_username() {
-		clickOn("#LoginBtn");
-		sleep(500);
+	public void t4_log_in_invalid_username() {
 		clickOn("#userNameField");
 		write("nonexistant");
 		clickOn("#passwordField");
 		write("test");
-		clickOn("#confirmBtn");
+		clickOn("#submitBtn");
 		sleep(500);
 		Label label = lookup("#loginText").query();
 		assertEquals(label.getText(), "Wrong input");
-		clickOn("#closeBtn");
+		
 	}
 	/*
 	@Test 
@@ -150,18 +119,43 @@ public class FxAppTest extends ApplicationTest {
         assertEquals("Log in", button.getText());*/
 
 	@Test 
-	public void log_in() {
-		clickOn("#LoginBtn");
+	public void t5_log_in() {
 		sleep(500);
 		clickOn("#userNameField");
 		write("testFxBoy");
 		clickOn("#passwordField");
 		write("test");
-		clickOn("#confirmBtn");
+		clickOn("#submitBtn");
 		sleep(500);
-		Label label = lookup("#loginText").query();
-		assertEquals(label.getText(), "Logged in as Mr.TestFx");
-		clickOn("#closeBtn");
+		//Check that you are in main menu
+		Button newbutton = lookup("#goNew").query();
+		assertEquals(newbutton.getText(), "Add new workout");
+		
+		//Heretter skal ikke login eller register testes mer
+		startFlag=false;
+	}
+	@Test
+	public void t6_navigate_useless_scenes() {
+		//Goes through scenes not currently in use, only to check that the system doesn't crash.
+		//Goes to strength and cardio, clicks home cancel for both, goes to past, clicks home
+		sleep(1000);
+		Button button = new Button();
+		clickOn("#goNew");
+		sleep(100);
+		clickOn("#cardioBtn");
+		sleep(1000);
+		button = lookup("#CancelCardioWorkout").query();
+		assertEquals(button.getText(), "Cancel");
+		clickOn("#CancelCardioWorkout");
+		sleep(100);
+		clickOn("#goNew");
+		sleep(100);
+		clickOn("#strengthBtn");
+		sleep(1000);
+		button = lookup("#CancelStrengthWorkout").query();
+		assertEquals(button.getText(), "Cancel");
+		clickOn("#CancelStrengthWorkout");
+		//Test past workout
 	}
 /*
     @Test Denne er kanskje ikke nødvendig for ui testing
