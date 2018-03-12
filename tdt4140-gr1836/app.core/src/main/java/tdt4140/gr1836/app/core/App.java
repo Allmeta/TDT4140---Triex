@@ -3,6 +3,7 @@ package tdt4140.gr1836.app.core;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 //import org.apache.log4j.BasicConfigurator;
@@ -59,6 +60,13 @@ public class App {
 			List<String> hang, List<String> press, List<Boolean> intensity, String text) {
 		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,intensity,text);
 		this.database.submitStrengthWorkout(str, this);
+		
+	}
+
+	public void submitCardioWorkout(String text, String string, Map<String, Boolean> activity, List<Boolean> intensity,
+			String text2) {
+		CardioWorkout cdw=new CardioWorkout(text,string,activity,intensity,text2);
+		this.database.submitCardioWorkout(cdw,this);
 		
 	}
 }
