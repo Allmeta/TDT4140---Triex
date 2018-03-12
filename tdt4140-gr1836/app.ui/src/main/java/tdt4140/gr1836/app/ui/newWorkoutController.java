@@ -19,17 +19,17 @@ public class newWorkoutController extends Controller {
 
 	@FXML
 	private void goStrengthWorkout() throws IOException {
-		showScene("strengthWorkout.fxml", this.getStage(),this.app);
+		showScene("strengthWorkout.fxml", this.getRoot(),this.app);
 	}
 	
 	@FXML
 	private void goCardioWorkout() throws IOException {
-		showScene("cardioWorkout.fxml", this.getStage(),this.app);
+		showScene("cardioWorkout.fxml", this.getRoot(),this.app);
 	}
 	
 	@FXML
 	private void goHome() throws IOException {
-		showScene("MainMenu.fxml", this.getStage(),this.app);
+		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	
 

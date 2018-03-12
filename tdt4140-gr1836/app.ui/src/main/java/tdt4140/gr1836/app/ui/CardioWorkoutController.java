@@ -18,7 +18,7 @@ public class CardioWorkoutController extends Controller {
 	
 	
 	public void SubmitCardioWorkout() throws IOException {
-		showScene("MainMenu.fxml", this.getStage(),this.app);
+		showScene("MainMenu.fxml", this.getRoot(),this.app);
 		
 		
 		//TODO: Function that sends the workout to data base.
@@ -27,12 +27,12 @@ public class CardioWorkoutController extends Controller {
 	
 	//Sends you back to menu
 	public void CancelCardioWorkout() throws IOException {
-		showScene("MainMenu.fxml", this.getStage(),this.app);
+		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	
 	@FXML
 	private void goHome() throws IOException {
-		showScene("MainMenu.fxml", this.getStage(),this.app);
+		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	
 }

@@ -14,12 +14,10 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
