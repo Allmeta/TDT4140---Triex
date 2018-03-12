@@ -95,12 +95,10 @@ public class Database {
 		}
 		String hashedPassword=Hash.hash(password,salt);
 		
-		User newUser=new User(name, age, city, email, adress,phone, hashedPassword);
+		User newUser=new User(username,name, age, city, email, adress,phone, hashedPassword);
 		
 		newUser.setSalt(Hash.convertSalt(salt));
 		
-		Map<String, User> k=new HashMap<>();
-		k.put(username, newUser);
 		//Send to database
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
 		DatabaseReference s=ref.child(username);
@@ -111,5 +109,17 @@ public class Database {
 		//return null på /username for å fjerne data
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
 		ref.child(username).setValueAsync(null);
+	}
+
+	public void submitStrengthWorkout(StrengthWorkout str, App app) {
+		System.out.println(app.getUser());
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
+		
+		DatabaseReference s=ref.child(app.getUser().username).child("strength").child(str.date);
+		s.setValueAsync(str);
+		
+	}
+	public StrengthWorkout getWorkouts() {
+		return null;
 	}
 }

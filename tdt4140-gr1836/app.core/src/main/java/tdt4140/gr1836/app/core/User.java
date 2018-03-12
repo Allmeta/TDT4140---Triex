@@ -3,11 +3,11 @@ package tdt4140.gr1836.app.core;
 import java.io.Serializable;
 	
 public class User implements Serializable {
-	public String email, password, name,city,address,phone;
+	public String email, password, name,city,address,phone,username;
 	public int age;
 	public String salt;
 
-	public User(String name, int age, String city, String email, String address,String phone, String password) {
+	public User(String username, String name, int age, String city, String email, String address,String phone, String password) {
 		this.password = password;
 		this.name = name;
 		this.age = age;
@@ -15,6 +15,7 @@ public class User implements Serializable {
 		this.city=city;
 		this.email=email;
 		this.address=address;
+		this.username=username;
 		
 	}
 	public User() {

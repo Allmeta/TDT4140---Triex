@@ -36,7 +36,7 @@ public class AppTest {
 	}
 	@Test public void login() {
 		user = app.login("TestUser", "test");
-		User correctUser= new User("Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test");
+		User correctUser= new User("TestUser","Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test");
 		assertEquals(user.address,correctUser.address);
 		assertEquals(user.name,correctUser.name);
 		assertEquals(user.age,correctUser.age);

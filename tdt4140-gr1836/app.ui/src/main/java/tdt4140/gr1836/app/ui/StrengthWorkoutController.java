@@ -1,8 +1,16 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 public class StrengthWorkoutController extends Controller {
 	
@@ -17,12 +25,83 @@ public class StrengthWorkoutController extends Controller {
 	@FXML
 	private Button homeBtn;
 	
+	@FXML
+	private TextField duration; 
 	
+	@FXML
+	private DatePicker date;
+	
+	@FXML
+	private CheckBox intensityL;
+	
+	@FXML
+	private CheckBox intensityM;
+	
+	@FXML
+	private CheckBox intensityH;
+	
+	@FXML
+	private TextField benchW;
+	
+	@FXML
+	private TextField benchS;
+	
+	@FXML
+	private TextField benchR;
+	
+	@FXML
+	private TextField deadW;
+	
+	@FXML
+	private TextField deadS;
+	
+	@FXML
+	private TextField deadR;
+	
+	@FXML
+	private TextField squatW;
+	
+	@FXML
+	private TextField squatS;
+	
+	@FXML
+	private TextField squatR;
+	
+	@FXML
+	private TextField hangW;
+	
+	@FXML
+	private TextField hangS;
+	
+	@FXML
+	private TextField hangR;
+	
+	@FXML
+	private TextField pressW;
+	
+	@FXML
+	private TextField pressS;
+	
+	@FXML
+	private TextField pressR;
+	
+	@FXML
+	private TextField info;
+	
+	
+	
+	@SuppressWarnings("restriction")
 	public void SubmitStrengthWorkout() throws IOException {
+		List<String> bench= Arrays.asList(benchW.getText(),benchS.getText(),benchR.getText());
+		List<String> dead= Arrays.asList(deadW.getText(),deadS.getText(),deadR.getText());
+		List<String> squat= Arrays.asList(squatW.getText(),squatS.getText(),squatR.getText());
+		List<String> hang= Arrays.asList(hangW.getText(), hangS.getText(),hangR.getText());
+		List<String> press= Arrays.asList(pressW.getText(),pressS.getText(),pressR.getText());
+		List<Boolean> intensity= Arrays.asList(intensityL.isSelected(),intensityM.isSelected(),intensityH.isSelected());
+		
+		
+		this.app.submitStrengthWorkout(duration.getText(), date.getValue().toString(), bench,dead,squat,hang,press,intensity,info.getText());
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
-		
-		
-		//TODO: Function that sends the workout to data base.
 	}
 	
 	

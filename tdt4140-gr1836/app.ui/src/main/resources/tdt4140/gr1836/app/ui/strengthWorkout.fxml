@@ -46,7 +46,7 @@
                         <Label text="Date" GridPane.rowIndex="1" />
                         <Label text="Intensity" GridPane.rowIndex="3" />
                         <Label text="Other" GridPane.rowIndex="4" />
-                        <TextField alignment="TOP_LEFT" prefHeight="190.0" prefWidth="583.0" promptText="Other information" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="info" alignment="TOP_LEFT" prefHeight="190.0" prefWidth="583.0" promptText="Other information" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <padding>
                               <Insets top="20.0" />
@@ -79,34 +79,38 @@
                                     <Label text="Set" GridPane.columnIndex="2" />
                                     <Label text="Reps" GridPane.columnIndex="3" />
                                     <Label text="Weight" GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <TextField fx:id="benchW" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="benchS" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField fx:id="benchR" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    
+                                    <TextField fx:id="deadW" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="deadS" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <TextField fx:id="deadR" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    
+                                    <TextField fx:id="squatW" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="squatS" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <TextField fx:id="squatR" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    
+                                    <TextField fx:id="hangW" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="hangS" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <TextField fx:id="hangR" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    
+                                    <TextField fx:id="pressW" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="pressS" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <TextField fx:id="pressR" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                            </children>
                         </HBox>
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Low" />
-                              <CheckBox mnemonicParsing="false" text="Moderate" />
-                              <CheckBox mnemonicParsing="false" text="High" />
+                              <CheckBox fx:id="intensityL" mnemonicParsing="false" text="Low" />
+                              <CheckBox fx:id="intensityM" mnemonicParsing="false" text="Moderate" />
+                              <CheckBox fx:id="intensityH" mnemonicParsing="false" text="High" />
                            </children>
                         </HBox>
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="duration" promptText="Duration" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

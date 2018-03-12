@@ -20,7 +20,7 @@ public class DummyApp extends App {
 	
 	public DummyApp() throws IOException {
 		this.user=null;
-		this.correctUser=new User("Mr.TestFx", 20, "Trondheim", "hasselhoff@yahoo", "computer","1234", "test");
+		this.correctUser=new User("Username","Mr.TestFx", 20, "Trondheim", "hasselhoff@yahoo", "computer","1234", "test");
 		
 	}
 	public void register(String username,String name, int age, String city, String email, String address,String phone, String password) {

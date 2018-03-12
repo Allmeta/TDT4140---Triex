@@ -1,6 +1,8 @@
 package tdt4140.gr1836.app.core;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 //import org.apache.log4j.BasicConfigurator;
@@ -52,11 +54,11 @@ public class App {
 	public User getUser() {
 		return this.user;
 	}
-	
-/*	public static void main(String[] args) throws IOException {
-		App app = new App();
-		app.login("Karlf","1532");
+
+	public void submitStrengthWorkout(String value, String string, List<String> bench, List<String> dead, List<String> squat,
+			List<String> hang, List<String> press, List<Boolean> intensity, String text) {
+		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,intensity,text);
+		this.database.submitStrengthWorkout(str, this);
 		
-		
-	}*/
+	}
 }
