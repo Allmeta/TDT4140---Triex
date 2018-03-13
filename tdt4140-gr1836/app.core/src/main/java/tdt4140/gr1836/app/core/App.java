@@ -14,6 +14,7 @@ public class App {
 	private User user; 
 	private String currentUsername;
 	public boolean waitForDatabase;
+	private Workouts workouts;
 	
 	public App() throws IOException {
 		this.database=new Database();
@@ -44,6 +45,7 @@ public class App {
 				break;
 			}
 		}
+		getWorkouts();
 		return this.user;
 	}
 	public void deleteUser(String username) {
@@ -68,5 +70,15 @@ public class App {
 		CardioWorkout cdw=new CardioWorkout(text,string,activity,intensity,text2);
 		this.database.submitCardioWorkout(cdw,this);
 		
+	}
+
+	public void setWorkouts(Workouts value) {
+		// TODO Auto-generated method stub
+		this.workouts=value;
+		value.printTest();
+		
+	}
+	public void getWorkouts() {
+		this.database.getWorkouts(this);
 	}
 }

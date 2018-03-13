@@ -45,7 +45,6 @@ public class Database {
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
-				System.out.println(dataSnapshot);
 
 				user = dataSnapshot.getValue(User.class);
 				if (user != null) {
@@ -56,7 +55,7 @@ public class Database {
 
 						// return null if login failed
 						// setter listenerApp sin user og variabel for venting
-						System.out.println("wrong password: " + user.password + " , " + hashedPassword);
+						System.out.println("wrong password: ");
 						listenerApp.setUser(null);
 						listenerApp.waitForDatabase = false;
 					} else {
@@ -66,7 +65,7 @@ public class Database {
 					}
 				} else {
 					// user does not exist. login failed.
-					System.out.println("no reference");
+					System.out.println("User does not exist.");
 					listenerApp.setUser(null);
 					listenerApp.waitForDatabase = false;
 				}
@@ -117,7 +116,27 @@ public class Database {
 
 	}
 
-	public void getWorkouts() {
+	public void getWorkouts(App app) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts/"+app.getUser().username);
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				if(dataSnapshot!=null) {
+					
+					app.setWorkouts(dataSnapshot.getValue(Workouts.class));
+				}else {
+					System.out.println("User has no workouts");
+					app.setWorkouts(null);
+				}
+			}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 	}
 
 	public void submitCardioWorkout(CardioWorkout cdw, App app) {
