@@ -45,7 +45,6 @@ public class App {
 				break;
 			}
 		}
-		getWorkouts();
 		return this.user;
 	}
 	public void deleteUser(String username) {

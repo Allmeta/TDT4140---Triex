@@ -9,8 +9,12 @@ public class MainMenuController extends Controller {
 	
 	@FXML
 	private Button goNew;
+	
 	@FXML
 	private Button goPast;
+	
+	@FXML
+	private Button avaiCoaches;
 	
 	@FXML
 	private void goNewWorkout() throws IOException {
@@ -20,8 +24,11 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void goPastWorkout() throws IOException {
 		showScene("pastWorkout.fxml",this.getRoot(),this.app);
-		
-		
+	}
+	
+	@FXML
+	private void goCoaches() throws IOException {
+		showScene("Coaches.fxml",this.getRoot(),this.app);
 	}
 
 }
