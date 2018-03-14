@@ -2,12 +2,8 @@ package tdt4140.gr1836.app.core;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.google.api.client.util.Sleeper;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;

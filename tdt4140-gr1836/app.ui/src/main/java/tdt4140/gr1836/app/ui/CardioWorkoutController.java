@@ -1,9 +1,7 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javafx.fxml.FXML;
@@ -11,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Slider;
 
 @SuppressWarnings("restriction")
 public class CardioWorkoutController extends Controller {
@@ -35,13 +34,7 @@ public class CardioWorkoutController extends Controller {
 	private DatePicker date;
 	
 	@FXML
-	private CheckBox intensityL;
-	
-	@FXML
-	private CheckBox intensityM;
-	
-	@FXML
-	private CheckBox intensityH;
+	private Slider intensity;
 	
 	@FXML
 	private CheckBox swim;
@@ -61,8 +54,7 @@ public class CardioWorkoutController extends Controller {
 		activity.put("Swimming", swim.isSelected());
 		activity.put("Biking", bike.isSelected());
 		
-		List<Boolean> intensity=Arrays.asList(intensityL.isSelected(),intensityM.isSelected(),intensityH.isSelected());
-		this.app.submitCardioWorkout(duration.getText(),date.getValue().toString(),activity,intensity,info.getText());
+		this.app.submitCardioWorkout(duration.getText(),date.getValue().toString(),activity,intensity.getValue(),info.getText());
 		
 		
 		showScene("MainMenu.fxml", this.getRoot(),this.app);

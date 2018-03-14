@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+@SuppressWarnings("restriction")
 public class AddNewUserController extends Controller {
 	
 	//Contact information
@@ -52,6 +52,7 @@ public class AddNewUserController extends Controller {
 	    Stage stage = (Stage) closeBtn.getScene().getWindow();
 	    stage.close();
 	}
+	
 	
 	@FXML 
 	public void SubmitNewUser(ActionEvent event) throws IOException {

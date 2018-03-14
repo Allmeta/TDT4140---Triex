@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Slider;
 
 public class StrengthWorkoutController extends Controller {
 	
@@ -32,13 +33,7 @@ public class StrengthWorkoutController extends Controller {
 	private DatePicker date;
 	
 	@FXML
-	private CheckBox intensityL;
-	
-	@FXML
-	private CheckBox intensityM;
-	
-	@FXML
-	private CheckBox intensityH;
+	private Slider intensity;
 	
 	@FXML
 	private TextField benchW;
@@ -97,10 +92,9 @@ public class StrengthWorkoutController extends Controller {
 		List<String> squat= Arrays.asList(squatW.getText(),squatS.getText(),squatR.getText());
 		List<String> hang= Arrays.asList(hangW.getText(), hangS.getText(),hangR.getText());
 		List<String> press= Arrays.asList(pressW.getText(),pressS.getText(),pressR.getText());
-		List<Boolean> intensity= Arrays.asList(intensityL.isSelected(),intensityM.isSelected(),intensityH.isSelected());
 		
 		
-		this.app.submitStrengthWorkout(duration.getText(), date.getValue().toString(), bench,dead,squat,hang,press,intensity,info.getText());
+		this.app.submitStrengthWorkout(duration.getText(), date.getValue().toString(), bench,dead,squat,hang,press,intensity.getValue(),info.getText());
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	

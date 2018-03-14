@@ -58,15 +58,15 @@ public class App {
 	}
 
 	public void submitStrengthWorkout(String value, String string, List<String> bench, List<String> dead, List<String> squat,
-			List<String> hang, List<String> press, List<Boolean> intensity, String text) {
-		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,intensity,text);
+			List<String> hang, List<String> press, double d, String text) {
+		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,d,text);
 		this.database.submitStrengthWorkout(str, this);
 		
 	}
 
-	public void submitCardioWorkout(String text, String string, Map<String, Boolean> activity, List<Boolean> intensity,
+	public void submitCardioWorkout(String text, String string, Map<String, Boolean> activity, double d,
 			String text2) {
-		CardioWorkout cdw=new CardioWorkout(text,string,activity,intensity,text2);
+		CardioWorkout cdw=new CardioWorkout(text,string,activity,d,text2);
 		this.database.submitCardioWorkout(cdw,this);
 		
 	}

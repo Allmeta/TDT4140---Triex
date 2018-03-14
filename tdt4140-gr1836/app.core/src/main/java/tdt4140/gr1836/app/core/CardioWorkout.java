@@ -9,19 +9,19 @@ public class CardioWorkout implements Serializable{
 	public String duration;
 	public String date;
 	public Map<String, Boolean> activities;
-	public List<Boolean> intensity;
+	public double intensity;
 	public String info;
 
 	CardioWorkout(){
 		
 	}
 
-	public CardioWorkout(String text, String string, Map<String, Boolean> activity, List<Boolean> intensity,
+	public CardioWorkout(String text, String string, Map<String, Boolean> activity, double d,
 			String text2) {
 		this.duration=text;
 		this.date=string;
 		this.activities=activity;
-		this.intensity=intensity;
+		this.intensity=d;
 		this.info=text2;
 	}
 }

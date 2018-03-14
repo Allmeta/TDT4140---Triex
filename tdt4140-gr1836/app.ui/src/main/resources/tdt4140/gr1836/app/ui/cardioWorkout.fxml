@@ -58,14 +58,12 @@
                            </padding>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <CheckBox fx:id="intensityL" mnemonicParsing="false" text="Low" />
-                              <CheckBox fx:id="intensityM" mnemonicParsing="false" text="Moderate" />
-                              <CheckBox fx:id="intensityH" mnemonicParsing="false" text="High" />
-                           </children>
                            <padding>
                               <Insets top="35.0" />
                            </padding>
+                           <children>
+                              <Slider fx:id="intensity" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                           </children>
                         </HBox>
                         <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="duration" GridPane.columnIndex="1" />
