@@ -11,56 +11,57 @@ import tdt4140.gr1836.app.core.App;
 
 public class Controller {
 	protected App app;
-	protected BorderPane root;
+	protected Stage root;
 			
 	public void setApp(App app) {
 		this.app=app;
 	}
 	
-	public void setRoot(BorderPane root) {
+	public void setRoot(Stage root) {
 		this.root = root;
 	}
-	public BorderPane getRoot() {
+	public Stage getRoot() {
 		return this.root;
 	}
 	
 	// Shows the MainItems.fxml, pastWorkout.fxml, strengthWorkout.fxml,
 	// cardioWorkout.fxml
-	public void showScene(String sceneText, BorderPane root, App app) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource(sceneText));
-		BorderPane newStage = loader.load();
-		root.setCenter(newStage);
+	public void showScene(String sceneText, Stage root, App app) throws IOException {
+	    FXMLLoader loader = new FXMLLoader(getClass()
+	            .getResource(sceneText));
+	    BorderPane parent;
+	    try 
+	    {
+	    	parent = (BorderPane)loader.load();
+	    	//Set controller
+	    	Controller controller = loader.getController();
+			controller.setApp(app);
+			controller.setRoot(root);
+			
+	        root.setScene(new Scene(parent));
+	    } 
+	    catch (IOException e)
+	    {
+	        e.printStackTrace();
+	    }
 
-		//Set this root and this app to new controller
-		Controller controller = loader.getController();
-		controller.setApp(app);
-		controller.setRoot(root);
-		
-		//Scene scene = new Scene(newStage);
-		//stage.setScene(scene);
-		//stage.show();
 
 	}
 	// Loads and shows main stage for app
 	public void showMainStage(App app) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("MainMenu.fxml"));
-		BorderPane root = loader.load();
-		
-		Stage stage = new Stage();
-		stage.setTitle("Training app");
-		
-		//Set stage and app to controller
-		Controller controller = loader.getController();
+	    Stage root = new Stage();
+	    FXMLLoader loader = new FXMLLoader(getClass()
+	            .getResource("MainMenu.fxml"));
+	    BorderPane parent = (BorderPane)loader.load();
+	    
+	    //Set controller
+	    Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-
-		stage.initModality(Modality.WINDOW_MODAL);
-
-		Scene scene = new Scene(root, 600, 600);
-		stage.setScene(scene);
-		stage.show();
+		
+	    root.setTitle("Training app");
+	    root.setScene(new Scene(parent));
+	    root.show();
 	}
 	
 	// Loads and shows the add new user stage
