@@ -62,6 +62,11 @@ public class Controller {
 	    root.setTitle("Training app");
 	    root.setScene(new Scene(parent));
 	    root.show();
+	    
+	    //Load graph
+	    app.getWorkouts();
+	    
+	    
 	}
 	
 	// Loads and shows the add new user stage

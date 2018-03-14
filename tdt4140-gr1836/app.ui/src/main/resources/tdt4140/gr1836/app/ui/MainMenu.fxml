@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -18,7 +19,7 @@
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets top="150.0" />
+            <Insets top="70.0" />
          </padding>
       </FlowPane>
    </center>
@@ -32,4 +33,14 @@
          </font>
       </Label>
    </top>
+   <bottom>
+      <AreaChart fx:id="menuGraph" title="Latest 90 days" BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </AreaChart>
+   </bottom>
 </BorderPane>

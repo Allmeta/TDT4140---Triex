@@ -20,6 +20,8 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void goPastWorkout() throws IOException {
 		showScene("pastWorkout.fxml",this.getRoot(),this.app);
+		
+		
 	}
 
 }
