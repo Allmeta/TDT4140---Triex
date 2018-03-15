@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.Controller">
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.CoachesController">
    <top>
       <Label text="Available Coaches" BorderPane.alignment="CENTER">
          <font>
@@ -54,4 +54,10 @@
          </children>
       </GridPane>
    </center>
+   <bottom>
+      <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#goHome" prefHeight="50.0" prefWidth="120.0" text="Home" BorderPane.alignment="CENTER" />
+   </bottom>
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
 </BorderPane>
