@@ -66,6 +66,10 @@ public class AddNewUserController extends Controller {
 			Stage stage = (Stage) confirmBtn.getScene().getWindow();
 			stage.close();
 		}
+		
+	
+		
+		
 		//Trenger label til å presentere konfirmasjon
 		
 		AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, root, "Registration Successful!", 
