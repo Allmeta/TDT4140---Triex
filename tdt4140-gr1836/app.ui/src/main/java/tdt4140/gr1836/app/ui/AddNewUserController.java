@@ -1,3 +1,4 @@
+
 package tdt4140.gr1836.app.ui;
 
 
@@ -75,10 +76,10 @@ public class AddNewUserController extends Controller {
 		//Trenger label til å presentere konfirmasjon
 	}
 	
-	
-	
+	AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, root, "Registration Successful!", 
+            "Welcome " + nameField.getText());
 	
 
-	
+
 
 }
