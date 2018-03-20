@@ -6,10 +6,14 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.scene.control.Alert;
+
 @SuppressWarnings("restriction")
 public class AddNewUserController extends Controller {
 	
@@ -63,6 +67,11 @@ public class AddNewUserController extends Controller {
 			stage.close();
 		}
 		//Trenger label til å presentere konfirmasjon
+		
+		AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, root, "Registration Successful!", 
+                "Welcome " + nameField.getText());
+		
+		
 	}
 	
 	
