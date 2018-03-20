@@ -14,7 +14,7 @@ public class App {
 	private User user; 
 	private String currentUsername;
 	public boolean waitForDatabase;
-	private Workouts workouts;
+	public Workouts workouts;
 	
 	public App() throws IOException {
 		this.database=new Database();
@@ -54,6 +54,7 @@ public class App {
 		this.user=user;
 	}
 	public User getUser() {
+		
 		return this.user;
 	}
 
@@ -74,7 +75,7 @@ public class App {
 	public void setWorkouts(Workouts value) {
 		// TODO Auto-generated method stub
 		this.workouts=value;
-		value.printTest();
+		System.out.println("Set workouts!");
 		
 	}
 	public void getWorkouts() {

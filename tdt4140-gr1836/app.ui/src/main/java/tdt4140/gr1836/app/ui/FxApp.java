@@ -32,10 +32,6 @@ public class FxApp extends Application {
 		
 		primaryStage.show();
 	}
-	public void deleteUser(String username) {
-		//Helper method for testing
-		//this.app.deleteUser(username);
-	}
 	public static void main(String[] args) {
 		launch(args);
 

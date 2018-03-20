@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.App;
 
 public class Controller {
-	protected App app;
+	
+	public App app;
 	protected Stage root;
 			
 	public void setApp(App app) {

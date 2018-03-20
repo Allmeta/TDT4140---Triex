@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.User;
 
+@SuppressWarnings("restriction")
 public class LoginController extends Controller {
 	
 	@FXML
