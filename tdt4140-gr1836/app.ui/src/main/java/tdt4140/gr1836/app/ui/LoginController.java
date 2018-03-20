@@ -39,11 +39,26 @@ public class LoginController extends Controller {
 			}
 			else {
 				//loginText.setText("Logged in as " + user.name);
+				this.app.getUsersFromDatabase();
 				
-			    Stage stage = (Stage) submitBtn.getScene().getWindow();
-			    stage.close();
-				showMainStage(this.app);
+				Stage stage = (Stage) submitBtn.getScene().getWindow();
+				stage.close();
+				
+				if(user.coach) {
+					showCoachStage(this.app);
+					
+				}else {
+					showMainStage(this.app);
+					
+				}
+				
+				
+				
+				//if login as coach (checkbox == coach, then open coachstage
 			}
+			
+			
+			
 		}
 		
 

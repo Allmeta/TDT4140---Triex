@@ -23,6 +23,8 @@ public class FxApp extends Application {
 		Parent root = loader.load();
 		
 		Scene scene = new Scene(root, 380, 550);
+	
+		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Training app");
 		

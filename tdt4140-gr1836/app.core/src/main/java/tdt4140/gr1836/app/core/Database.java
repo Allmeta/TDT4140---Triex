@@ -3,6 +3,7 @@ package tdt4140.gr1836.app.core;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -77,7 +78,7 @@ public class Database {
 	}
 
 	public User register(String username, String name, int age, String city, String email, String adress, String phone,
-			String password) {
+			String password, boolean b) {
 		// hash password
 		byte[] salt = null;
 		try {
@@ -87,7 +88,7 @@ public class Database {
 		}
 		String hashedPassword = Hash.hash(password, salt);
 
-		User newUser = new User(username, name, age, city, email, adress, phone, hashedPassword);
+		User newUser = new User(username, name, age, city, email, adress, phone, hashedPassword, b);
 
 		newUser.setSalt(Hash.convertSalt(salt));
 
@@ -140,5 +141,20 @@ public class Database {
 
 		DatabaseReference s = ref.child(app.getUser().username).child("cardio").child(cdw.date);
 		s.setValueAsync(cdw);
+	}
+	public void getUsers(App app){
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+					app.setUsers(dataSnapshot.getValue(Users.class));
+				}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 }
