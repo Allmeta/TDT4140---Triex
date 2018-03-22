@@ -29,6 +29,8 @@ public class LoginController extends Controller {
 	@FXML 
 	private Button RegisterBtn;
 	
+	@FXML private Label confirmationLabel;
+	
 	@FXML //Function that closes the login stage when submit button is pressed
 	public void submitLoginStage(ActionEvent event) throws InterruptedException, IOException {
 		//Works!
@@ -36,22 +38,14 @@ public class LoginController extends Controller {
 		if (userNameField != null || userNameField.getLength() != 0) {
 			User user= this.app.login(userNameField.getText(), passwordField.getText());
 			if (user==null) {
-				loginText.setText("Wrong input");
+				confirmationLabel.setText("Invalid login");
 			}
 			else {
 				//loginText.setText("Logged in as " + user.name);
 				
 			    Stage stage = (Stage) submitBtn.getScene().getWindow();
 			    stage.close();
-
-				if(user.getCoach()) {
-					showCoachStage(this.app);
-					
-				}else {
-					showMainStage(this.app);
-					
-				}
-
+				showMainStage(this.app);
 			}
 		}
 		
