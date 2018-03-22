@@ -2,6 +2,11 @@
 
 Repository for group 36, TDT4140, Spring 2018.
 
+This is an app where a user can register their workouts and get feedback from different coaches by their choosing. 
+The app is compatible with different types of workouts and may be used by all age groups. 
+The user will be able to track their progress in different types of exercise and see their workout history which is stored using Firebase.  
+
+
 ## Getting Started
 
 To get started download the project files from GitLab.
@@ -11,17 +16,12 @@ To get started download the project files from GitLab.
 To run and/or test this program you should have Eclipse installed with the JavaFX extension plugin. You also need Maven to build the project, and Java installed to run the application.
 
 
-### Installing
-
 
 
 ## Running the tests
 
-//Mathias
+Simply run as Maven test. The core of the app is tested with some basic junit testing. The ui is tested with TestFX which goes through the scenes automatically, testing Button, Labels etc.
 
-### Break down into end to end tests
-
-//Mathias
 
 
 ## Deployment
