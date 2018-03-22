@@ -2,9 +2,8 @@ package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -35,12 +34,9 @@ public class pastWorkoutsController extends Controller {
 
 	@FXML
 	public void initialize() {
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {
-				setWorkouts();
-			}
-		}, 100);
+		Platform.runLater(()->{
+			setWorkouts();
+		});
 	}
 
 	private ArrayList<tempList> parseWorkouts() {
