@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.core;
+package tdt4140.gr1836.app.ui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -73,6 +73,7 @@ public class DummyApp extends App {
 		this.users.put(this.correctUser.getUsername(), this.correctUser);
 		this.coaches.put(this.coachUser.getUsername(), this.coachUser);
 	}
-
-
+	public Workouts getWorkouts() {
+		return this.workouts;
+	}
 }

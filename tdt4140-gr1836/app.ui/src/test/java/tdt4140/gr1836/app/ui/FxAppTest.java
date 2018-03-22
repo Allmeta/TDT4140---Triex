@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import tdt4140.gr1836.app.core.DummyApp;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
@@ -53,6 +52,7 @@ public class FxAppTest extends ApplicationTest {
     }
 	//@Before
 	//}
+	
 	@Test
 	public void t1_go_to_register_and_cancel() {
 		clickOn("#RegisterBtn");
@@ -139,13 +139,25 @@ public class FxAppTest extends ApplicationTest {
 		
 	}*/
 	@Test
-	public void t7_go_register_new_workouts() {
-		sleep(1000);
+	public void t7_navigate_app() {
+		sleep(500);
 		Button button = new Button();
 		clickOn("#goNew");
-		sleep(100);
+		sleep(500);
 		clickOn("#cardioBtn");
-		sleep(1000);
+		sleep(500);
+		clickOn("#homeBtn");
+		
+		sleep(500);
+		clickOn("#goNew");
+		sleep(500);
+		clickOn("#strengthBtn");
+		sleep(500);
+		clickOn("#homeBtn");
+
+		sleep(500);
+		clickOn("#goPast"); 
+		sleep(500);
 		
 	}
 	@Test 
