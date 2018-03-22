@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import tdt4140.gr1836.app.ui.Controller;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 
@@ -17,10 +16,10 @@ public class CardioWorkoutController extends Controller {
 	
 	
 	@FXML
-	private Button SubmitCardioWorkout;
+	public Button SubmitCardioWorkout;
 	
 	@FXML
-	private Button CancelCardioWorkout;
+	public Button CancelCardioWorkout;
 	
 	@FXML
 	private Button homeBtn;
@@ -56,7 +55,6 @@ public class CardioWorkoutController extends Controller {
 		activity.put("Biking", bike.isSelected());
 		
 		this.app.submitCardioWorkout(duration.getText(),date.getValue().toString(),activity,intensity.getValue(),info.getText());
-		
 		
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
