@@ -97,6 +97,7 @@ public class Database {
 		DatabaseReference s = ref.child(username);
 		s.setValueAsync(newUser);
 		return newUser;
+		
 	}
 
 	public void deleteUser(String username) {

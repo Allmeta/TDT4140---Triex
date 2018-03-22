@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.App;
 
 
+@SuppressWarnings("restriction")
 public class FxApp extends Application {
 	
 	@Override
@@ -23,8 +24,6 @@ public class FxApp extends Application {
 		Parent root = loader.load();
 		
 		Scene scene = new Scene(root, 380, 550);
-	
-		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Training app");
 		
@@ -33,10 +32,6 @@ public class FxApp extends Application {
 		controller.setApp(app);
 		
 		primaryStage.show();
-	}
-	public void deleteUser(String username) {
-		//Helper method for testing
-		//this.app.deleteUser(username);
 	}
 	public static void main(String[] args) {
 		launch(args);

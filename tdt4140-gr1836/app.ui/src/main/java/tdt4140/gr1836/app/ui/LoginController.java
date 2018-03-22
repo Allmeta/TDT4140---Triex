@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.User;
 
+@SuppressWarnings("restriction")
 public class LoginController extends Controller {
 	
 	@FXML
@@ -39,26 +40,11 @@ public class LoginController extends Controller {
 			}
 			else {
 				//loginText.setText("Logged in as " + user.name);
-				this.app.getUsersFromDatabase();
 				
-				Stage stage = (Stage) submitBtn.getScene().getWindow();
-				stage.close();
-				
-				if(user.coach) {
-					showCoachStage(this.app);
-					
-				}else {
-					showMainStage(this.app);
-					
-				}
-				
-				
-				
-				//if login as coach (checkbox == coach, then open coachstage
+			    Stage stage = (Stage) submitBtn.getScene().getWindow();
+			    stage.close();
+				showMainStage(this.app);
 			}
-			
-			
-			
 		}
 		
 
