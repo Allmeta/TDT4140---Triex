@@ -1,10 +1,17 @@
-# Project Title
+# Training app 2k18
 
 Repository for group 36, TDT4140, Spring 2018.
 
 This is an app where a user can register their workouts and get feedback from different coaches by their choosing. 
 The app is compatible with different types of workouts and may be used by all age groups. 
-The user will be able to track their progress in different types of exercise and see their workout history which is stored using Firebase.  
+The user will be able to track their progress in different types of exercise and see their workout history which is stored using Firebase.
+
+Our project implements an MVC architecture with a model communicating with a database class which communicates with Firebase.
+
+ * app.core contains our main model for communcating with the Firebase and managing our data objects
+ * app.db contains code for direct communcation with the database
+ * app.users and app.workouts contain helpers for managing data
+ * app.ui contains our main code for managing the JavaFX application
 
 
 ## Getting Started
@@ -27,6 +34,14 @@ Simply run as Maven test. The core of the app is tested with some basic junit te
 ## Deployment
 
 To deploy this on a live system you need to have Java installed, then run the FxApp as a java applet.
+
+### Usage
+When you first run the FxApp you will be greeted with a login, here you will either log in using an existing user or register a new user before logging in.
+From here you can either view your previous workouts, add new workouts in form of a cardio or a strength workout or view a list of available Coaches. 
+
+Coming soon:
+Ability to choose a coach.
+A coach interface where coaches can give feedback to their users.
 
 ## Built With
 
