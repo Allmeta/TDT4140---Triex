@@ -96,9 +96,7 @@ public class StrengthWorkoutController extends Controller {
 		
 		
 		this.app.submitStrengthWorkout(duration.getText(), date.getValue().toString(), bench,dead,squat,hang,press,intensity.getValue(),info.getText());
-		
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
-		
 	}
 	
 	
