@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.CoachMenuController">
+   <padding>
+      <Insets left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <top>
+      <Label text="Coach Menu" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="clientsBtn" mnemonicParsing="false" onAction="#goClients" prefHeight="50.0" prefWidth="120.0" text="Clients" />
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

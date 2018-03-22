@@ -31,6 +31,7 @@
             <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+            <RowConstraints />
         </rowConstraints>
          <children>
          	<Label text="Username" />
@@ -49,6 +50,16 @@
             <Label text="Password" GridPane.rowIndex="8" />
             <PasswordField fx:id="passwordField" promptText="Select a password" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <PasswordField fx:id="confirmPasswordField" promptText="Confirm password" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label text="Usertype" GridPane.rowIndex="6" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <RadioButton fx:id="standardUser" mnemonicParsing="false" text="Standard User">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="asd" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="coachUser" mnemonicParsing="false" text="Coach" toggleGroup="$asd" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </top>

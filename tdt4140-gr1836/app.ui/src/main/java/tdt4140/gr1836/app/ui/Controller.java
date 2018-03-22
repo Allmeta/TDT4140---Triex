@@ -52,16 +52,37 @@ public class Controller {
 		Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-
-		root.setTitle("Training app");
-		root.setScene(new Scene(parent));
-		root.show();
-
-		// Load graph
-		app.getWorkouts();
-
+		
+	    root.setTitle("Training app");
+	    root.setScene(new Scene(parent));
+	    root.show();
+	    
+	    //Load graph
+	    app.getWorkouts();
+	    
 	}
-
+	
+	public void showCoachStage(App app) throws IOException {
+	    Stage root = new Stage();
+	    FXMLLoader loader = new FXMLLoader(getClass()
+	            .getResource("CoachMenu.fxml"));
+	    BorderPane parent = (BorderPane)loader.load();
+	    
+	    //Set controller
+	    Controller controller = loader.getController();
+		controller.setApp(app);
+		controller.setRoot(root);
+		
+	    root.setTitle("Coach Menu");
+	    root.setScene(new Scene(parent));
+	    root.show();
+	    
+	    //Load graph
+	    app.getWorkouts();
+    
+    
+}
+	
 	// Loads and shows the add new user stage
 
 	public void showRegisterStage(App app) throws IOException {
