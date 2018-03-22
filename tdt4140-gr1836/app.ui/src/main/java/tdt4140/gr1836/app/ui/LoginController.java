@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import tdt4140.gr1836.app.core.User;
+import tdt4140.gr1836.app.users.User;
 
 @SuppressWarnings("restriction")
 public class LoginController extends Controller {
@@ -29,8 +29,6 @@ public class LoginController extends Controller {
 	@FXML 
 	private Button RegisterBtn;
 	
-	@FXML private Label confirmationLabel;
-	
 	@FXML //Function that closes the login stage when submit button is pressed
 	public void submitLoginStage(ActionEvent event) throws InterruptedException, IOException {
 		//Works!
@@ -38,14 +36,22 @@ public class LoginController extends Controller {
 		if (userNameField != null || userNameField.getLength() != 0) {
 			User user= this.app.login(userNameField.getText(), passwordField.getText());
 			if (user==null) {
-				confirmationLabel.setText("Invalid login");
+				loginText.setText("Wrong input");
 			}
 			else {
 				//loginText.setText("Logged in as " + user.name);
 				
 			    Stage stage = (Stage) submitBtn.getScene().getWindow();
 			    stage.close();
-				showMainStage(this.app);
+
+				if(user.getCoach()) {
+					showCoachStage(this.app);
+					
+				}else {
+					showMainStage(this.app);
+					
+				}
+
 			}
 		}
 		

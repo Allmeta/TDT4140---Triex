@@ -9,7 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import tdt4140.gr1836.app.core.tempList;
+import tdt4140.gr1836.app.ui.Controller;
+import tdt4140.gr1836.app.workouts.tempList;
 
 @SuppressWarnings("restriction")
 public class pastWorkoutsController extends Controller {
@@ -40,14 +41,13 @@ public class pastWorkoutsController extends Controller {
 	}
 
 	private ArrayList<tempList> parseWorkouts() {
-		return this.app.workouts.getWorkoutsAsList();
+		return this.app.getWorkouts().getWorkoutsAsList();
 
 	}
 
 	private void setWorkouts() {
 		// fill stuff
 		System.out.println(this.app);
-
 		date.setCellValueFactory(new PropertyValueFactory<tempList, String>("date"));
 		type.setCellValueFactory(new PropertyValueFactory<tempList, String>("type"));
 		intensity.setCellValueFactory(new PropertyValueFactory<tempList, String>("intensity"));

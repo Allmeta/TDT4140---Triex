@@ -7,12 +7,14 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.ui.Controller;
 @SuppressWarnings("restriction")
 public class AddNewUserController extends Controller {
 	
@@ -52,10 +54,10 @@ public class AddNewUserController extends Controller {
 	private ToggleGroup asd;
 	
 	@FXML 
-	public Button closeBtn;
+	private Button closeBtn;
 	
 	@FXML 
-	public Button confirmBtn;
+	private Button confirmBtn;
 	
 
 	@FXML 
@@ -72,10 +74,14 @@ public class AddNewUserController extends Controller {
 			//age and sex must be added
 			Stage stage = (Stage) confirmBtn.getScene().getWindow();
 			stage.close();
+			
+			//AlertHelper.showAlert(AlertType.CONFIRMATION, root, "Registration Successful!", 
+		      //      "Welcome " + nameField.getText());
 		}
 		//Trenger label til å presentere konfirmasjon
 	}
 	
+
 	
 
 

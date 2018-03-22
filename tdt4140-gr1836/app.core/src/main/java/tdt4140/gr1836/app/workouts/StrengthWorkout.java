@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.core;
+package tdt4140.gr1836.app.workouts;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -7,16 +7,15 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class StrengthWorkout implements Serializable{
-	public String duration;
-	public String date;
+	private String duration;
+	private String date;
 	public Map<String,List<String>> excersises;
-	public double intensity;
-	public String info;
+	private double intensity;
+	private String info;
 
 	StrengthWorkout(){
 		
 	}
-
 	public StrengthWorkout(String value, String string, List<String> bench, List<String> dead, List<String> squat, List<String> hang,
 			List<String> press, double d, String text) {
 		this.duration=value;
@@ -31,5 +30,20 @@ public class StrengthWorkout implements Serializable{
 		
 		this.intensity=d;
 		this.info=text;		
+	}
+	public String getDuration() {
+		return this.duration;
+	}
+	public String getDate() {
+		return this.date;
+	}
+	public String getInfo() {
+		return this.info;
+	}
+	public Map<String,List<String>> getExcersises(){
+		return this.excersises;
+	}
+	public double getIntensity() {
+		return this.intensity;
 	}
 }

@@ -1,13 +1,13 @@
-package tdt4140.gr1836.app.core;
+package tdt4140.gr1836.app.workouts;
 
 
 public class tempList {
-	public String date;
-	public String duration;
-	public String intensity;
-	public String type;
+	private String date;
+	private String duration;
+	private String intensity;
+	private String type;
 
-	tempList(String date,String type,String intensity,String duration){
+	public tempList(String date,String type,String intensity,String duration){
 		this.date=date;
 		this.type=type;
 		this.intensity=intensity;

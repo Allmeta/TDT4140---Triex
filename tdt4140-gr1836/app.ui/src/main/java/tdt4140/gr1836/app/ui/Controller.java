@@ -12,7 +12,7 @@ import tdt4140.gr1836.app.core.App;
 @SuppressWarnings("restriction")
 public class Controller {
 
-	public App app;
+	protected App app;
 	protected Stage root;
 
 	public void setApp(App app) {
@@ -58,7 +58,7 @@ public class Controller {
 	    root.show();
 	    
 	    //Load graph
-	    app.getWorkouts();
+	    app.getWorkoutsFromDB();
 	    
 	}
 	
@@ -78,7 +78,7 @@ public class Controller {
 	    root.show();
 	    
 	    //Load graph
-	    app.getWorkouts();
+	    app.getWorkoutsFromDB();
     
     
 }

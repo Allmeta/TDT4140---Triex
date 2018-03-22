@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import tdt4140.gr1836.app.ui.Controller;
 
 public class newWorkoutController extends Controller {
 	

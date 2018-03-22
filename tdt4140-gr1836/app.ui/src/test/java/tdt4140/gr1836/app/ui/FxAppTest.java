@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.core.DummyApp;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
@@ -34,7 +35,6 @@ public class FxAppTest extends ApplicationTest {
 	@Override
     public void start(Stage stage) throws Exception {
 		if (startFlag==true) {
-		System.out.println("Start");
         DummyApp app = new DummyApp();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("Login.fxml"));	
@@ -85,7 +85,6 @@ public class FxAppTest extends ApplicationTest {
 		write("test");
 		clickOn("#confirmBtn");
 	}
-	//TEster ikke login mye enda da login ikke fungerer
 	@Test 
 	public void t3_log_in_invalid_password() {
 		clickOn("#userNameField");
@@ -109,13 +108,6 @@ public class FxAppTest extends ApplicationTest {
 		assertEquals(label.getText(), "Wrong input");
 		
 	}
-	/*
-	@Test 
-    public void log_in_invalid_name() {
-    	BorderPane rootNode = (BorderPane) this.scene.getRoot();//Testes som Parent
-        Button button = from(rootNode).lookup("#LoginBtn").query();
-        assertEquals("Log in", button.getText());*/
-
 	@Test 
 	public void t5_log_in() {
 		sleep(500);
@@ -128,10 +120,38 @@ public class FxAppTest extends ApplicationTest {
 		//Check that you are in main menu
 		Button newbutton = lookup("#goNew").query();
 		assertEquals(newbutton.getText(), "Add new workout");
-		
+		startFlag=false;
+	}/*
+	@Test 
+	public void t6_login_as_coach() {
+		sleep(500);
+		clickOn("#userNameField");
+		write("coachFxBoy");
+		clickOn("#passwordField");
+		write("coach");
+		clickOn("#submitBtn");
+		sleep(500);
+		//Check that you are in main menu
+		Button newbutton = lookup("#clientsBtn").query();
+		assertEquals(newbutton.getText(), "Clients");
 		//Heretter skal ikke login eller register testes mer
 		startFlag=false;
+		
+	}*/
+	@Test
+	public void t7_go_register_new_workouts() {
+		sleep(1000);
+		Button button = new Button();
+		clickOn("#goNew");
+		sleep(100);
+		clickOn("#cardioBtn");
+		sleep(1000);
+		
 	}
+	@Test 
+	public void t8_go_check_out_workouts() {
+		
+	}/*
 	@Test
 	public void t6_navigate_useless_scenes() {
 		//Goes through scenes not currently in use, only to check that the system doesn't crash.
@@ -154,7 +174,7 @@ public class FxAppTest extends ApplicationTest {
 		assertEquals(button.getText(), "Cancel");
 		clickOn("#CancelStrengthWorkout");
 		//Test past workout
-	}
+	}*/
 /*
     @Test Denne er kanskje ikke nødvendig for ui testing
     public void delete_user_try_login() {

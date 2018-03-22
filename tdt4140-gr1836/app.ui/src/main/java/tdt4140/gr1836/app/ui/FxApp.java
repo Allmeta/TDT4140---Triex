@@ -32,6 +32,8 @@ public class FxApp extends Application {
 		controller.setApp(app);
 		
 		primaryStage.show();
+		//Henter alle brukere fra databasen 
+		app.getUsersFromDatabase();
 	}
 	public static void main(String[] args) {
 		launch(args);

@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import tdt4140.gr1836.app.ui.Controller;
 import javafx.scene.control.Slider;
 
 public class StrengthWorkoutController extends Controller {
@@ -18,10 +19,10 @@ public class StrengthWorkoutController extends Controller {
 	
 	
 	@FXML
-	public Button SubmitStrengthWorkout;
+	private Button SubmitStrengthWorkout;
 	
 	@FXML
-	public Button CancelStrengthWorkout;
+	private Button CancelStrengthWorkout;
 	
 	@FXML
 	private Button homeBtn;
@@ -95,9 +96,6 @@ public class StrengthWorkoutController extends Controller {
 		
 		
 		this.app.submitStrengthWorkout(duration.getText(), date.getValue().toString(), bench,dead,squat,hang,press,intensity.getValue(),info.getText());
-		
-		app.getWorkouts();
-		
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	

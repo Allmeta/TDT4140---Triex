@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.core;
+package tdt4140.gr1836.app.db;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
