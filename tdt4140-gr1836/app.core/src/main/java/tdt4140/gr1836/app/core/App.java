@@ -15,7 +15,7 @@ public class App {
 	private User user; 
 	private String currentUsername;
 	public boolean waitForDatabase;
-	private Workouts workouts;
+	public Workouts workouts;
 	private Map<String, User> users;
 	private Map<String, User> coaches;
 	
