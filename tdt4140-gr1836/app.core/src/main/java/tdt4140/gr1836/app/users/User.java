@@ -5,13 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 	//public String coachName;
 
-	private String email, password;
-	public String name;
-	private String city;
-	private String address;
-	private String phone;
-	private String username;
-	private String b;
+	private String email, password, name,city,address,phone,username,b;
 	private int age;
 	private String salt;
 	private boolean coach;
