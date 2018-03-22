@@ -56,6 +56,8 @@ public class CardioWorkoutController extends Controller {
 		
 		this.app.submitCardioWorkout(duration.getText(),date.getValue().toString(),activity,intensity.getValue(),info.getText());
 		
+		app.getWorkouts();
+		
 		
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
