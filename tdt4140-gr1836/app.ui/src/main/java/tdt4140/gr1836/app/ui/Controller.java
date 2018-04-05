@@ -4,12 +4,11 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.App;
 
-@SuppressWarnings("restriction")
 public class Controller {
 
 	protected App app;
@@ -32,7 +31,7 @@ public class Controller {
 	public void showScene(String sceneText, Stage root, App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(sceneText));
-		BorderPane parent = (BorderPane) loader.load();
+		Pane parent = (Pane) loader.load();
 		// Set controller
 		Controller controller = loader.getController();
 		controller.setApp(app);
@@ -46,7 +45,7 @@ public class Controller {
 	public void showMainStage(App app) throws IOException {
 		Stage root = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-		BorderPane parent = (BorderPane) loader.load();
+		Pane parent = (Pane) loader.load();
 
 		// Set controller
 		Controller controller = loader.getController();
@@ -66,7 +65,7 @@ public class Controller {
 	    Stage root = new Stage();
 	    FXMLLoader loader = new FXMLLoader(getClass()
 	            .getResource("CoachMenu.fxml"));
-	    BorderPane parent = (BorderPane)loader.load();
+	    Pane parent = (Pane)loader.load();
 	    
 	    //Set controller
 	    Controller controller = loader.getController();
@@ -88,7 +87,7 @@ public class Controller {
 	public void showRegisterStage(App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(FxApp.class.getResource("AddNewUser.fxml"));
-		BorderPane registerStage = loader.load();
+		Pane registerStage = loader.load();
 
 		Stage addDialogStage = new Stage();
 		addDialogStage.setTitle("Register new user");

@@ -24,7 +24,7 @@
             <JFXPasswordField fx:id="passwordField" focusColor="#b71742" prefHeight="38.0" prefWidth="206.0" promptText="Password" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Label fx:id="invalidLabel" layoutX="51.0" layoutY="159.0" text="Invalid login" textFill="#ff1744" />
+      <Label fx:id="invalidLabel" layoutX="51.0" layoutY="159.0" text="" textFill="#ff1744" />
       <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="51.0" layoutY="190.0" onAction="#onLogin" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="Login" textFill="#e3f2fd" />
       <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="166.0" layoutY="190.0" onAction="#onSignUp" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="Sign up" textFill="#e3f2fd" />
    </children>

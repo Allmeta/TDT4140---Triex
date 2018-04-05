@@ -1,21 +1,17 @@
 package tdt4140.gr1836.app.ui;
 
+import java.io.IOException;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
-
-
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.users.User;
 
-@SuppressWarnings("restriction")
 public class LoginController extends Controller {
 	
 	@FXML
@@ -33,12 +29,48 @@ public class LoginController extends Controller {
     @FXML
     private Label invalidLabel;
     
+    /*
+     * This function is called when user presses login button
+     */
     @FXML
     private void onLogin() {
-    	//Main.loadScene("Graph.FXML");
+    	if (!usernameField.getText().equals("")) {
+			User user= this.app.login(usernameField.getText(), passwordField.getText());
+			if (user==null) {
+				invalidLabel.setText("Invalid login");
+			}
+			else {
+			    Stage stage = (Stage) loginButton.getScene().getWindow();
+			    stage.close();
+
+				if(user.getCoach()) {
+					try {
+						showCoachStage(this.app);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}else {
+					try {
+						showMainStage(this.app);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+
+			}
+		} else {
+			invalidLabel.setText("Invalid login");
+		}
     }
     
-    @FXML private void onSignUp() {
-    	//Main.loadScene("Register.FXML");
+    @FXML
+    private void onSignUp() {
+    	try {
+			showRegisterStage(this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }

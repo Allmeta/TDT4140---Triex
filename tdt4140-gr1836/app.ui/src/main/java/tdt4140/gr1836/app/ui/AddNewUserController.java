@@ -1,89 +1,70 @@
 
 package tdt4140.gr1836.app.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 
-
-import java.io.IOException;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.ui.Controller;
-@SuppressWarnings("restriction")
+
 public class AddNewUserController extends Controller {
 	
-	//Contact information
+	@FXML JFXTextField usernameField;
+	@FXML JFXTextField nameField;
+	@FXML JFXTextField addressField;
+	@FXML JFXTextField cityField;
+	@FXML JFXTextField phoneField;
+	@FXML JFXTextField emailField;
 	
+	@FXML JFXRadioButton coachRadioButton;
+	
+	@FXML JFXPasswordField passwordField;
+	@FXML JFXPasswordField passwordConfirmationField;
+	
+	@FXML Label invalidLabel;
+	
+	@FXML JFXButton cancelButton;
+	
+	/*
+	 * This function is called when user presses submit button.
+	 * Check is username field and both password fields have text in them and if password is equal in the two password fields.
+	 * If required fields are valid user is created and window is closed.
+	 * If form is not valid a labels text will tell the user to fill out required fields.
+	 */
 	@FXML
-	private TextField usernameField;
-	
-	@FXML
-	private TextField nameField;
-	
-	@FXML
-	private TextField addressField;
-	
-	@FXML
-	private TextField cityField;
-	
-	@FXML
-	private TextField phoneField;
-	
-	@FXML
-	private TextField emailField;
-	
-	@FXML
-	private PasswordField passwordField;
-	
-	@FXML
-	private PasswordField confirmPasswordField;
-	
-	@FXML
-	private RadioButton standardUser;
-	
-	@FXML
-	private RadioButton coachUser;
-	
-	@FXML
-	private ToggleGroup asd;
-	
-	@FXML 
-	private Button closeBtn;
-	
-	@FXML 
-	private Button confirmBtn;
-	
-
-	@FXML 
-	public void closeNewUserStage(ActionEvent event) throws IOException {
-	    Stage stage = (Stage) closeBtn.getScene().getWindow();
-	    stage.close();
-	}
-	
-	
-	@FXML 
-	public void SubmitNewUser(ActionEvent event) throws IOException {
-		if ((usernameField != null || usernameField.getLength() != 0) && (passwordField != null || passwordField.getLength() != 0)) {
-			this.app.register(usernameField.getText(), nameField.getText(), 20, cityField.getText(), emailField.getText(), addressField.getText(), phoneField.getText(), passwordField.getText(),coachUser.isSelected());
-			//age and sex must be added
-			Stage stage = (Stage) confirmBtn.getScene().getWindow();
-			stage.close();
+	private void onSubmit() {
+		if(!usernameField.getText().equals("") 
+				&& !passwordField.getText().equals("")
+				&& passwordField.getText().equals(passwordConfirmationField.getText())) {
+		
+			this.app.register(usernameField.getText(), 
+					nameField.getText(),
+					20, cityField.getText(),
+					emailField.getText(),
+					addressField.getText(),
+					phoneField.getText(),
+					passwordField.getText(),
+					coachRadioButton.isSelected());
 			
-			//AlertHelper.showAlert(AlertType.CONFIRMATION, root, "Registration Successful!", 
-		      //      "Welcome " + nameField.getText());
+			Stage stage = (Stage) cancelButton.getScene().getWindow();
+			stage.close();
+		
+		} else {
+			invalidLabel.setText("Please fill out all required fields");
 		}
-		//Trenger label til å presentere konfirmasjon
 	}
 	
-
+	/*
+	 * Closes window when user press cancel button.
+	 */
+	@FXML
+    private void onCancel() {
+		Stage stage = (Stage) cancelButton.getScene().getWindow();
+	    stage.close();
+    }
 	
-
-
-
 }
