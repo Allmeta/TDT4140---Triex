@@ -1,4 +1,5 @@
 package tdt4140.gr1836.app.ui;
+/*
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class FxAppTest extends ApplicationTest {
+	
 	
 	@BeforeClass
 	public static void headless() {
@@ -138,6 +140,7 @@ public class FxAppTest extends ApplicationTest {
 		startFlag=false;
 		
 	}*/
+/*
 	@Test
 	public void t7_navigate_app() {
 		sleep(500);
@@ -206,4 +209,5 @@ public class FxAppTest extends ApplicationTest {
 		assertEquals(label.getText(), "Wrong input");
 		clickOn("#closeBtn");
     }*/
-}
+
+
