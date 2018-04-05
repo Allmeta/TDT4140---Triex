@@ -86,13 +86,18 @@ public class App {
 			List<String> hang, List<String> press, double d, String text) {
 		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,d,text);
 		this.database.submitStrengthWorkout(str, this);
+		//oppdater workouts liste
+		getWorkoutsFromDB();
 	}
 	public void submitCardioWorkout(String text, String string, Map<String, Boolean> activity, double d,
 			String text2) {
 		CardioWorkout cdw=new CardioWorkout(text,string,activity,d,text2);
-		this.database.submitCardioWorkout(cdw,this);		
+		this.database.submitCardioWorkout(cdw,this);
+		//oppdater workouts liste
+		getWorkoutsFromDB();
 	}
 	public void getWorkoutsFromDB() {
+		this.setWorkouts(null);
 		this.database.getWorkouts(this);
 		this.waitForDatabase = true;
 		int timer=0;
