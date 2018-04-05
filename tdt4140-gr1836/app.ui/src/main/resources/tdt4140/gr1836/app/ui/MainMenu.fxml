@@ -1,57 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.MainMenuController">
-   <center>
-      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" BorderPane.alignment="CENTER">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="parent" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.MainMenuController">
+   <children>
+      <VBox prefHeight="460.0" prefWidth="220.0" styleClass="vbox">
          <children>
-            <Button fx:id="goNew" mnemonicParsing="false" onAction="#goNewWorkout" prefHeight="100.0" prefWidth="150.0" text="Add new workout" />
-            <Button fx:id="goPast" mnemonicParsing="false" onAction="#goPastWorkout" prefHeight="100.0" prefWidth="150.0" text="Workout History" />
+            <Label onMouseClicked="#onNewCardioWorkout" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="New cardio workout">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onNewStrengthWorkout" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="New strength workout">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onHistory" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Wourkout history">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onCoaches" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Available coaches">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
          <padding>
-            <Insets top="70.0" />
+            <Insets top="40.0" />
          </padding>
-      </FlowPane>
-   </center>
-   <padding>
-      <Insets top="50.0" />
-   </padding>
-   <top>
-      <Label prefHeight="70.0" prefWidth="998.0" text="            Main Menu" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="48.0" />
-         </font>
-         <graphic>
-            <Button fx:id="avaiCoaches" mnemonicParsing="false" onAction="#goCoaches" prefHeight="53.0" prefWidth="203.0" text="Available Coaches" />
-         </graphic>
-      </Label>
-   </top>
-   <bottom>
-      <AreaChart fx:id="menuGraph" title="Latest 90 days" BorderPane.alignment="CENTER">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </AreaChart>
-   </bottom>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-</BorderPane>
+      </VBox>
+      <Pane fx:id="chartPane" layoutX="253.0" layoutY="34.0" prefHeight="387.0" prefWidth="474.0">
+         <children>
+            <LineChart fx:id="lineChart" prefHeight="387.0" prefWidth="474.0" style="-fx-background-color: #eceff1;" title="Amount of workouts last 30 days">
+              <xAxis>
+                <NumberAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Pane>
+   </children>
+</AnchorPane>

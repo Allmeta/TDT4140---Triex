@@ -86,7 +86,7 @@ public class Controller {
 
 	public void showRegisterStage(App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("AddNewUser.fxml"));
+		loader.setLocation(FxApp.class.getResource("SignUp.fxml"));
 		Pane registerStage = loader.load();
 
 		Stage addDialogStage = new Stage();

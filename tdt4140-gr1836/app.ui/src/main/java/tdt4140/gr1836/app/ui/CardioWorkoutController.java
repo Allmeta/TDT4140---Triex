@@ -5,70 +5,55 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import tdt4140.gr1836.app.ui.Controller;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Slider;
 
-@SuppressWarnings("restriction")
+import tdt4140.gr1836.app.ui.Controller;
+
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
+
 public class CardioWorkoutController extends Controller {
-	
-	
-	@FXML
-	private Button SubmitCardioWorkout;
-	
-	@FXML
-	private Button CancelCardioWorkout;
-	
-	@FXML
-	private Button homeBtn;
-	
-	@FXML
-	private TextField info;
+
+    @FXML private JFXTextField durationField;
+    @FXML private JFXDatePicker dateField;
+    @FXML private JFXRadioButton runningRadioButton;
+    @FXML private ToggleGroup exerciseType;
+    @FXML private JFXRadioButton swimmingRadioButton;
+    @FXML private JFXRadioButton bikingRadioButton;
+    @FXML private JFXSlider intensityField;
+    @FXML private JFXTextArea noteField;
+    @FXML private Label invalidLabel;
 	
 	@FXML
-	private TextField duration;
-	
-	@FXML
-	private DatePicker date;
-	
-	@FXML
-	private Slider intensity;
-	
-	@FXML
-	private CheckBox swim;
-	
-	@FXML
-	private CheckBox bike;
-	
-	@FXML
-	private CheckBox run;
-	
-	
-	
-	
-	public void SubmitCardioWorkout() throws IOException {
-		Map<String,Boolean> activity=new HashMap<>();
-		activity.put("Running", run.isSelected());
-		activity.put("Swimming", swim.isSelected());
-		activity.put("Biking", bike.isSelected());
+	private void onSubmit() throws IOException {
+		double duration = -1;
 		
-		this.app.submitCardioWorkout(duration.getText(),date.getValue().toString(),activity,intensity.getValue(),info.getText());
+		try {
+			duration = Double.parseDouble(durationField.getText());
+		} catch(NumberFormatException e) {
+			invalidLabel.setText("Please fill out all required fields");
+		}
 		
-		
-		showScene("MainMenu.fxml", this.getRoot(),this.app);
-	}
-	
-	
-	//Sends you back to menu
-	public void CancelCardioWorkout() throws IOException {
-		showScene("MainMenu.fxml", this.getRoot(),this.app);
+		if(duration > 0) {
+			Map<String,Boolean> activity=new HashMap<>();
+			activity.put("Running", runningRadioButton.isSelected());
+			activity.put("Swimming", swimmingRadioButton.isSelected());
+			activity.put("Biking", bikingRadioButton.isSelected());
+			
+			this.app.submitCardioWorkout(durationField.getText(),dateField.getValue().toString(),activity,intensityField.getValue(),noteField.getText());
+			
+			
+			showScene("MainMenu.fxml", this.getRoot(),this.app);
+		}
 	}
 	
 	@FXML
-	private void goHome() throws IOException {
+	public void onCancel() throws IOException {
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
 	}
 	
