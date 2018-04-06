@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXScrollPane?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.TreeTableColumn?>
@@ -23,5 +24,6 @@
             </AnchorPane>
          </children>
       </JFXScrollPane>
+      <JFXButton layoutX="357.0" layoutY="411.0" onAction="#onBack" styleClass="normal-button" text="Back" />
    </children>
 </AnchorPane>

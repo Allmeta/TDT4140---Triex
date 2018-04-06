@@ -24,6 +24,7 @@ import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
 
 public class AppTest {
+	/*
 	private App app;
 	private User correctCoach= new User("TestCoach", "Mr.Coach", 22, "Oslo", "coach@yahoo", "bygata", "123456789", "coachTest", true);;
 	private User correctUser = new User("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test", false);
@@ -121,5 +122,6 @@ public class AppTest {
 		assertEquals(users.get("TestUser"), null);
 
 	}
+	*/
 
 }

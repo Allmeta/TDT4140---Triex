@@ -19,20 +19,26 @@ import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
 public class DummyApp extends App {
+	
+	/*
 	private User user;
 	private User correctUser;
 	private User coachUser;
 	private Workouts workouts;
 	private Map<String, User> users;
 	private Map<String, User> coaches;
+	*/
 	
 	
 	public DummyApp() throws IOException {
+		/*
 		this.user=null;
 		this.coachUser = new User("coachFxBoy","Mr.Coach", 20, "Trondheim", "coach@yahoo", "computer","1234", "coach", false);
 		this.correctUser = new User("testFxBoy","Mr.TestFx", 20, "Trondheim", "hasselhoff@yahoo", "computer","1234", "test", false);
-		
+		*/
 	}
+	
+	/*
 	public void register(String username,String name, int age, String city, String email, String address,String phone, String password) {
 		System.out.println("Register");
 		
@@ -76,4 +82,6 @@ public class DummyApp extends App {
 	public Workouts getWorkouts() {
 		return this.workouts;
 	}
+	
+	*/
 }

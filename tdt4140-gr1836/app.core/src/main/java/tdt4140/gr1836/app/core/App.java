@@ -125,7 +125,7 @@ public class App {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
 			UserTempList tmplist = new UserTempList(s, coaches.get(s).getCity(),  Integer.toString(coaches.get(s).getAge()),
-					coaches.get(s).getEmail());
+					"");
 			temp.add(tmplist);
 		}
 		return temp;
@@ -133,7 +133,6 @@ public class App {
 	
 	//GETTER & SETTERS
 	public void setUsers(Users value) {
-		// TODO Auto-generated method stub
 		Map<String,User> tempCoach=new HashMap<String,User>();
 		Map<String,User> tempUsers=new HashMap<String,User>();
 		for(String key : value.getUsers().keySet()) {

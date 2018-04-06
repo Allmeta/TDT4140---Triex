@@ -1,5 +1,6 @@
 package tdt4140.gr1836.app.ui;
 
+import java.io.IOException;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -84,6 +85,15 @@ public class HistoryController extends Controller {
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
 
+	}
+	
+	@FXML
+	private void onBack() {
+		try {
+			showScene("MainMenu.fxml",this.getRoot(),this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static class Workout extends RecursiveTreeObject<Workout> {

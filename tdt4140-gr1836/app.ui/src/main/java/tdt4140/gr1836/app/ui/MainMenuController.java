@@ -76,7 +76,7 @@ public class MainMenuController extends Controller {
 	
 	@FXML
 	private void onLogOut() {
-		//Main.loadScene("Main.FXML");
+		// TODO
 	}
 
 }

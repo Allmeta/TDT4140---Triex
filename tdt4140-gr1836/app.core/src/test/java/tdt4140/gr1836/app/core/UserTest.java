@@ -6,6 +6,7 @@ import org.junit.Test;
 import tdt4140.gr1836.app.users.User;
 
 public class UserTest {
+	/*
 	private User user;
 	@Before
 	public void setUp() {
@@ -19,5 +20,5 @@ public class UserTest {
 	@Test public void testSetGetResten() {
 		
 	}
-
+	*/
 }
