@@ -3,24 +3,22 @@ package tdt4140.gr1836.app.users;
 import java.io.Serializable;
 	
 public class User implements Serializable {
-	//public String coachName;
 
-	private String email, password, name,city,address,phone,username,b;
-	private int age;
-	private String salt;
-	private boolean coach;
-	//public String coachname Kan brukes til når en bruker skal velge EN coach
+	private String username, name, city, password, salt;
+	private int age, height, weight;
+	private boolean isMale, isCoach;
 
-	public User(String username, String name, int age, String city, String email, String address,String phone, String password, boolean b) {
-		this.password = password;
+	public User(String username, String name, int age, int height, 
+			int weight, String city, boolean isMale, boolean isCoach, String password) {
+		this.username = username;
 		this.name = name;
 		this.age = age;
-		this.phone = phone;
-		this.city=city;
-		this.email=email;
-		this.address=address;
-		this.username=username;
-		this.coach=b;
+		this.height = height;
+		this.weight = weight;
+		this.city = city;
+		this.isMale = isMale;
+		this.isCoach = isCoach;
+		this.password = password;
 		
 	}
 
@@ -30,16 +28,15 @@ public class User implements Serializable {
 	public void setSalt(String salt) {
 		this.salt=salt;
 	}
+	
 	/*
 	public void setCoachName(String s) {
 		this.coachName=s;
 	}*/
+	
 	//Getters
 	public String getUsername () {
 		return this.username;
-	}
-	public String getEmail () {
-		return this.email;
 	}
 	public String getPassword () {
 		return this.password;
@@ -50,22 +47,33 @@ public class User implements Serializable {
 	public String getCity () {
 		return this.city;
 	}
-	public String getAddress () {
-		return this.address;
-	}
-	public String getPhone () {
-		return this.phone;
-	}
 	public String getSalt () {
 		return this.salt;
 	}/*
 	public String getCoachname () {
 		return this.coachName;
 	}*/
+	public int getHeight() {
+		return this.height;
+	}
+	public int getWeight() {
+		return this.weight;
+	}
+	
+	public boolean getIsMale() {
+		return isMale;
+	}
+	
+	/*
+	public String getGender() {
+		return this.gender;
+	}
+	*/
+	
 	public int getAge() {
 		return this.age;
 	}
 	public boolean getCoach() {
-		return this.coach;
+		return this.isCoach;
 	}
 }

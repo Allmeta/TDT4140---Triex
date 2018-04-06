@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.Users;
-import tdt4140.gr1836.app.workouts.CardioWorkout;
+import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
@@ -84,8 +84,8 @@ public class Database {
 		});
 	}
 
-	public User register(String username, String name, int age, String city, String email, String adress, String phone,
-			String password, boolean b) {
+	public User register(String username, String name, int age, int height, int weight, String city, boolean isMale, 
+			boolean isCoach, String password) {
 		// hash password
 		byte[] salt = null;
 		try {
@@ -95,15 +95,15 @@ public class Database {
 		}
 		String hashedPassword = Hash.hash(password, salt);
 
-		User newUser = new User(username, name, age, city, email, adress, phone, hashedPassword, b);
+		User user = new User(username, name, age, height, weight, city, isMale, isCoach, hashedPassword);
 
-		newUser.setSalt(Hash.convertSalt(salt));
+		user.setSalt(Hash.convertSalt(salt));
 
 		// Send to database
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
 		DatabaseReference s = ref.child(username);
-		s.setValueAsync(newUser);
-		return newUser;
+		s.setValueAsync(user);
+		return user;
 		
 	}
 
@@ -146,7 +146,7 @@ public class Database {
 		
 	}
 
-	public void submitCardioWorkout(CardioWorkout cdw, App app) {
+	public void submitCardioWorkout(Workout cdw, App app) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
 
 		DatabaseReference s = ref.child(app.getUser().getUsername()).child("cardio").child(cdw.getDate());

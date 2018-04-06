@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import tdt4140.gr1836.app.workouts.CardioWorkout;
+import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
@@ -18,7 +18,7 @@ import tdt4140.gr1836.app.workouts.TempList;
 public class WorkoutsTest {
 	private Workouts workouts;
 	private Map<String, StrengthWorkout> strength=new HashMap();
-	private Map<String, CardioWorkout> cardio=new HashMap();
+	private Map<String, Workout> cardio=new HashMap();
 	
 	@Before
 	public void setUp(){
@@ -29,7 +29,7 @@ public class WorkoutsTest {
 		activity.put("Swimming", false);
 		activity.put("Biking", false);
 		
-		CardioWorkout cw = new CardioWorkout("90", "1999-09-09", activity, 9, "some info");
+		Workout cw = new Workout("90", "1999-09-09", activity, 9, "some info");
 		StrengthWorkout sw = new StrengthWorkout("60", "1990-01-01", Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), 8, "some strength info");
 		workouts.addCardioWorkout(cw);
 		workouts.addStrengthWorkout(sw);
@@ -42,7 +42,7 @@ public class WorkoutsTest {
 	@Test public void getWorkoutsAndCheckValues() {
 		
 		Map<String, StrengthWorkout> swmap=workouts.getStrength();
-		Map<String, CardioWorkout> cwmap=workouts.getCardio();
+		Map<String, Workout> cwmap=workouts.getCardio();
 		assertEquals(swmap.get("1990-01-01").getDuration(),"60");
 		assertEquals(cwmap.get("1999-09-09").getDuration(),"90");
 	}

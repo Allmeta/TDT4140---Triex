@@ -7,7 +7,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Workouts implements Serializable {
 	private Map<String, StrengthWorkout> strength;
-	private Map<String, CardioWorkout> cardio;
+	private Map<String, Workout> cardio;
 
 	public Workouts() {
 
@@ -32,20 +32,20 @@ public class Workouts implements Serializable {
 		}
 		return temp;
 	}
-	public void setWorkouts(Map<String, StrengthWorkout> strength, Map<String, CardioWorkout> cardio) {
+	public void setWorkouts(Map<String, StrengthWorkout> strength, Map<String, Workout> cardio) {
 		this.strength=strength;
 		this.cardio=cardio;
 	}
 	public void addStrengthWorkout(StrengthWorkout sw) {
 		this.strength.put(sw.getDate(), sw);
 	}
-	public void addCardioWorkout(CardioWorkout cw) {
+	public void addCardioWorkout(Workout cw) {
 		this.cardio.put(cw.getDate(), cw);
 	}
 	public Map<String, StrengthWorkout> getStrength(){
 		return this.strength;
 	}
-	public Map<String, CardioWorkout> getCardio(){
+	public Map<String, Workout> getCardio(){
 		return this.cardio;
 	}
 }

@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class CardioWorkout implements Serializable{
+public class Workout implements Serializable{
 	private String duration;
 	private String date;
 	private Map<String, Boolean> activities;
 	private double intensity;
 	private String info;
 
-	CardioWorkout(){
+	Workout(){
 		
 	}
 
-	public CardioWorkout(String text, String string, Map<String, Boolean> activity, double d,
+	public Workout(String text, String string, Map<String, Boolean> activity, double d,
 			String text2) {
 		this.duration=text;
 		this.date=string;

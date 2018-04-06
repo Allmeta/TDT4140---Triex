@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
-import tdt4140.gr1836.app.workouts.CardioWorkout;
+import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
@@ -70,7 +70,7 @@ public class AppTest {
 		app.getWorkoutsFromDB();
 		Workouts workouts = app.getWorkouts();
 		Map<String, StrengthWorkout> strength=workouts.getStrength();
-		Map<String, CardioWorkout> cardio=workouts.getCardio();
+		Map<String, Workout> cardio=workouts.getCardio();
 		assertEquals(strength.get("1990-01-01").getDuration(), "60");
 		assertEquals(cardio.get("1999-09-09").getDuration(), "90");
 		

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.users.User;
-import tdt4140.gr1836.app.workouts.CardioWorkout;
+import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
@@ -29,8 +29,8 @@ public class DummyApp extends App {
 	
 	public DummyApp() throws IOException {
 		this.user=null;
-		this.coachUser=new User("coachFxBoy","Mr.Coach", 20, "Trondheim", "coach@yahoo", "computer","1234", "coach", false);
-		this.correctUser=new User("testFxBoy","Mr.TestFx", 20, "Trondheim", "hasselhoff@yahoo", "computer","1234", "test", false);
+		this.coachUser = new User("coachFxBoy","Mr.Coach", 20, "Trondheim", "coach@yahoo", "computer","1234", "coach", false);
+		this.correctUser = new User("testFxBoy","Mr.TestFx", 20, "Trondheim", "hasselhoff@yahoo", "computer","1234", "test", false);
 		
 	}
 	public void register(String username,String name, int age, String city, String email, String address,String phone, String password) {
@@ -56,7 +56,7 @@ public class DummyApp extends App {
 	}
 	public void getWorkoutsFromDB() {
 		Map<String, StrengthWorkout> strength=new HashMap();
-		Map<String, CardioWorkout> cardio=new HashMap();
+		Map<String, Workout> cardio=new HashMap();
 		workouts=new Workouts();
 		workouts.setWorkouts(strength, cardio);
 		Map<String,Boolean> activity=new HashMap<>();
@@ -64,7 +64,7 @@ public class DummyApp extends App {
 		activity.put("Swimming", false);
 		activity.put("Biking", false);
 		
-		CardioWorkout cw = new CardioWorkout("90", "1999-09-09", activity, 9, "some info");
+		Workout cw = new Workout("90", "1999-09-09", activity, 9, "some info");
 		StrengthWorkout sw = new StrengthWorkout("60", "1990-01-01", Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), 8, "some strength info");
 		workouts.addCardioWorkout(cw);
 		workouts.addStrengthWorkout(sw);
