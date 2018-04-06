@@ -11,7 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tdt4140.gr1836.app.ui.Controller;
 import tdt4140.gr1836.app.users.UserTempList;
-import tdt4140.gr1836.app.workouts.tempList;
+import tdt4140.gr1836.app.workouts.TempList;
 
 public class AvailableCoachesController extends Controller{
 	@FXML

@@ -68,7 +68,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onHistory() {
 		try {
-			showScene("pastWorkout.fxml",this.getRoot(),this.app);
+			showScene("History.fxml",this.getRoot(),this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

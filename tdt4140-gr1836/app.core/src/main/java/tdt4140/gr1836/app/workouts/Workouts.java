@@ -13,12 +13,12 @@ public class Workouts implements Serializable {
 
 	}
 
-	public ArrayList<tempList> getWorkoutsAsList() {
-		ArrayList<tempList> temp = new ArrayList<tempList>();
+	public ArrayList<TempList> getWorkoutsAsList() {
+		ArrayList<TempList> temp = new ArrayList<TempList>();
 		if (strength != null) {
 			for (String s : strength.keySet()) {
 				System.out.println(s);
-				tempList tmplist = new tempList(s, "Strength", "" + strength.get(s).getIntensity(),
+				TempList tmplist = new TempList(s, "Strength", "" + strength.get(s).getIntensity(),
 						strength.get(s).getDuration());
 				temp.add(tmplist);
 			}
@@ -26,7 +26,7 @@ public class Workouts implements Serializable {
 		if (cardio != null) {
 			for (String s : cardio.keySet()) {
 				System.out.println(s);
-				tempList tmplist = new tempList(s, "Cardio", "" + cardio.get(s).getIntensity(), cardio.get(s).getDuration());
+				TempList tmplist = new TempList(s, "Cardio", "" + cardio.get(s).getIntensity(), cardio.get(s).getDuration());
 				temp.add(tmplist);
 			}
 		}

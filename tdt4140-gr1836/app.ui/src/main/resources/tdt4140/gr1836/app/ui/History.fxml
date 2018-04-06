@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="842.0" styleClass="parent" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.HistoryController">
+   <children>
+      <JFXScrollPane prefHeight="380.0" prefWidth="800.0">
+         <children>
+            <AnchorPane prefHeight="380.0" prefWidth="800.0" style="-fx-background-color: #263238;;">
+               <children>
+                  <JFXTreeTableView fx:id="tableView" layoutX="1.0" layoutY="62.0" prefHeight="318.0" prefWidth="800.0">
+                     <columns>
+                        <TreeTableColumn fx:id="dateColumn" prefWidth="221.59998166561127" text="Date" />
+                        <TreeTableColumn fx:id="typeColumn" prefWidth="261.60003662109375" text="Type" />
+                        <TreeTableColumn fx:id="intensityColumn" prefWidth="159.99996948242188" text="Intensity" />
+                        <TreeTableColumn fx:id="durationColumn" prefWidth="159.20001220703125" text="Duration" />
+                     </columns>
+                  </JFXTreeTableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </JFXScrollPane>
+   </children>
+</AnchorPane>

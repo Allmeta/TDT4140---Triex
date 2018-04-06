@@ -21,7 +21,7 @@ import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.workouts.CardioWorkout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
-import tdt4140.gr1836.app.workouts.tempList;
+import tdt4140.gr1836.app.workouts.TempList;
 
 public class AppTest {
 	private App app;

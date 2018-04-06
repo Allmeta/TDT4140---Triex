@@ -13,7 +13,7 @@ import org.junit.Test;
 import tdt4140.gr1836.app.workouts.CardioWorkout;
 import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
-import tdt4140.gr1836.app.workouts.tempList;
+import tdt4140.gr1836.app.workouts.TempList;
 
 public class WorkoutsTest {
 	private Workouts workouts;
@@ -48,8 +48,8 @@ public class WorkoutsTest {
 	}
 	@Test public void testWorkoutsAsList() {
 		
-		ArrayList<tempList>temp=workouts.getWorkoutsAsList();
-		for (tempList t:temp) {
+		ArrayList<TempList>temp=workouts.getWorkoutsAsList();
+		for (TempList t:temp) {
 			if(t.getDate()=="1990-01-01") {
 				assertEquals(t.getDuration(),"60");
 			}

@@ -1,13 +1,14 @@
 package tdt4140.gr1836.app.workouts;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-public class tempList {
+public class TempList extends RecursiveTreeObject<TempList> {
 	private String date;
 	private String duration;
 	private String intensity;
 	private String type;
 
-	public tempList(String date,String type,String intensity,String duration){
+	public TempList(String date,String type,String intensity,String duration){
 		this.date=date;
 		this.type=type;
 		this.intensity=intensity;

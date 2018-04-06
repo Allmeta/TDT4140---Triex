@@ -29,6 +29,10 @@ public class CardioWorkoutController extends Controller {
     @FXML private JFXTextArea noteField;
     @FXML private Label invalidLabel;
 	
+    /*
+     * Checks that user have typed a positive duration and chosen a date for new cardio workout. Then submits the data to database
+     * and send user back to main menu.
+     */
 	@FXML
 	private void onSubmit() throws IOException {
 		double duration = -1;
@@ -39,7 +43,7 @@ public class CardioWorkoutController extends Controller {
 			invalidLabel.setText("Please fill out all required fields");
 		}
 		
-		if(duration > 0) {
+		if(duration > 0 && dateField.getValue() != null) {
 			Map<String,Boolean> activity=new HashMap<>();
 			activity.put("Running", runningRadioButton.isSelected());
 			activity.put("Swimming", swimmingRadioButton.isSelected());
