@@ -77,6 +77,13 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onLogOut() {
 		// TODO
+		try {
+			showScene("Login.fxml", this.getRoot(),this.app);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
