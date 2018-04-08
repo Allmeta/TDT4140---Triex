@@ -1,5 +1,5 @@
 package tdt4140.gr1836.app.workouts;
-
+/*
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -46,4 +46,4 @@ public class StrengthWorkout implements Serializable{
 	public double getIntensity() {
 		return this.intensity;
 	}
-}
+}*/

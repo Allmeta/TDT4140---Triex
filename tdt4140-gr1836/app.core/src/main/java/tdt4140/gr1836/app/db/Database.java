@@ -18,7 +18,6 @@ import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
-import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
 public class Database {
@@ -112,15 +111,6 @@ public class Database {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
 		ref.child(username).setValueAsync(null);
 	}
-
-	public void submitStrengthWorkout(StrengthWorkout str, App app) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
-
-		DatabaseReference s = ref.child(app.getUser().getUsername()).child("strength").child(str.getDate());
-		s.setValueAsync(str);
-
-	}
-
 	public void getWorkouts(App listenerApp) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts/"+listenerApp.getUser().getUsername());
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -149,7 +139,7 @@ public class Database {
 	public void submitCardioWorkout(Workout cdw, App app) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
 
-		DatabaseReference s = ref.child(app.getUser().getUsername()).child("cardio").child(cdw.getDate());
+		DatabaseReference s = ref.child(app.getUser().getUsername()).child(cdw.getType()).child(cdw.getDate());
 		s.setValueAsync(cdw);
 	}
 	public void deleteWorkout(String username, String type, String date) {

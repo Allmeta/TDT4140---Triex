@@ -1,5 +1,5 @@
 package tdt4140.gr1836.app.core;
-
+/*
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -17,13 +17,12 @@ import tdt4140.gr1836.app.workouts.TempList;
 
 public class WorkoutsTest {
 	private Workouts workouts;
-	private Map<String, StrengthWorkout> strength=new HashMap();
 	private Map<String, Workout> cardio=new HashMap();
 	
 	@Before
 	public void setUp(){
 		workouts=new Workouts();
-		workouts.setWorkouts(strength, cardio);
+		workouts.setWorkouts(cardio,cardio,cardio);
 		Map<String,Boolean> activity=new HashMap<>();
 		activity.put("Running", true);
 		activity.put("Swimming", false);
@@ -41,7 +40,6 @@ public class WorkoutsTest {
 	//getaslist
 	@Test public void getWorkoutsAndCheckValues() {
 		
-		Map<String, StrengthWorkout> swmap=workouts.getStrength();
 		Map<String, Workout> cwmap=workouts.getCardio();
 		assertEquals(swmap.get("1990-01-01").getDuration(),"60");
 		assertEquals(cwmap.get("1999-09-09").getDuration(),"90");
@@ -60,4 +58,4 @@ public class WorkoutsTest {
 	}
 	
 
-}
+}*/

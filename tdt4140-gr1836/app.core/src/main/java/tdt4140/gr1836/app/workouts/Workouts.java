@@ -6,8 +6,9 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Workouts implements Serializable {
-	private Map<String, StrengthWorkout> strength;
-	private Map<String, Workout> cardio;
+	private Map<String, Workout> Running;
+	private Map<String, Workout> Biking;
+	private Map<String, Workout> Swimming;
 
 	public Workouts() {
 
@@ -15,37 +16,50 @@ public class Workouts implements Serializable {
 
 	public ArrayList<TempList> getWorkoutsAsList() {
 		ArrayList<TempList> temp = new ArrayList<TempList>();
-		if (strength != null) {
-			for (String s : strength.keySet()) {
+		if (Running != null) {
+			for (String s : Running.keySet()) {
 				System.out.println(s);
-				TempList tmplist = new TempList(s, "Strength", "" + strength.get(s).getIntensity(),
-						strength.get(s).getDuration());
+				TempList tmplist = new TempList(s, "Running", Running.get(s).getPulse(), Running.get(s).getDuration());
 				temp.add(tmplist);
 			}
 		}
-		if (cardio != null) {
-			for (String s : cardio.keySet()) {
+		if (Swimming != null) {
+			for (String s : Swimming.keySet()) {
 				System.out.println(s);
-				TempList tmplist = new TempList(s, "Cardio", "" + cardio.get(s).getIntensity(), cardio.get(s).getDuration());
+				TempList tmplist = new TempList(s, "Swimming", Swimming.get(s).getPulse(), Swimming.get(s).getDuration());
+				temp.add(tmplist);
+			}
+		}
+		if (Biking != null) {
+			for (String s : Biking.keySet()) {
+				System.out.println(s);
+				TempList tmplist = new TempList(s, "Biking", Biking.get(s).getPulse(), Biking.get(s).getDuration());
 				temp.add(tmplist);
 			}
 		}
 		return temp;
 	}
-	public void setWorkouts(Map<String, StrengthWorkout> strength, Map<String, Workout> cardio) {
-		this.strength=strength;
-		this.cardio=cardio;
+	public void setWorkouts(Map<String, Workout> Running,Map<String, Workout> Swimming,Map<String, Workout> Biking) {
+		this.Running=Running;
+		this.Biking=Biking;
+		this.Swimming=Swimming;
 	}
-	public void addStrengthWorkout(StrengthWorkout sw) {
-		this.strength.put(sw.getDate(), sw);
+	public void addRunningWorkout(Workout cw) {
+		this.Running.put(cw.getDate(), cw);
 	}
-	public void addCardioWorkout(Workout cw) {
-		this.cardio.put(cw.getDate(), cw);
+	public void addBikingWorkout(Workout cw) {
+		this.Biking.put(cw.getDate(), cw);
 	}
-	public Map<String, StrengthWorkout> getStrength(){
-		return this.strength;
+	public void addSwimmingWorkout(Workout cw) {
+		this.Swimming.put(cw.getDate(), cw);
 	}
-	public Map<String, Workout> getCardio(){
-		return this.cardio;
+	public Map<String, Workout> getBiking(){
+		return this.Biking;
+	}
+	public Map<String, Workout> getRunning(){
+		return this.Running;
+	}
+	public Map<String, Workout> getSwimming(){
+		return this.Swimming;
 	}
 }

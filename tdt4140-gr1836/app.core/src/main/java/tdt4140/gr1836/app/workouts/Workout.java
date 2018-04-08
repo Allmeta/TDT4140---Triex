@@ -6,37 +6,35 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Workout implements Serializable{
-	private String duration;
-	private String date;
-	private Map<String, Boolean> activities;
-	private double intensity;
-	private String info;
+	private double duration, distance, pulse;
+	private String date, type;
+
 
 	Workout(){
 		
 	}
 
-	public Workout(String text, String string, Map<String, Boolean> activity, double d,
-			String text2) {
-		this.duration=text;
-		this.date=string;
-		this.activities=activity;
-		this.intensity=d;
-		this.info=text2;
+	public Workout(String type, double duration, double distance, double pulse, String date) {
+		this.type=type;
+		this.duration=duration;
+		this.distance=distance;
+		this.pulse=pulse;
+		this.date=date;
+
 	}
-	public String getDuration() {
+	public double getDuration() {
 		return this.duration;
 	}
 	public String getDate() {
 		return this.date;
 	}
-	public String getInfo() {
-		return this.info;
+	public String getType() {
+		return this.type;
 	}
-	public Map<String, Boolean> getActivities(){
-		return this.activities;
+	public double getDistance() {
+		return this.distance;
 	}
-	public double getIntensity() {
-		return this.intensity;
+	public double getPulse() {
+		return this.pulse;
 	}
 }

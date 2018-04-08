@@ -4,24 +4,23 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 public class TempList extends RecursiveTreeObject<TempList> {
 	private String date;
-	private String duration;
-	private String intensity;
+	private double duration, pulse;
 	private String type;
 
-	public TempList(String date,String type,String intensity,String duration){
+	public TempList(String date,String type,double pulse,double d){
 		this.date=date;
 		this.type=type;
-		this.intensity=intensity;
-		this.duration=duration;
+		this.pulse=pulse;
+		this.duration=d;
 	}
 	public String getDate() {
 		return this.date;
 	}
-	public String getDuration() {
+	public double getDuration() {
 		return this.duration;
 	}
-	public String getIntensity() {
-		return this.intensity;
+	public double getPulse() {
+		return this.pulse;
 	}
 	public String getType() {
 		return this.type;

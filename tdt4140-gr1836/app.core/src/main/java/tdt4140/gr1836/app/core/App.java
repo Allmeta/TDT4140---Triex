@@ -13,7 +13,6 @@ import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
-import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
 
@@ -82,24 +81,14 @@ public class App {
 		}
 	}
 	
-	//Workouts managment to DB
-	public void submitStrengthWorkout(String value, String string, List<String> bench, List<String> dead, List<String> squat,
-			List<String> hang, List<String> press, double d, String text) {
-		StrengthWorkout str=new StrengthWorkout(value,string,bench,dead,squat,hang,press,d,text);
-		this.database.submitStrengthWorkout(str, this);
-		//oppdater workouts liste
-		getWorkoutsFromDB();
-	}
-	public void submitCardioWorkout(String text, String string, Map<String, Boolean> activity, double d,
-			String text2) {
-		Workout cdw=new Workout(text,string,activity,d,text2);
+	public void submitCardioWorkout(String type, double duration, double distance, double pulse, String date) {
+		Workout cdw=new Workout(type,duration, distance, pulse, date);
 		this.database.submitCardioWorkout(cdw,this);
 		//oppdater workouts liste
 		getWorkoutsFromDB();
 	}
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
-		this.database.getWorkouts(this);
 		this.waitForDatabase = true;
 		int timer=0;
 		this.database.getWorkouts(this);

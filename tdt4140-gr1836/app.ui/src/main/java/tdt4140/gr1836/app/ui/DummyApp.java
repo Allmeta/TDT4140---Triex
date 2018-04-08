@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.workouts.Workout;
-import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
 public class DummyApp extends App {

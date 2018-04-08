@@ -19,7 +19,6 @@ import org.junit.Test;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.workouts.Workout;
-import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
 
@@ -35,13 +34,8 @@ public class AppTest {
 		App app = new App();
 		app.setUser(new User("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest"));
 		
-		Map<String,Boolean> activity=new HashMap<>();
-		activity.put("Running", true);
-		activity.put("Swimming", false);
-		activity.put("Biking", false);
 				
-		app.submitCardioWorkout("90", "1999-09-09", activity, 9, "some info");
-		app.submitStrengthWorkout("60", "1990-01-01", Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), 8, "some strength info");
+		app.submitCardioWorkout("Running", 90, 10,160, "1999-09-09");
 		
 		app.register("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest");
 		app.register("TestCoach", "Mr.Coach", 22, 185, 80, "Oslo", true, true, "coachTest");
@@ -52,8 +46,7 @@ public class AppTest {
 		App app = new App();
 		app.deleteUser("TestUser");
 		app.deleteUser("TestCoach");
-		app.deleteWorkout("TestUser", "Strength", "1990-01-01");
-		app.deleteWorkout("TestUser", "Cardio", "1999-09-09");
+		app.deleteWorkout("TestUser", "Running", "1999-09-09");
 		
 	}
 	
@@ -69,13 +62,10 @@ public class AppTest {
 		app.setUser(correctUser);
 		app.getWorkoutsFromDB();
 		Workouts workouts = app.getWorkouts();
-		Map<String, StrengthWorkout> strength=workouts.getStrength();
-		Map<String, Workout> cardio=workouts.getCardio();
-		assertEquals(strength.get("1990-01-01").getDuration(), "60");
-		assertEquals(cardio.get("1999-09-09").getDuration(), "90");
+		Map<String, Workout> cardio=workouts.getRunning();
+		assertEquals(cardio.get("1999-09-09").getType(), "Running");
 		
-		app.deleteWorkout(correctUser.getUsername(), "strength", "1990-01-01");
-		app.deleteWorkout(correctUser.getUsername(), "cardio", "1999-09-09");
+		app.deleteWorkout(correctUser.getUsername(), "Running", "1999-09-09");
 		app.getWorkoutsFromDB();
 		workouts = app.getWorkouts();
 		assertEquals(workouts, null);
