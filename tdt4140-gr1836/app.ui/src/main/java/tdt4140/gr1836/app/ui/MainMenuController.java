@@ -57,7 +57,7 @@ public class MainMenuController extends Controller {
 	}
 	
 	@FXML
-	private void onHistory() {
+	private void onHistory() { /*Function for showing the workout history*/
 		try {
 			showScene("History.fxml",this.getRoot(),this.app);
 		} catch (IOException e) {
@@ -66,7 +66,7 @@ public class MainMenuController extends Controller {
 	}
 	
 	@FXML
-	private void onCoaches() {
+	private void onCoaches() { /*Function for showing list of coaches*/
 		try {
 			showScene("Coaches.fxml",this.getRoot(),this.app);
 		} catch (IOException e) {
