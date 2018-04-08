@@ -48,7 +48,7 @@ public class MainMenuController extends Controller {
 	}
 	
 	@FXML
-	private void onNewCardioWorkout() {
+	private void onNewCardioWorkout() { /*Function for showing the Cardio Workout page*/
 		try {
 			showScene("CardioWorkout.fxml", this.getRoot(),this.app);
 		} catch (IOException e) {

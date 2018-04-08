@@ -34,7 +34,7 @@ public class LoginController extends Controller {
      */
     @FXML
     private void onLogin() {
-    	if (!usernameField.getText().equals("")) {
+    	if (!usernameField.getText().equals("")) {  /*Checks if username is something*/
 			User user= this.app.login(usernameField.getText(), passwordField.getText());
 			if (user==null) {
 				invalidLabel.setText("Invalid login");
