@@ -75,7 +75,7 @@ public class MainMenuController extends Controller {
 	}
 	
 	@FXML
-	private void onLogOut() {
+	private void onLogOut() { /*Redirect to login page*/
 		// TODO
 		try {
 			showScene("Login.fxml", this.getRoot(),this.app);
