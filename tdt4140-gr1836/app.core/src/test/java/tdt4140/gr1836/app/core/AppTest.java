@@ -24,17 +24,16 @@ import tdt4140.gr1836.app.workouts.Workouts;
 import tdt4140.gr1836.app.workouts.TempList;
 
 public class AppTest {
-	/*
 	private App app;
-	private User correctCoach= new User("TestCoach", "Mr.Coach", 22, "Oslo", "coach@yahoo", "bygata", "123456789", "coachTest", true);;
-	private User correctUser = new User("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test", false);
+	private User correctCoach= new User("TestCoach", "Mr.Coach", 22, 185, 80, "Oslo", true, true, "coachTest");
+	private User correctUser = new User("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest");
 	private User user;
 	
 	@BeforeClass
 	public static void oneTimeSetUp() throws IOException {
 		//Registers a new user to be tested on
 		App app = new App();
-		app.setUser(new User("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test", false));
+		app.setUser(new User("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest"));
 		
 		Map<String,Boolean> activity=new HashMap<>();
 		activity.put("Running", true);
@@ -44,8 +43,8 @@ public class AppTest {
 		app.submitCardioWorkout("90", "1999-09-09", activity, 9, "some info");
 		app.submitStrengthWorkout("60", "1990-01-01", Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), 8, "some strength info");
 		
-		app.register("TestUser", "Mr.David", 22, "Trondheim", "hasselhoff@yahoo", "bygata", "987654321", "test", false);
-		app.register("TestCoach", "Mr.Coach", 22, "Oslo", "coach@yahoo", "bygata", "123456789", "coachTest", true);
+		app.register("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest");
+		app.register("TestCoach", "Mr.Coach", 22, 185, 80, "Oslo", true, true, "coachTest");
 
 	}
 	@AfterClass
@@ -86,8 +85,8 @@ public class AppTest {
 		app.getUsersFromDatabase();
 		 ArrayList<UserTempList> coaches=app.getCoachesAsList();
 		 for (UserTempList t : coaches) {
-			 if (t.getName()==correctUser.getUsername()) {
-				 assertEquals(t.getCity(),correctUser.getCity());
+			 if (t.getName()==correctCoach.getUsername()) {
+				 assertEquals(t.getCity(),correctCoach.getCity());
 			 }
 		 }
 		
@@ -100,13 +99,11 @@ public class AppTest {
 		assertEquals(user,null);
 	}
 	@Test public void login() {
-		user = app.login("TestUser", "test");
-		assertEquals(user.getAddress(),correctUser.getAddress());
+		user = app.login("TestUser", "coachTest");
 		assertEquals(user.getName(),correctUser.getName());
 		assertEquals(user.getAge(),correctUser.getAge());
 		assertEquals(user.getCity(),correctUser.getCity());
-		assertEquals(user.getEmail(),correctUser.getEmail());
-		assertEquals(user.getPhone(),correctUser.getPhone());
+		assertEquals(user.getHeight(),correctUser.getHeight());
 	}
 	@Test public void loginCoach() {
 		user=app.login("TestCoach", "coachTest");
@@ -122,6 +119,6 @@ public class AppTest {
 		assertEquals(users.get("TestUser"), null);
 
 	}
-	*/
+	
 
 }
