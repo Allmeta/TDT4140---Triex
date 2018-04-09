@@ -1,15 +1,15 @@
 package tdt4140.gr1836.app.users;
 
 import java.io.Serializable;
-	
+
 public class User implements Serializable {
 
 	private String username, name, city, password, salt;
 	private int age, height, weight;
 	private boolean isMale, isCoach;
 
-	public User(String username, String name, int age, int height, 
-			int weight, String city, boolean isMale, boolean isCoach, String password) {
+	public User(String username, String name, int age, int height, int weight, String city, boolean isMale,
+			boolean isCoach, String password) {
 		this.username = username;
 		this.name = name;
 		this.age = age;
@@ -19,61 +19,62 @@ public class User implements Serializable {
 		this.isMale = isMale;
 		this.isCoach = isCoach;
 		this.password = password;
-		
+
 	}
 
 	public User() {
-		//empty constructor to make new object based on snapshot data from login function
+		// empty constructor to make new object based on snapshot data from login
+		// function
 	}
+
 	public void setSalt(String salt) {
-		this.salt=salt;
+		this.salt = salt;
 	}
-	
+
 	/*
-	public void setCoachName(String s) {
-		this.coachName=s;
-	}*/
-	
-	//Getters
-	public String getUsername () {
+	 * public void setCoachName(String s) { this.coachName=s; }
+	 */
+
+	// Getters
+	public String getUsername() {
 		return this.username;
 	}
-	public String getPassword () {
+
+	public String getPassword() {
 		return this.password;
 	}
-	public String getName () {
+
+	public String getName() {
 		return this.name;
 	}
-	public String getCity () {
+
+	public String getCity() {
 		return this.city;
 	}
-	public String getSalt () {
+
+	public String getSalt() {
 		return this.salt;
 	}/*
-	public String getCoachname () {
-		return this.coachName;
-	}*/
+		 * public String getCoachname () { return this.coachName; }
+		 */
+
 	public int getHeight() {
 		return this.height;
 	}
+
 	public int getWeight() {
 		return this.weight;
 	}
-	
+
 	public boolean getIsMale() {
 		return isMale;
 	}
-	
-	/*
-	public String getGender() {
-		return this.gender;
-	}
-	*/
-	
+
 	public int getAge() {
 		return this.age;
 	}
-	public boolean getCoach() {
+
+	public boolean getIsCoach() {
 		return this.isCoach;
 	}
 }

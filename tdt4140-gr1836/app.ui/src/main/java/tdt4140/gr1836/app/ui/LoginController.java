@@ -8,69 +8,69 @@ import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.users.User;
 
 public class LoginController extends Controller {
-	
+
 	@FXML
-    private JFXTextField usernameField;
+	private JFXTextField usernameField;
 
-    @FXML
-    private JFXPasswordField passwordField;
+	@FXML
+	private JFXPasswordField passwordField;
 
-    @FXML
-    private JFXButton loginButton;
+	@FXML
+	private JFXButton loginButton;
 
-    @FXML
-    private JFXButton signUpButton;
+	@FXML
+	private JFXButton signUpButton;
 
-    @FXML
-    private Label invalidLabel;
-    
-    /*
-     * This function is called when user presses login button
-     */
-    @FXML
-    private void onLogin() {
-    	if (!usernameField.getText().equals("")) {  /*Checks if username is something*/
-			User user= this.app.login(usernameField.getText(), passwordField.getText());
-			if (user==null) {
+	@FXML
+	private Label invalidLabel;
+
+	/*
+	 * This function is called when user presses login button
+	 */
+	@FXML
+	private void onLogin() {
+		if (!usernameField.getText().equals("")) { /* Checks if username is something */
+			User user = this.app.login(usernameField.getText(), passwordField.getText());
+			if (user == null) {
 				invalidLabel.setText("Invalid login");
-			}
-			else {
-			    Stage stage = (Stage) loginButton.getScene().getWindow();
-			    stage.close();
+			} else {
+				Stage stage = (Stage) loginButton.getScene().getWindow();
+				stage.close();
 
-				if(user.getCoach()) {
+				if (user.getIsCoach()) {
 					try {
+						System.out.println("User is coach");
 						showCoachStage(this.app);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					
-				}else {
+
+				} else {
 					try {
+						System.out.println("User is not coach");
 						showMainStage(this.app);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					
+
 				}
 
 			}
 		} else {
 			invalidLabel.setText("Invalid login");
 		}
-    }
-    
-    @FXML
-    private void onSignUp() {
-    	try {
+	}
+
+	@FXML
+	private void onSignUp() {
+		try {
 			showRegisterStage(this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 }

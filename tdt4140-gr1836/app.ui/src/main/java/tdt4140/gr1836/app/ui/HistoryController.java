@@ -6,19 +6,14 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import javafx.fxml.FXML;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.ReadOnlyStringWrapper;
-
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-
 import javafx.application.Platform;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
-import tdt4140.gr1836.app.ui.Controller;
+import tdt4140.gr1836.app.workouts.TempList;
 
 @SuppressWarnings("restriction")
 public class HistoryController extends Controller {
@@ -33,17 +28,13 @@ public class HistoryController extends Controller {
 	private TreeTableColumn<Workout, String> typeColumn;
 
 	@FXML
-	private TreeTableColumn<Workout, String> intensityColumn;
+	private TreeTableColumn<Workout, String> pulseColumn;
 
 	@FXML
 	private TreeTableColumn<Workout, String> durationColumn;
 
-	/*
-	 * 
-	 * @FXML private void goBack() throws IOException { showScene("MainMenu.fxml",
-	 * this.getRoot(), this.app); }
-	 * 
-	 */
+	@FXML
+	private TreeTableColumn<Workout, String> distanceColumn;
 
 	@FXML
 	public void initialize() {
@@ -52,33 +43,28 @@ public class HistoryController extends Controller {
 		});
 	}
 
-	/*
-	 * private ArrayList<TempList> parseWorkouts() { return
-	 * this.app.getWorkouts().getWorkoutsAsList();
-	 * 
-	 * }
-	 */
-
 	private void setWorkouts() {
 
 		dateColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> 
-				new ReadOnlyStringWrapper(param.getValue().getValue().getDate()));
+				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> new ReadOnlyStringWrapper(
+						param.getValue().getValue().getDate()));
 		typeColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> 
-				new ReadOnlyStringWrapper(param.getValue().getValue().getType()));
-		intensityColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> 
-				new ReadOnlyStringWrapper(param.getValue().getValue().getIntensity()));
+				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> new ReadOnlyStringWrapper(
+						param.getValue().getValue().getType()));
+		pulseColumn.setCellValueFactory(
+				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> new ReadOnlyStringWrapper(
+						param.getValue().getValue().getPulse()));
 		durationColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> 
-				new ReadOnlyStringWrapper(param.getValue().getValue().getDuration()));
+				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> new ReadOnlyStringWrapper(
+						param.getValue().getValue().getDuration()));
+		distanceColumn.setCellValueFactory(
+				(TreeTableColumn.CellDataFeatures<Workout, String> param) -> new ReadOnlyStringWrapper(
+						param.getValue().getValue().getDistance()));
 
 		// data
 		ObservableList<Workout> workouts = FXCollections.observableArrayList();
-		workouts.add(new Workout("testa", "23", "CD 1", "i"));
-		workouts.add(new Workout("ddkd", "22", "Employee 1", "iii"));
-		workouts.add(new Workout("kkd999d", "24", "Employee 2", "isiis"));
+
+		loadWorkouts(workouts);
 
 		// build tree
 		final TreeItem<Workout> root = new RecursiveTreeItem<Workout>(workouts, RecursiveTreeObject::getChildren);
@@ -86,27 +72,36 @@ public class HistoryController extends Controller {
 		tableView.setShowRoot(false);
 
 	}
-	
+
 	@FXML
 	private void onBack() {
 		try {
-			showScene("MainMenu.fxml",this.getRoot(),this.app);
+			showScene("MainMenu.fxml", this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static class Workout extends RecursiveTreeObject<Workout> {
-		public final String date;
-		public final String duration;
-		public final String intensity;
-		public final String type;
+	private void loadWorkouts(ObservableList<Workout> workouts) {
+		for (TempList w : app.getWorkouts().getWorkoutsAsList()) {
+			workouts.add(new Workout(w.getDate(), w.getType(), Double.toString(w.getPulse()),
+					Double.toString(w.getDuration()), Double.toString(w.getDistance())));
+		}
+	}
 
-		public Workout(String date, String duration, String intensity, String type) {
+	private static class Workout extends RecursiveTreeObject<Workout> {
+		private final String date;
+		private final String duration;
+		private final String pulse;
+		private final String type;
+		private final String distance;
+
+		public Workout(String date, String duration, String pulse, String type, String distance) {
 			this.date = (date);
 			this.duration = (duration);
-			this.intensity = (intensity);
+			this.pulse = (pulse);
 			this.type = (type);
+			this.distance = (distance);
 		}
 
 		public String getDate() {
@@ -117,12 +112,16 @@ public class HistoryController extends Controller {
 			return this.duration;
 		}
 
-		public String getIntensity() {
-			return this.intensity;
+		public String getPulse() {
+			return this.pulse;
 		}
 
 		public String getType() {
 			return this.type;
+		}
+
+		public String getDistance() {
+			return this.distance;
 		}
 
 	}
