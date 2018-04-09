@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="529.0" style="-fx-background-color: #263238;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="529.0" style="-fx-background-color: #263238;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.SignUpController">
    <children>
       <GridPane layoutX="67.0" layoutY="30.0" prefHeight="274.0" prefWidth="398.0">
         <columnConstraints>
@@ -73,9 +73,9 @@
             <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#ff1744" promptText="Confirm password*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
-      <JFXButton buttonType="RAISED" layoutX="67.0" layoutY="515.0" onAction="#onSubmit" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="OK" textFill="#e3f2fd" />
-      <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="179.0" layoutY="515.0" onAction="#onCancel" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="Cancel" textFill="#e3f2fd" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="336.0" layoutY="487.0" prefHeight="18.0" prefWidth="93.0" text="* Required fields" textFill="#90a4ae" />
-      <Label fx:id="invalidLabel" layoutX="67.0" layoutY="488.0" text="" textFill="#ff1744" />
+      <JFXButton buttonType="RAISED" layoutX="67.0" layoutY="515.0" onAction="#onSubmit" prefHeight="38.0" prefWidth="86.0" styleClass="normal-button" text="OK" textFill="#e3f2fd" />
+      <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="179.0" layoutY="515.0" onAction="#onCancel" prefHeight="38.0" prefWidth="86.0" styleClass="normal-button" text="Cancel" textFill="#e3f2fd" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="487.0" prefHeight="18.0" prefWidth="131.0" text="* Required fields" textFill="#90a4ae" />
+      <Label fx:id="invalidLabel" layoutX="67.0" layoutY="488.0" style="-fx-text-fill: #ff1744;" text="" textFill="#ff1744" />
    </children>
 </AnchorPane>

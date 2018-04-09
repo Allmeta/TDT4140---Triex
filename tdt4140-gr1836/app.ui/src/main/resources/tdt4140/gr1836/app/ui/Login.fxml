@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="276.0" prefWidth="304.0" style="-fx-background-color: #263238;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="356.0" style="-fx-background-color: #263238;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.LoginController">
    <children>
-      <GridPane layoutX="51.0" layoutY="55.0" prefHeight="91.0" prefWidth="202.0">
+      <GridPane layoutX="77.0" layoutY="85.0" prefHeight="91.0" prefWidth="202.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -24,8 +24,8 @@
             <JFXPasswordField fx:id="passwordField" focusColor="#b71742" prefHeight="38.0" prefWidth="206.0" promptText="Password" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Label fx:id="invalidLabel" layoutX="51.0" layoutY="159.0" text="" textFill="#ff1744" />
-      <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="51.0" layoutY="190.0" onAction="#onLogin" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="Login" textFill="#e3f2fd" />
-      <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="166.0" layoutY="190.0" onAction="#onSignUp" prefHeight="38.0" prefWidth="86.0" style="-fx-background-color: #2962FF;" text="Sign up" textFill="#e3f2fd" />
+      <Label fx:id="invalidLabel" layoutX="77.0" layoutY="199.0" style="-fx-text-fill: #ff1744;" styleClass="invalid" textFill="#ff1744" />
+      <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="77.0" layoutY="227.0" onAction="#onLogin" prefHeight="38.0" prefWidth="86.0" styleClass="normal-button" text="Login" textFill="#e3f2fd" />
+      <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="192.0" layoutY="227.0" onAction="#onSignUp" prefHeight="38.0" prefWidth="86.0" styleClass="normal-button" text="Sign up" textFill="#e3f2fd" />
    </children>
 </AnchorPane>
