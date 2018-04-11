@@ -34,7 +34,7 @@ public class App {
 
 	// User managment to DB
 	public void setMyCoach(String coachname) {
-		this.database.setMyCoach(this.user.getUsername(),coachname);
+		this.database.setMyCoach(coachname, this.user.getUsername());
 		this.user.setMyCoach(coachname);
 		
 	}
@@ -150,6 +150,7 @@ public class App {
 				tempCoach.put(key, value.getUsers().get(key));
 			} else {
 				tempUsers.put(key, value.getUsers().get(key));
+
 			}
 		}
 		this.users = tempUsers;

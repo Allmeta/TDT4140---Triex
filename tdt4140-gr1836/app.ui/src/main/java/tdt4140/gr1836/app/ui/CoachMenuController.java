@@ -16,13 +16,21 @@ public class CoachMenuController extends Controller {
 	private void initialize() {
 		// load username in logout button
 		Platform.runLater(() -> {
-			logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
+			//logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
 		});
 	}
 
 	@FXML
 	private void onInbox(MouseEvent event) {
 		System.out.println("onInbox");
+	}
+	@FXML 
+	private void onClients() {
+		try {
+			showScene("CoachClients.fxml", this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

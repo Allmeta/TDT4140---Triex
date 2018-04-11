@@ -180,7 +180,7 @@ public class Database {
 
 	public void setMyCoach(String coach, String username) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-		DatabaseReference s = ref.child(username).child(coach);
+		DatabaseReference s = ref.child(username).child("myCoach");
 		s.setValueAsync(coach);
 	}
 	public void sendMessage(String message, String referant, String username) {
@@ -222,4 +222,11 @@ public class Database {
 		});
 		
 	}
+	public void submitWorkoutWithoutApp(Workout cdw, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
+
+		DatabaseReference s = ref.child(username).child(cdw.getType()).child(cdw.getDate());
+		s.setValueAsync(cdw);
+	}
+
 }
