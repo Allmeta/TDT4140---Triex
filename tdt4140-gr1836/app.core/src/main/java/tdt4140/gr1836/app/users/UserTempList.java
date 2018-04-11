@@ -5,12 +5,14 @@ public class UserTempList {
 	private String city;
 	private String age;
 	private String email;
+	private String username;
 
-	public UserTempList(String name,String city,String age,String email){
+	public UserTempList(String username,String name,String city,String age,String email){
 		this.name=name;
 		this.city=city;
 		this.age=age;
 		this.email=email;
+		this.username=username;
 	}
 	public String getName() {
 		return this.name;
@@ -24,4 +26,8 @@ public class UserTempList {
 	public String getEmail() {
 		return this.email;
 	}
+	public String getUsername() {
+		return this.username;
+	}
+	
 }

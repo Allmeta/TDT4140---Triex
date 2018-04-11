@@ -14,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import tdt4140.gr1836.app.core.App;
+import tdt4140.gr1836.app.inbox.Message;
+import tdt4140.gr1836.app.inbox.Messages;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
@@ -174,5 +176,45 @@ public class Database {
 
 			}
 		});
+	}
+
+	public void sendMessage(String message, String referant, String username) {
+		//
+		//Need double reference cause I didn't find a better system ://
+		
+		Message m=new Message(message,referant,username);
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/"+username+"/"+referant+"/messages/"+m.getDate());
+		ref.setValueAsync(m);
+		
+		ref=FirebaseDatabase.getInstance().getReference("inbox/"+referant+"/"+username+"/messages/"+m.getDate());
+		ref.setValueAsync(m);
+	}
+
+	public void loadMessages(String referant, String username, App app) {
+		DatabaseReference ref=FirebaseDatabase.getInstance().getReference("inbox/"+username+"/"+referant);
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				if (dataSnapshot != null) {
+					Messages m=dataSnapshot.getValue(Messages.class);
+					app.setMessages(referant,m);
+					
+					app.setWaitForDatabase(false);
+					
+				} else {
+					System.out.println("null");
+					app.setWaitForDatabase(false);
+				}
+			}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("finnes ikke");
+				app.setWaitForDatabase(false);
+
+			}
+		});
+		
 	}
 }

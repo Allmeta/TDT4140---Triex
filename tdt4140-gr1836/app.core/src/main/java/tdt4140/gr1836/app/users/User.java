@@ -2,6 +2,7 @@ package tdt4140.gr1836.app.users;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class User implements Serializable {
 
 	private String username, name, city, password, salt;

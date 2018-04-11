@@ -27,6 +27,7 @@
 	-fx-text-fill: #e3f2fd;
 	-fx-pref-width: 86;
 	-fx-pref-height: 44;
+	-fx-cursor:hand;
 }
 
 .radio {
@@ -44,6 +45,7 @@
 
 .btn:hover {
 	-fx-background-color: #37474F;
+	-fx-cursor:hand;
 }
 
 .btn:pressed {
@@ -54,4 +56,39 @@
 	-fx-border-color: #37474F;
     -fx-border-width: 0 1 0 0;
     -fx-border-style: solid;
+}
+.hbox{
+	-fx-border-color: #37474F;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-style: solid;
+}
+.scrollpane >.viewport, .scrollpane{
+	-fx-background-color: transparent;
+}
+.send:hover{
+	-fx-opacity:1;
+	-fx-cursor:hand;
+}
+.message{
+	-fx-text-fill:#e3f2fd;
+	-fx-control-inner-background: #2962FF;
+	-fx-text-box-border: transparent;
+    -fx-faint-focus-color: transparent;
+	-fx-focus-color: transparent;
+	-fx-background-radius: 0;
+	-fx-border-radius:0;
+
+}
+.message .content{
+	-fx-background-color:#2962FF;
+	-fx-background-radius: 0;
+	-fx-border-radius:0;
+	-fx-stroke:transparent;
+	-fx-padding:3 3 3 3;
+}
+.message .content:hover{
+	-fx-cursor:default;
+}
+.message  *.text{
+	-fx-text-alignment:center left;
 }

@@ -48,6 +48,15 @@ public class MainMenuController extends Controller {
 	}
 	
 	@FXML
+	private void onInbox() { /*Function for showing the Cardio Workout page*/
+		try {
+			showScene("Inbox.fxml", this.getRoot(),this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
 	private void onNewCardioWorkout() { /*Function for showing the Cardio Workout page*/
 		try {
 			showScene("CardioWorkout.fxml", this.getRoot(),this.app);

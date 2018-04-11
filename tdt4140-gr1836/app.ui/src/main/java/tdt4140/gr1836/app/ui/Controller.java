@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import tdt4140.gr1836.app.core.App;
 
 public class Controller {
@@ -35,7 +36,7 @@ public class Controller {
 		Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-
+		
 		root.setScene(new Scene(parent));
 
 	}
