@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tdt4140.gr1836.app.db.Database;
+import tdt4140.gr1836.app.inbox.Message;
+import tdt4140.gr1836.app.inbox.Messages;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.users.Users;
@@ -20,6 +22,7 @@ public class App {
 	private Workouts workouts;
 	private Map<String, User> users;
 	private Map<String, User> coaches;
+	private Map<String, Messages> messages;
 
 	private boolean waitForDatabase;
 
@@ -122,7 +125,7 @@ public class App {
 		/*
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
-			UserTempList tmplist = new UserTempList(s, coaches.get(s).getCity(),
+			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(),s, coaches.get(s).getCity(),
 					Integer.toString(coaches.get(s).getAge()), "");
 			temp.add(tmplist);
 		}
@@ -130,6 +133,15 @@ public class App {
 		ArrayList<User> temp = new ArrayList<User>();
 		for (String s : coaches.keySet()) {
 			temp.add(coaches.get(s));
+		}
+		return temp;
+	}
+	public ArrayList<UserTempList> getUsersAsList() {
+		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
+		for (String s : users.keySet()) {
+			UserTempList tmplist = new UserTempList(users.get(s).getUsername(),s, users.get(s).getCity(),
+					Integer.toString(users.get(s).getAge()), "");
+			temp.add(tmplist);
 		}
 		return temp;
 	}
@@ -176,6 +188,47 @@ public class App {
 
 	public void setWorkouts(Workouts value) {
 		this.workouts = value;
+	}
+
+	public void sendMessage(String message, String referant) {
+		database.sendMessage(message,referant,user.getUsername());		
+	}
+
+	public void loadMessages(String referant) {
+		this.messages=null;
+		this.waitForDatabase = true;
+		int timer = 0;
+
+		this.database.loadMessages(referant, user.getUsername(), this);
+		// Wait loop while waiting for login, should not last more than 30 seconds
+		// before giving error
+		while (this.waitForDatabase) {
+			try {
+				Thread.sleep(300);
+				timer += 1;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (timer > 100) {
+				System.out.println("Loading chat messages took more than 30 seconds, cancel.");
+				break;
+			}
+		}
+	}
+	public void setMessages(String referant,Messages m) {
+		if(messages==null) {
+			messages=new HashMap<String,Messages>();
+		}
+		this.messages.put(referant, m);
+	}
+	public ArrayList<Message> getMessages(String ref) {
+		if(messages==null || messages.get(ref)==null) {
+			loadMessages(ref);
+		}
+		if(messages.get(ref) == null) {
+			return null;
+		}
+		return messages.get(ref).toList();
 	}
 
 }
