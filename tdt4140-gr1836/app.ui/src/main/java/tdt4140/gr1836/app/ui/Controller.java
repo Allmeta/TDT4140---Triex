@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import tdt4140.gr1836.app.core.App;
 
 public class Controller {
@@ -36,7 +35,7 @@ public class Controller {
 		Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-		
+
 		root.setScene(new Scene(parent));
 
 	}
@@ -44,7 +43,7 @@ public class Controller {
 	// Loads and shows main stage for app
 	public void showMainStage(App app) throws IOException {
 		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(LayoutHandler.mainUserPane));
 		Pane parent = (Pane) loader.load();
 
 		// Set controller
@@ -65,7 +64,7 @@ public class Controller {
 
 	public void showCoachStage(App app) throws IOException {
 		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("CoachMenu.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(LayoutHandler.mainCoachPane));
 		Pane parent = (Pane) loader.load();
 
 		// Set controller
@@ -88,7 +87,7 @@ public class Controller {
 
 	public void showRegisterStage(App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("SignUp.fxml"));
+		loader.setLocation(FxApp.class.getResource(LayoutHandler.signUpPane));
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();

@@ -17,20 +17,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
-import tdt4140.gr1836.app.ui.Controller;
 import tdt4140.gr1836.app.users.User;
 
 public class ClientsController extends Controller {
-	/*@FXML
-	private Button homeBtn;
-*/
+	/*
+	 * @FXML private Button homeBtn;
+	 */
 	private Map<String, User> allUsers;
 	private ArrayList<String> allClients = new ArrayList<String>();
 	@FXML
 	private Label clientLabel;
 	@FXML
 	private JFXTextField selectedClient;
-	
+
 	@FXML
 	private JFXTreeTableView<TempUser> tableView;
 
@@ -51,34 +50,36 @@ public class ClientsController extends Controller {
 
 	@FXML
 	public void initialize() {
-		Platform.runLater(()->{
+		Platform.runLater(() -> {
 			setClients();
 		});
 	}
-	
+
 	@FXML
 	private void onBack() {
 		try {
-			showScene("CoachMenu.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.mainCoachPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-/*
-	private ArrayList<User> parseCoaches() {
-		return this.app.getCoachesAsList();
-	}*/
+	/*
+	 * private ArrayList<User> parseCoaches() { return this.app.getCoachesAsList();
+	 * }
+	 */
 
 	private void setClients() {
 		// fill stuff
 		/*
-		name.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("name"));
-		city.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("city"));
-		age.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("age"));
-		email.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("email"));
-		
-		view.getItems().setAll(parseCoaches());
-		*/
+		 * name.setCellValueFactory(new PropertyValueFactory<UserTempList,
+		 * String>("name")); city.setCellValueFactory(new
+		 * PropertyValueFactory<UserTempList, String>("city"));
+		 * age.setCellValueFactory(new PropertyValueFactory<UserTempList,
+		 * String>("age")); email.setCellValueFactory(new
+		 * PropertyValueFactory<UserTempList, String>("email"));
+		 * 
+		 * view.getItems().setAll(parseCoaches());
+		 */
 		usernameColumn.setCellValueFactory(
 				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getUsername()));
@@ -95,55 +96,52 @@ public class ClientsController extends Controller {
 				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getRandom()));
 
-		
 		// data
 		ObservableList<TempUser> clients = FXCollections.observableArrayList();
 
 		loadClients(clients);
-		//Burde sortere coaches etter username her
+		// Burde sortere coaches etter username her
 
 		// build tree
 		final TreeItem<TempUser> root = new RecursiveTreeItem<TempUser>(clients, RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
-		
 
 	}
-	
+
 	private void loadClients(ObservableList<TempUser> clients) {
 		try {
 			allUsers = app.getUsers();
-			String myName=app.getUser().getUsername();
+			String myName = app.getUser().getUsername();
 			String clientCoach;
-			//userList.sort(null);
+			// userList.sort(null);
 			for (String s : allUsers.keySet()) {
-				clientCoach=allUsers.get(s).getMyCoach();
+				clientCoach = allUsers.get(s).getMyCoach();
 				if (clientCoach.equals(myName)) {
 					allClients.add(s);
-					clients.add(new TempUser(allUsers.get(s).getUsername(), allUsers.get(s).getName(), allUsers.get(s).getCity(),
-							Integer.toString(allUsers.get(s).getAge()), "Random shit"));
+					clients.add(new TempUser(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
+							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge()), "Random shit"));
 				}
 			}
 		}
-		
+
 		catch (NullPointerException e) {
 			clientLabel.setText("Something went wrong loading your clients");
 		}
 	}
-	
-	
 
 	@FXML
 	private void viewClient() {
-		//Method which when you click on a coach this coach will be set to your user
+		// Method which when you click on a coach this coach will be set to your user
 		String client = selectedClient.getText();
 		if (allClients.contains(client)) {
-			System.out.println("data found for client");
-		    //showscene(clients data)
+			// data found for client
+			// showscene(clients data)
 		} else {
-		    clientLabel.setText("Client not found, check your input");
+			clientLabel.setText("Client not found, check your input");
 		}
 	}
+
 	private static class TempUser extends RecursiveTreeObject<TempUser> {
 		private final String username;
 		private final String name;
@@ -180,4 +178,3 @@ public class ClientsController extends Controller {
 		}
 	}
 }
-

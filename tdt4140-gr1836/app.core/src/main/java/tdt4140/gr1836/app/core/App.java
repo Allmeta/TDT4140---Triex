@@ -24,7 +24,7 @@ public class App {
 	private Map<String, User> coaches;
 	private Map<String, Messages> messages;
 
-	private boolean waitForDatabase;
+	private boolean isWaitingForDatabase;
 
 	public App() throws IOException {
 		this.database = new Database();
@@ -36,21 +36,22 @@ public class App {
 	public void setMyCoach(String coachname) {
 		this.database.setMyCoach(coachname, this.user.getUsername());
 		this.user.setMyCoach(coachname);
-		
+
 	}
+
 	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 		this.user = this.database.register(username, name, age, height, weight, city, isMale, isCoach, password);
 	}
 
 	public User login(String username, String password) {
-		this.waitForDatabase = true;
+		this.isWaitingForDatabase = true;
 		int timer = 0;
 
 		this.database.login(username, password, this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.waitForDatabase) {
+		while (this.isWaitingForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -58,7 +59,7 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				System.out.println("Login took more than 30 seconds, cancel.");
+				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -69,14 +70,14 @@ public class App {
 		this.database.deleteUser(username);
 	}
 
-	public void getUsersFromDatabase() {// GEts all users and sets it to either coach or user
-		this.waitForDatabase = true;
+	public void getUsersFromDatabase() {// Gets all users and sets it to either coach or user
+		this.isWaitingForDatabase = true;
 		int timer = 0;
 
 		this.database.getUsers(this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.waitForDatabase) {
+		while (this.isWaitingForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -84,7 +85,7 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				System.out.println("Getting users took more than 30 seconds, cancel.");
+				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -99,10 +100,10 @@ public class App {
 
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
-		this.waitForDatabase = true;
+		this.isWaitingForDatabase = true;
 		int timer = 0;
 		this.database.getWorkouts(this);
-		while (this.waitForDatabase) {
+		while (this.isWaitingForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -110,7 +111,7 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				System.out.println("Getting workouts took more than 30 seconds, cancel.");
+				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -122,19 +123,20 @@ public class App {
 
 	// Helper method for presenting coaches
 	public ArrayList<UserTempList> getCoachesAsList() {
-		
+
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
-			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(),s, coaches.get(s).getCity(),
+			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(), s, coaches.get(s).getCity(),
 					Integer.toString(coaches.get(s).getAge()), "");
 			temp.add(tmplist);
 		}
 		return temp;
 	}
+
 	public ArrayList<UserTempList> getUsersAsList() {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : users.keySet()) {
-			UserTempList tmplist = new UserTempList(users.get(s).getUsername(),s, users.get(s).getCity(),
+			UserTempList tmplist = new UserTempList(users.get(s).getUsername(), s, users.get(s).getCity(),
 					Integer.toString(users.get(s).getAge()), "");
 			temp.add(tmplist);
 		}
@@ -175,7 +177,7 @@ public class App {
 	}
 
 	public void setWaitForDatabase(boolean b) {
-		this.waitForDatabase = b;
+		this.isWaitingForDatabase = b;
 	}
 
 	public Workouts getWorkouts() {
@@ -187,18 +189,18 @@ public class App {
 	}
 
 	public void sendMessage(String message, String referant) {
-		database.sendMessage(message,referant,user.getUsername());		
+		database.sendMessage(message, referant, user.getUsername());
 	}
 
 	public void loadMessages(String referant) {
-		this.messages=null;
-		this.waitForDatabase = true;
+		this.messages = null;
+		this.isWaitingForDatabase = true;
 		int timer = 0;
 
 		this.database.loadMessages(referant, user.getUsername(), this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.waitForDatabase) {
+		while (this.isWaitingForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -206,22 +208,24 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				System.out.println("Loading chat messages took more than 30 seconds, cancel.");
+				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
 	}
-	public void setMessages(String referant,Messages m) {
-		if(messages==null) {
-			messages=new HashMap<String,Messages>();
+
+	public void setMessages(String referant, Messages m) {
+		if (messages == null) {
+			messages = new HashMap<String, Messages>();
 		}
 		this.messages.put(referant, m);
 	}
+
 	public ArrayList<Message> getMessages(String ref) {
-		if(messages==null || messages.get(ref)==null) {
+		if (messages == null || messages.get(ref) == null) {
 			loadMessages(ref);
 		}
-		if(messages.get(ref) == null) {
+		if (messages.get(ref) == null) {
 			return null;
 		}
 		return messages.get(ref).toList();

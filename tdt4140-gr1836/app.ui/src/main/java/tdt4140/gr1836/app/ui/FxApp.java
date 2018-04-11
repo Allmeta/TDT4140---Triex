@@ -26,7 +26,7 @@ public class FxApp extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("Login.fxml"));
+		loader.setLocation(FxApp.class.getResource(LayoutHandler.loginPane));
 
 		Parent root = loader.load();
 

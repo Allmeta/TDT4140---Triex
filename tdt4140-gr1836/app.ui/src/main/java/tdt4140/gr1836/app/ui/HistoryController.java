@@ -16,7 +16,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import tdt4140.gr1836.app.workouts.TempList;
 
-@SuppressWarnings("restriction")
 public class HistoryController extends Controller {
 
 	@FXML
@@ -77,7 +76,7 @@ public class HistoryController extends Controller {
 	@FXML
 	private void onBack() {
 		try {
-			showScene("MainMenu.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,9 +90,8 @@ public class HistoryController extends Controller {
 				workouts.add(new Workout(w.getDate(), w.getType(), Double.toString(w.getPulse()),
 						Double.toString(w.getDuration()), Double.toString(w.getDistance())));
 			}
-		}
-		catch (Exception e) {
-			//Label: "No workouts found"
+		} catch (Exception e) {
+			// Label: "No workouts found"
 		}
 	}
 

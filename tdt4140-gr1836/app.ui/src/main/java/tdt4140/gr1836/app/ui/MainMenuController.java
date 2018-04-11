@@ -33,8 +33,6 @@ public class MainMenuController extends Controller {
 	private void initialize() {
 		// load username in logout button
 		Platform.runLater(() -> {
-			System.out.println(logoutButton);
-			System.out.println(app);
 			logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
 		});
 
@@ -67,7 +65,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onInbox() {
 		try {
-			showScene("Inbox.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.userInboxPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,7 +74,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onNewCardioWorkout() { /* Function for showing the Cardio Workout page */
 		try {
-			showScene("CardioWorkout.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.newWorkoutPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +83,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onHistory() { /* Function for showing the workout history */
 		try {
-			showScene("History.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.historyPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -94,7 +92,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onCoaches() { /* Function for showing list of coaches */
 		try {
-			showScene("Coaches.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.coachesPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +101,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onLogOut() { /* Redirect to login page */
 		try {
-			showScene("Login.fxml", this.getRoot(), this.app);
+			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
 		} catch (IOException e) {
 			e.printStackTrace();
