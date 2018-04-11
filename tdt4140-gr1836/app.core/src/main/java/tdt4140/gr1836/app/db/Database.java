@@ -154,13 +154,6 @@ public class Database {
 				.getReference("workouts/" + username + "/" + type + "/" + date);
 		ref.setValueAsync(null);
 	}
-	
-	public void submitWorkoutWithoutApp(Workout cdw, String username) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
-
-		DatabaseReference s = ref.child(username).child(cdw.getType()).child(cdw.getDate());
-		s.setValueAsync(cdw);
-	}
 
 	public void getUsers(App listenerApp) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -224,6 +217,4 @@ public class Database {
 		});
 		
 	}
-
-
 }
