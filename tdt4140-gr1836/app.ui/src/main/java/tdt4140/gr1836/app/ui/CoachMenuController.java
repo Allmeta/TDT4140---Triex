@@ -22,7 +22,7 @@ public class CoachMenuController extends Controller {
 
 	@FXML
 	private void onInbox(MouseEvent event) {
-		// TODO
+
 	}
 
 	@FXML

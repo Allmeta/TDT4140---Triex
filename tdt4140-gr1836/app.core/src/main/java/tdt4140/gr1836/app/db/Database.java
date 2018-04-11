@@ -59,11 +59,9 @@ public class Database {
 
 						// return null if login failed
 						// setter listenerApp sin user og variabel for venting
-						// wrong password was entered
 						listenerApp.setUser(null);
 						listenerApp.setWaitForDatabase(false);
 					} else {
-						// valid login
 						listenerApp.setUser(user);
 						listenerApp.setWaitForDatabase(false);
 					}
@@ -75,7 +73,7 @@ public class Database {
 			}
 
 			public void onCancelled(DatabaseError arg0) {
-				// return fant ikke user
+				// return fant ikke users wtf
 				listenerApp.setWaitForDatabase(false);
 
 			}
@@ -124,7 +122,6 @@ public class Database {
 					listenerApp.setWorkouts(dataSnapshot.getValue(Workouts.class));
 					listenerApp.setWaitForDatabase(false);
 				} else {
-					// User has no workouts
 					listenerApp.setWorkouts(null);
 					listenerApp.setWaitForDatabase(false);
 				}
@@ -181,9 +178,7 @@ public class Database {
 	}
 
 	public void sendMessage(String message, String referant, String username) {
-		//
 		// Need double reference cause I didn't find a better system ://
-
 		Message m = new Message(message, referant, username);
 		DatabaseReference ref = FirebaseDatabase.getInstance()
 				.getReference("inbox/" + username + "/" + referant + "/messages/" + m.getDate());
@@ -212,7 +207,6 @@ public class Database {
 
 			@Override
 			public void onCancelled(DatabaseError arg0) {
-				// finnes ikke
 				app.setWaitForDatabase(false);
 
 			}

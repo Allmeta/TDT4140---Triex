@@ -56,9 +56,7 @@ public class LoginController extends Controller {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
 				}
-
 			}
 		} else {
 			invalidLabel.setText("Invalid login");

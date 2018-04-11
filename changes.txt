@@ -1,4 +1,4 @@
-- removed some files not used anymore
+-- removed some files not used anymore
 - removed some unused variables
 - structured fxml files, stylesheet and images into different folders
 - created a layout handler to keep tracks of path to different layout files

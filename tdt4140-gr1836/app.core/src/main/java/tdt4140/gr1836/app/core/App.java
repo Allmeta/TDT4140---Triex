@@ -14,8 +14,6 @@ import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
-//import org.apache.log4j.BasicConfigurator;
-
 public class App {
 	private Database database;
 	private User user;
@@ -24,7 +22,7 @@ public class App {
 	private Map<String, User> coaches;
 	private Map<String, Messages> messages;
 
-	private boolean isWaitingForDatabase;
+	private boolean waitForDatabase;
 
 	public App() throws IOException {
 		this.database = new Database();
@@ -45,13 +43,13 @@ public class App {
 	}
 
 	public User login(String username, String password) {
-		this.isWaitingForDatabase = true;
+		this.waitForDatabase = true;
 		int timer = 0;
 
 		this.database.login(username, password, this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.isWaitingForDatabase) {
+		while (this.waitForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -59,7 +57,6 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -71,13 +68,13 @@ public class App {
 	}
 
 	public void getUsersFromDatabase() {// Gets all users and sets it to either coach or user
-		this.isWaitingForDatabase = true;
+		this.waitForDatabase = true;
 		int timer = 0;
 
 		this.database.getUsers(this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.isWaitingForDatabase) {
+		while (this.waitForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -85,7 +82,6 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -100,10 +96,10 @@ public class App {
 
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
-		this.isWaitingForDatabase = true;
+		this.waitForDatabase = true;
 		int timer = 0;
 		this.database.getWorkouts(this);
-		while (this.isWaitingForDatabase) {
+		while (this.waitForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -111,7 +107,6 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}
@@ -177,7 +172,7 @@ public class App {
 	}
 
 	public void setWaitForDatabase(boolean b) {
-		this.isWaitingForDatabase = b;
+		this.waitForDatabase = b;
 	}
 
 	public Workouts getWorkouts() {
@@ -194,13 +189,13 @@ public class App {
 
 	public void loadMessages(String referant) {
 		this.messages = null;
-		this.isWaitingForDatabase = true;
+		this.waitForDatabase = true;
 		int timer = 0;
 
 		this.database.loadMessages(referant, user.getUsername(), this);
 		// Wait loop while waiting for login, should not last more than 30 seconds
 		// before giving error
-		while (this.isWaitingForDatabase) {
+		while (this.waitForDatabase) {
 			try {
 				Thread.sleep(300);
 				timer += 1;
@@ -208,7 +203,6 @@ public class App {
 				e.printStackTrace();
 			}
 			if (timer > 100) {
-				// Login took more than 30 seconds, cancel.
 				break;
 			}
 		}

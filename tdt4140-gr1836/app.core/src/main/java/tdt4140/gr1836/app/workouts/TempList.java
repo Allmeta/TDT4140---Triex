@@ -42,9 +42,9 @@ public class TempList extends RecursiveTreeObject<TempList> implements Comparabl
 	public int compareTo(TempList tl) {
 		DateFormat f = new SimpleDateFormat("yyyy-mm-dd");
 		try {
-            return f.parse(this.getDate()).compareTo(f.parse(tl.getDate()));
-        } catch (Exception e) {
-            return 0;
-        }
+			return f.parse(this.getDate()).compareTo(f.parse(tl.getDate()));
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

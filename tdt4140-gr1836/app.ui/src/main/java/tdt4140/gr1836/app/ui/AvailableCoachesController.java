@@ -61,9 +61,23 @@ public class AvailableCoachesController extends Controller {
 			e.printStackTrace();
 		}
 	}
+	/*
+	 * private ArrayList<User> parseCoaches() { return this.app.getCoachesAsList();
+	 * }
+	 */
 
 	private void setCoaches() {
 		// fill stuff
+		/*
+		 * name.setCellValueFactory(new PropertyValueFactory<UserTempList,
+		 * String>("name")); city.setCellValueFactory(new
+		 * PropertyValueFactory<UserTempList, String>("city"));
+		 * age.setCellValueFactory(new PropertyValueFactory<UserTempList,
+		 * String>("age")); email.setCellValueFactory(new
+		 * PropertyValueFactory<UserTempList, String>("email"));
+		 * 
+		 * view.getItems().setAll(parseCoaches());
+		 */
 		String myCoach = this.app.getUser().getMyCoach();
 		if (!myCoach.equals("")) {
 			coachLabel.setText("Your current coach is " + myCoach + ", do you want someone else?");

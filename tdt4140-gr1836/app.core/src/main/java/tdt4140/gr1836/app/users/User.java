@@ -20,7 +20,7 @@ public class User implements Serializable {
 		this.isMale = isMale;
 		this.isCoach = isCoach;
 		this.password = password;
-		this.myCoach="";
+		this.myCoach = "";
 
 	}
 
@@ -32,13 +32,10 @@ public class User implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+
 	public void setMyCoach(String coach) {
 		this.myCoach = coach;
 	}
-
-	/*
-	 * public void setCoachName(String s) { this.coachName=s; }
-	 */
 
 	// Getters
 	public String getUsername() {
@@ -82,6 +79,7 @@ public class User implements Serializable {
 	public boolean getIsCoach() {
 		return this.isCoach;
 	}
+
 	public String getMyCoach() {
 		return this.myCoach;
 	}
