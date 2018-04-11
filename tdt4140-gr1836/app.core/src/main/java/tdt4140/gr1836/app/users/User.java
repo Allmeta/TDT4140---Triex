@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-	private String username, name, city, password, salt;
+	private String username, name, city, myCoach, password, salt;
 	private int age, height, weight;
 	private boolean isMale, isCoach;
 
@@ -19,6 +19,7 @@ public class User implements Serializable {
 		this.isMale = isMale;
 		this.isCoach = isCoach;
 		this.password = password;
+		this.myCoach="";
 
 	}
 
@@ -29,6 +30,9 @@ public class User implements Serializable {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+	public void setMyCoach(String coach) {
+		this.myCoach = coach;
 	}
 
 	/*
@@ -76,5 +80,8 @@ public class User implements Serializable {
 
 	public boolean getIsCoach() {
 		return this.isCoach;
+	}
+	public String getMyCoach() {
+		return this.myCoach;
 	}
 }

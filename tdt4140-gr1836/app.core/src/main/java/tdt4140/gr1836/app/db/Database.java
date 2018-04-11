@@ -175,4 +175,10 @@ public class Database {
 			}
 		});
 	}
+
+	public void setMyCoach(String coach, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		DatabaseReference s = ref.child(username).child(coach);
+		s.setValueAsync(coach);
+	}
 }
