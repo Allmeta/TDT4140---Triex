@@ -73,12 +73,16 @@ public class AppTest {
 	}
 	@Test public void testGetCoaches() {
 		app.getUsersFromDatabase();
-		 ArrayList<UserTempList> coaches=app.getCoachesAsList();
+		
+		Map<String, User> coaches=app.getCoaches();
+		/*
 		 for (UserTempList t : coaches) {
 			 if (t.getName()==correctCoach.getUsername()) {
 				 assertEquals(t.getCity(),correctCoach.getCity());
 			 }
-		 }
+		 }*/
+		User t = coaches.get("TestCoach");
+		assertEquals(t.getCity(),correctCoach.getCity());
 		
 	}
 	

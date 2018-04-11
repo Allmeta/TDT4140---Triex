@@ -33,6 +33,11 @@ public class App {
 	}
 
 	// User managment to DB
+	public void setMyCoach(String coachname) {
+		this.database.setMyCoach(this.user.getUsername(),coachname);
+		this.user.setMyCoach(coachname);
+		
+	}
 	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 		this.user = this.database.register(username, name, age, height, weight, city, isMale, isCoach, password);
@@ -117,6 +122,7 @@ public class App {
 
 	// Helper method for presenting coaches
 	public ArrayList<UserTempList> getCoachesAsList() {
+		
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
 			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(),s, coaches.get(s).getCity(),

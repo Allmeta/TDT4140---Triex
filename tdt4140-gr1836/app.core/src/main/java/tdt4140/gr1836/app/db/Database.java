@@ -178,6 +178,11 @@ public class Database {
 		});
 	}
 
+	public void setMyCoach(String coach, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		DatabaseReference s = ref.child(username).child(coach);
+		s.setValueAsync(coach);
+	}
 	public void sendMessage(String message, String referant, String username) {
 		//
 		//Need double reference cause I didn't find a better system ://

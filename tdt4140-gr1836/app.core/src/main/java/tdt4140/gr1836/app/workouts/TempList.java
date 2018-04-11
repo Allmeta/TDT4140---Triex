@@ -1,8 +1,11 @@
 package tdt4140.gr1836.app.workouts;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-public class TempList extends RecursiveTreeObject<TempList> {
+public class TempList extends RecursiveTreeObject<TempList> implements Comparable<TempList> {
 	private String date;
 	private double duration, pulse, distance;
 	private String type;
@@ -33,5 +36,15 @@ public class TempList extends RecursiveTreeObject<TempList> {
 
 	public Double getDistance() {
 		return this.distance;
+	}
+
+	@Override
+	public int compareTo(TempList tl) {
+		DateFormat f = new SimpleDateFormat("yyyy-mm-dd");
+		try {
+            return f.parse(this.getDate()).compareTo(f.parse(tl.getDate()));
+        } catch (Exception e) {
+            return 0;
+        }
 	}
 }

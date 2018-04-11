@@ -30,7 +30,7 @@ public class Workouts implements Serializable {
 			for (String s : Swimming.keySet()) {
 				System.out.println(s);
 				TempList tmplist = new TempList(s, "Swimming", Swimming.get(s).getPulse(),
-						Swimming.get(s).getDuration(), Swimming.get(s).getDuration());
+						Swimming.get(s).getDuration(), Swimming.get(s).getDistance());
 				temp.add(tmplist);
 			}
 		}
@@ -38,7 +38,7 @@ public class Workouts implements Serializable {
 			for (String s : Biking.keySet()) {
 				System.out.println(s);
 				TempList tmplist = new TempList(s, "Biking", Biking.get(s).getPulse(), Biking.get(s).getDuration(),
-						Biking.get(s).getDuration());
+						Biking.get(s).getDistance());
 				temp.add(tmplist);
 			}
 		}

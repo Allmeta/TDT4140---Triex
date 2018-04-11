@@ -57,6 +57,8 @@ public class SignUpController extends Controller {
 	 */
 	@FXML
 	private void onSubmit() {
+		
+		//Må sjekke at username ikke allerede eksisterer!
 		int age = -1;
 		int height = -1;
 		int weight = -1;

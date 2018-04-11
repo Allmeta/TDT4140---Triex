@@ -1,6 +1,7 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -83,9 +84,16 @@ public class HistoryController extends Controller {
 	}
 
 	private void loadWorkouts(ObservableList<Workout> workouts) {
-		for (TempList w : app.getWorkouts().getWorkoutsAsList()) {
-			workouts.add(new Workout(w.getDate(), w.getType(), Double.toString(w.getPulse()),
-					Double.toString(w.getDuration()), Double.toString(w.getDistance())));
+		try {
+			ArrayList<TempList> tList = app.getWorkouts().getWorkoutsAsList();
+			tList.sort(null);
+			for (TempList w : tList) {
+				workouts.add(new Workout(w.getDate(), w.getType(), Double.toString(w.getPulse()),
+						Double.toString(w.getDuration()), Double.toString(w.getDistance())));
+			}
+		}
+		catch (Exception e) {
+			//Label: "No workouts found"
 		}
 	}
 
@@ -96,7 +104,7 @@ public class HistoryController extends Controller {
 		private final String type;
 		private final String distance;
 
-		public Workout(String date, String duration, String pulse, String type, String distance) {
+		public Workout(String date, String type, String pulse, String duration, String distance) {
 			this.date = (date);
 			this.duration = (duration);
 			this.pulse = (pulse);
