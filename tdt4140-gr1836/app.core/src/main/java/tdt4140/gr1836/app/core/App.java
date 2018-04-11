@@ -121,18 +121,13 @@ public class App {
 	}
 
 	// Helper method for presenting coaches
-	public ArrayList<User> getCoachesAsList() {
-		/*
+	public ArrayList<UserTempList> getCoachesAsList() {
+		
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
 			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(),s, coaches.get(s).getCity(),
 					Integer.toString(coaches.get(s).getAge()), "");
 			temp.add(tmplist);
-		}
-		*/
-		ArrayList<User> temp = new ArrayList<User>();
-		for (String s : coaches.keySet()) {
-			temp.add(coaches.get(s));
 		}
 		return temp;
 	}
