@@ -41,6 +41,14 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
+            <Label onMouseClicked="#onStats" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="View Stats">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
             <Label onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
                <opaqueInsets>
                   <Insets />

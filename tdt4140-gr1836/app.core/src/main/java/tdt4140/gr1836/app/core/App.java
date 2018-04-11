@@ -114,6 +114,8 @@ public class App {
 	public void deleteWorkout(String username, String type, String date) {
 		this.database.deleteWorkout(username, type, date);
 	}
+	
+	
 
 	// Helper method for presenting coaches
 	public ArrayList<UserTempList> getCoachesAsList() {
@@ -125,6 +127,8 @@ public class App {
 		}
 		return temp;
 	}
+	
+	
 	public ArrayList<UserTempList> getUsersAsList() {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : users.keySet()) {

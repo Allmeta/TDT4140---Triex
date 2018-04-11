@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
@@ -32,6 +34,7 @@
 </BorderPane>
 <?xml version="1.0" encoding="UTF-8"?>
 -->
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -45,7 +48,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="1024.0" spacing="10.0">
                <children>
-                  <Label prefHeight="77.0" prefWidth="193.0" text="Past workouts">
+                  <Label prefHeight="77.0" prefWidth="193.0" text="Available coaches">
                      <font>
                         <Font size="24.0" />
                      </font>
