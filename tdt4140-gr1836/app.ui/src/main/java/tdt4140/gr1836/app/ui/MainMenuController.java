@@ -99,6 +99,15 @@ public class MainMenuController extends Controller {
 	}
 
 	@FXML
+	private void OnStatistics() { /* Function for showing statistics */
+		try {
+			showScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
 	private void onLogOut() { /* Redirect to login page */
 		try {
 			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
