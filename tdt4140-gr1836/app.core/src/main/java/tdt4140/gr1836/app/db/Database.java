@@ -1,5 +1,6 @@
 package tdt4140.gr1836.app.db;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -29,8 +30,7 @@ public class Database {
 		try {
 			FirebaseApp.getInstance();
 		} catch (IllegalStateException e) {
-
-			FileInputStream serviceAccount = new FileInputStream("tdt4140-g36-firebase-adminsdk-u74mt-fa295def3e.json");
+			FileInputStream serviceAccount = new FileInputStream(("tdt4140-g36-firebase-adminsdk-u74mt-fa295def3e.json"));
 
 			FirebaseOptions options = new FirebaseOptions.Builder()
 					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
