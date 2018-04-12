@@ -2,7 +2,10 @@ package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import com.jfoenix.controls.JFXTextField;
 
@@ -12,6 +15,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -23,6 +27,7 @@ import javafx.scene.text.Text;
 import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.users.UserTempList;
 
+@SuppressWarnings("restriction")
 public class InboxController extends Controller {
 
 	@FXML
@@ -32,7 +37,7 @@ public class InboxController extends Controller {
 	@FXML
 	private VBox messageFrame;
 	@FXML
-	private VBox coaches;
+	private VBox people;
 	@FXML
 	private ScrollPane scrollpane;
 	@FXML
@@ -40,12 +45,13 @@ public class InboxController extends Controller {
 	String currentChat = "default";
 	Image profile;
 	boolean first = false;
+	Map<String,UserTempList> nodeMap=new HashMap<String, UserTempList>();
 
 	public void initialize() {
 		// Get coaches/users
 		// Also make listeners to load chat for EACH label :(
 		Platform.runLater(() -> {
-			generateCoaches("");
+			generatePeople();
 			// For auto scroll on new message
 			scrollpane.vvalueProperty().bind(messageFrame.heightProperty());
 
@@ -67,14 +73,21 @@ public class InboxController extends Controller {
 
 	private void search(String newValue) {
 		// generateCoaches with search value
-		coaches.getChildren().clear();
-		generateCoaches(newValue);
+		for(Node n : people.getChildren()){
+			if (nodeMap.get(n.getId()).getName().matches("(?i)(" + newValue + ").*")) {
+				n.setManaged(true);
+				n.setVisible(true);
+			}else {
+				n.setManaged(false);
+				n.setVisible(false);
+			}
+		}
 
 	}
 
-	private void generateCoaches(String searchText) { // works for coaches and users!!
+	private void generatePeople() { // works for coaches and users!!
 		// TODO Auto-generated method stub
-		ArrayList<UserTempList> tempcoaches = parsePeople(searchText);
+		ArrayList<UserTempList> tempcoaches = parsePeople();
 		// add hbox to coaches
 		// with image and label
 		profile = new Image(getClass().getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
@@ -98,7 +111,12 @@ public class InboxController extends Controller {
 			hbox.getChildren().add(imageView);
 			hbox.getChildren().add(label);
 
-			coaches.getChildren().add(hbox);
+			people.getChildren().add(hbox);
+			
+			//map to find nodes when searching
+			hbox.setId(""+new Date().getTime());
+			nodeMap.put(hbox.getId(), u);
+			
 
 			// event listener
 			hbox.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
@@ -191,20 +209,21 @@ public class InboxController extends Controller {
 		messageFrame.getChildren().add(hbox);
 	}
 
-	private ArrayList<UserTempList> parsePeople(String searchText) {
+	private ArrayList<UserTempList> parsePeople() {
 		ArrayList<UserTempList> temp;
 		if (app.getUser().getIsCoach()) {
 			temp = app.getUsersAsList();
 		} else {
 			temp = app.getCoachesAsList();
 		}
-		Iterator<UserTempList> i = temp.iterator();
+		//old search implementation
+		/*Iterator<UserTempList> i = temp.iterator();
 		while (i.hasNext()) {
 			if (!i.next().getUsername().matches("(?i)(" + searchText + ").*")) {
 				i.remove();
 			}
 
-		}
+		}*/
 		return temp;
 	}
 

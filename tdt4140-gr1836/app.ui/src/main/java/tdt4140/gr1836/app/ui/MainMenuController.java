@@ -65,7 +65,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onInbox() {
 		try {
-			showScene(LayoutHandler.userInboxPane, this.getRoot(), this.app);
+			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

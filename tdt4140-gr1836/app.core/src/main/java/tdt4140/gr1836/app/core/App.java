@@ -121,7 +121,7 @@ public class App {
 
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : coaches.keySet()) {
-			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(), s, coaches.get(s).getCity(),
+			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(), coaches.get(s).getName(), coaches.get(s).getCity(),
 					Integer.toString(coaches.get(s).getAge()), "");
 			temp.add(tmplist);
 		}
@@ -131,7 +131,7 @@ public class App {
 	public ArrayList<UserTempList> getUsersAsList() {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : users.keySet()) {
-			UserTempList tmplist = new UserTempList(users.get(s).getUsername(), s, users.get(s).getCity(),
+			UserTempList tmplist = new UserTempList(users.get(s).getUsername(), users.get(s).getName(), users.get(s).getCity(),
 					Integer.toString(users.get(s).getAge()), "");
 			temp.add(tmplist);
 		}

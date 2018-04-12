@@ -12,17 +12,22 @@ public class CoachMenuController extends Controller {
 	@FXML
 	private Label logoutButton;
 
+	@SuppressWarnings("restriction")
 	@FXML
 	private void initialize() {
 		// load username in logout button
 		Platform.runLater(() -> {
-			// logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
+			//SlogoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
 		});
 	}
 
 	@FXML
-	private void onInbox(MouseEvent event) {
-
+	private void onInbox() {
+		try {
+			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -35,7 +40,7 @@ public class CoachMenuController extends Controller {
 	}
 
 	@FXML
-	private void onLogOut(MouseEvent event) {
+	private void onLogOut() {
 		try {
 			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
