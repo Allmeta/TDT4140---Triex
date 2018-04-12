@@ -235,7 +235,8 @@ public class InboxController extends Controller {
 
 	@FXML
 	private void goBack() throws IOException { // go to main menu
-		this.showScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
+		if(app.getUser().getIsCoach())this.showScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
+		else this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);
 	}
 
 }
