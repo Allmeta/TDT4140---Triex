@@ -7,5 +7,6 @@ target/
 // temporary generated files
 *.xtendbin
 *._trace
+*.iml
 
 node_modules/
