@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import com.jfoenix.controls.JFXTextField;
@@ -45,7 +44,7 @@ public class InboxController extends Controller {
 	String currentChat = "default";
 	Image profile;
 	boolean first = false;
-	Map<String,UserTempList> nodeMap=new HashMap<String, UserTempList>();
+	Map<String, UserTempList> nodeMap = new HashMap<String, UserTempList>();
 
 	public void initialize() {
 		// Get coaches/users
@@ -73,11 +72,11 @@ public class InboxController extends Controller {
 
 	private void search(String newValue) {
 		// generateCoaches with search value
-		for(Node n : people.getChildren()){
+		for (Node n : people.getChildren()) {
 			if (nodeMap.get(n.getId()).getName().matches("(?i)(" + newValue + ").*")) {
 				n.setManaged(true);
 				n.setVisible(true);
-			}else {
+			} else {
 				n.setManaged(false);
 				n.setVisible(false);
 			}
@@ -112,11 +111,10 @@ public class InboxController extends Controller {
 			hbox.getChildren().add(label);
 
 			people.getChildren().add(hbox);
-			
-			//map to find nodes when searching
-			hbox.setId(""+new Date().getTime());
+
+			// map to find nodes when searching
+			hbox.setId("" + new Date().getTime());
 			nodeMap.put(hbox.getId(), u);
-			
 
 			// event listener
 			hbox.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
@@ -216,14 +214,14 @@ public class InboxController extends Controller {
 		} else {
 			temp = app.getCoachesAsList();
 		}
-		//old search implementation
-		/*Iterator<UserTempList> i = temp.iterator();
-		while (i.hasNext()) {
-			if (!i.next().getUsername().matches("(?i)(" + searchText + ").*")) {
-				i.remove();
-			}
-
-		}*/
+		// old search implementation
+		/*
+		 * Iterator<UserTempList> i = temp.iterator(); while (i.hasNext()) { if
+		 * (!i.next().getUsername().matches("(?i)(" + searchText + ").*")) { i.remove();
+		 * }
+		 * 
+		 * }
+		 */
 		return temp;
 	}
 
@@ -237,7 +235,7 @@ public class InboxController extends Controller {
 
 	@FXML
 	private void goBack() throws IOException { // go to main menu
-		this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);
+		this.showScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
 	}
 
 }
