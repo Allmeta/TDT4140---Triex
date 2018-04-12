@@ -1,6 +1,7 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.jfoenix.controls.JFXTextField;
@@ -18,15 +19,16 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import tdt4140.gr1836.app.users.User;
 
-public class AvailableCoachesController extends Controller {
+public class ClientsController extends Controller {
 	/*
 	 * @FXML private Button homeBtn;
 	 */
-	private Map<String, User> allCoaches;
+	private Map<String, User> allUsers;
+	private ArrayList<String> allClients = new ArrayList<String>();
 	@FXML
-	private Label coachLabel;
+	private Label clientLabel;
 	@FXML
-	private JFXTextField selectedCoach;
+	private JFXTextField selectedClient;
 
 	@FXML
 	private JFXTreeTableView<TempUser> tableView;
@@ -49,14 +51,14 @@ public class AvailableCoachesController extends Controller {
 	@FXML
 	public void initialize() {
 		Platform.runLater(() -> {
-			setCoaches();
+			setClients();
 		});
 	}
 
 	@FXML
 	private void onBack() {
 		try {
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
+			showScene(LayoutHandler.mainCoachPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +68,7 @@ public class AvailableCoachesController extends Controller {
 	 * }
 	 */
 
-	private void setCoaches() {
+	private void setClients() {
 		// fill stuff
 		/*
 		 * name.setCellValueFactory(new PropertyValueFactory<UserTempList,
@@ -78,10 +80,6 @@ public class AvailableCoachesController extends Controller {
 		 * 
 		 * view.getItems().setAll(parseCoaches());
 		 */
-		String myCoach = this.app.getUser().getMyCoach();
-		if (!myCoach.equals("")) {
-			coachLabel.setText("Your current coach is " + myCoach + ", do you want someone else?");
-		}
 		usernameColumn.setCellValueFactory(
 				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getUsername()));
@@ -99,41 +97,47 @@ public class AvailableCoachesController extends Controller {
 						param.getValue().getValue().getRandom()));
 
 		// data
-		ObservableList<TempUser> coaches = FXCollections.observableArrayList();
+		ObservableList<TempUser> clients = FXCollections.observableArrayList();
 
-		loadCoaches(coaches);
+		loadClients(clients);
 		// Burde sortere coaches etter username her
+
 		// build tree
-		final TreeItem<TempUser> root = new RecursiveTreeItem<TempUser>(coaches, RecursiveTreeObject::getChildren);
+		final TreeItem<TempUser> root = new RecursiveTreeItem<TempUser>(clients, RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
 
 	}
 
-	private void loadCoaches(ObservableList<TempUser> coaches) {
+	private void loadClients(ObservableList<TempUser> clients) {
 		try {
-			allCoaches = app.getCoaches();
-
+			allUsers = app.getUsers();
+			String myName = app.getUser().getUsername();
+			String clientCoach;
 			// userList.sort(null);
-			for (String s : allCoaches.keySet()) {
-				coaches.add(new TempUser(allCoaches.get(s).getUsername(), allCoaches.get(s).getName(),
-						allCoaches.get(s).getCity(), Integer.toString(allCoaches.get(s).getAge()), "Random shit"));
+			for (String s : allUsers.keySet()) {
+				clientCoach = allUsers.get(s).getMyCoach();
+				if (clientCoach.equals(myName)) {
+					allClients.add(s);
+					clients.add(new TempUser(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
+							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge()), "Random shit"));
+				}
 			}
-		} catch (Exception e) {
-			// Label: "No coaches found"
+		}
+
+		catch (NullPointerException e) {
+			clientLabel.setText("Something went wrong loading your clients");
 		}
 	}
 
 	@FXML
-	private void updateCoach() {
+	private void viewClient() {
 		// Method which when you click on a coach this coach will be set to your user
-		String coach = selectedCoach.getText();
-		User updatedCoach = allCoaches.get(coach);
-		if (updatedCoach != null) {
-			app.setMyCoach(coach);
-			coachLabel.setText("Your coach has been changed! Check your inbox!");
+		String client = selectedClient.getText();
+		if (allClients.contains(client)) {
+
 		} else {
-			coachLabel.setText("Coach not found, check your input");
+			clientLabel.setText("Client not found, check your input");
 		}
 	}
 

@@ -1,7 +1,6 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

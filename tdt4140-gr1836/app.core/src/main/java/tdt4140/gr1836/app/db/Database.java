@@ -59,17 +59,14 @@ public class Database {
 
 						// return null if login failed
 						// setter listenerApp sin user og variabel for venting
-						System.out.println("wrong password: ");
 						listenerApp.setUser(null);
 						listenerApp.setWaitForDatabase(false);
 					} else {
-						System.out.println("correct! logged in!!");
 						listenerApp.setUser(user);
 						listenerApp.setWaitForDatabase(false);
 					}
 				} else {
 					// user does not exist. login failed.
-					System.out.println("User does not exist.");
 					listenerApp.setUser(null);
 					listenerApp.setWaitForDatabase(false);
 				}
@@ -77,7 +74,6 @@ public class Database {
 
 			public void onCancelled(DatabaseError arg0) {
 				// return fant ikke users wtf
-				System.out.println("fk");
 				listenerApp.setWaitForDatabase(false);
 
 			}
@@ -126,7 +122,6 @@ public class Database {
 					listenerApp.setWorkouts(dataSnapshot.getValue(Workouts.class));
 					listenerApp.setWaitForDatabase(false);
 				} else {
-					System.out.println("User has no workouts");
 					listenerApp.setWorkouts(null);
 					listenerApp.setWaitForDatabase(false);
 				}
@@ -134,7 +129,6 @@ public class Database {
 
 			@Override
 			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
 				listenerApp.setWaitForDatabase(false);
 
 			}
@@ -171,50 +165,60 @@ public class Database {
 
 			@Override
 			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
 				listenerApp.setWaitForDatabase(false);
 
 			}
 		});
 	}
 
+	public void setMyCoach(String coach, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+		DatabaseReference s = ref.child(username).child("myCoach");
+		s.setValueAsync(coach);
+	}
+
 	public void sendMessage(String message, String referant, String username) {
-		//
-		//Need double reference cause I didn't find a better system ://
-		
-		Message m=new Message(message,referant,username);
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/"+username+"/"+referant+"/messages/"+m.getDate());
+		// Need double reference cause I didn't find a better system ://
+		Message m = new Message(message, referant, username);
+		DatabaseReference ref = FirebaseDatabase.getInstance()
+				.getReference("inbox/" + username + "/" + referant + "/messages/" + m.getDate());
 		ref.setValueAsync(m);
-		
-		ref=FirebaseDatabase.getInstance().getReference("inbox/"+referant+"/"+username+"/messages/"+m.getDate());
+
+		ref = FirebaseDatabase.getInstance()
+				.getReference("inbox/" + referant + "/" + username + "/messages/" + m.getDate());
 		ref.setValueAsync(m);
 	}
 
 	public void loadMessages(String referant, String username, App app) {
-		DatabaseReference ref=FirebaseDatabase.getInstance().getReference("inbox/"+username+"/"+referant);
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/" + username + "/" + referant);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				if (dataSnapshot != null) {
-					Messages m=dataSnapshot.getValue(Messages.class);
-					app.setMessages(referant,m);
-					
+					Messages m = dataSnapshot.getValue(Messages.class);
+					app.setMessages(referant, m);
+
 					app.setWaitForDatabase(false);
-					
+
 				} else {
-					System.out.println("null");
 					app.setWaitForDatabase(false);
 				}
 			}
 
 			@Override
 			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("finnes ikke");
 				app.setWaitForDatabase(false);
 
 			}
 		});
-		
+
 	}
+
+	public void submitWorkoutWithoutApp(Workout cdw, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
+
+		DatabaseReference s = ref.child(username).child(cdw.getType()).child(cdw.getDate());
+		s.setValueAsync(cdw);
+	}
+
 }

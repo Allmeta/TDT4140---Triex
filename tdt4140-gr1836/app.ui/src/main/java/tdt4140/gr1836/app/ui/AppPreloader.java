@@ -16,7 +16,7 @@ public class AppPreloader extends Preloader {
 		this.preloaderStage = primaryStage;
 
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("Preloader.fxml"));
+		loader.setLocation(FxApp.class.getResource(LayoutHandler.preloaderPane));
 
 		Parent root = loader.load();
 

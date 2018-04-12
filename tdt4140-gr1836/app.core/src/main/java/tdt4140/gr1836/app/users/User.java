@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
-	private String username, name, city, password, salt;
+	private String username, name, city, myCoach, password, salt;
 	private int age, height, weight;
 	private boolean isMale, isCoach;
 
@@ -20,6 +20,7 @@ public class User implements Serializable {
 		this.isMale = isMale;
 		this.isCoach = isCoach;
 		this.password = password;
+		this.myCoach = "";
 
 	}
 
@@ -32,9 +33,9 @@ public class User implements Serializable {
 		this.salt = salt;
 	}
 
-	/*
-	 * public void setCoachName(String s) { this.coachName=s; }
-	 */
+	public void setMyCoach(String coach) {
+		this.myCoach = coach;
+	}
 
 	// Getters
 	public String getUsername() {
@@ -77,5 +78,9 @@ public class User implements Serializable {
 
 	public boolean getIsCoach() {
 		return this.isCoach;
+	}
+
+	public String getMyCoach() {
+		return this.myCoach;
 	}
 }

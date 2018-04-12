@@ -14,8 +14,6 @@ import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
-//import org.apache.log4j.BasicConfigurator;
-
 public class App {
 	private Database database;
 	private User user;

@@ -43,7 +43,7 @@ public class LoginController extends Controller {
 
 				if (user.getIsCoach()) {
 					try {
-						System.out.println("User is coach");
+						// user is coach
 						showCoachStage(this.app);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -51,14 +51,12 @@ public class LoginController extends Controller {
 
 				} else {
 					try {
-						System.out.println("User is not coach");
+						// user is not coach
 						showMainStage(this.app);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
 				}
-
 			}
 		} else {
 			invalidLabel.setText("Invalid login");
@@ -73,4 +71,5 @@ public class LoginController extends Controller {
 			e.printStackTrace();
 		}
 	}
+
 }
