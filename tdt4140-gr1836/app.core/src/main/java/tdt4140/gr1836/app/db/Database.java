@@ -16,6 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.inbox.Messages;
+import tdt4140.gr1836.app.statistics.Statistics;
+import tdt4140.gr1836.app.statistics.Statistic;
+
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
@@ -231,6 +234,39 @@ public class Database {
 
 		DatabaseReference s = ref.child(username).child(cdw.getType()).child(cdw.getDate());
 		s.setValueAsync(cdw);
+	}
+	
+	public void getStatistics(App listenerApp) {
+		DatabaseReference ref = FirebaseDatabase.getInstance()
+				.getReference("statistics");
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				if (dataSnapshot != null) {
+					listenerApp.setStatistics(dataSnapshot.getValue(Statistics.class));
+					listenerApp.setWaitForDatabase(false);
+				} else {
+					System.out.println("No statistics found");
+					listenerApp.setStatistics(null);
+					listenerApp.setWaitForDatabase(false);
+				}
+			}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				listenerApp.setWaitForDatabase(false);
+
+			}
+		});
+
+	}
+	public void updateStatistics(Statistic statistic, String username) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("statistics");
+
+		DatabaseReference s = ref.child(username);
+		s.setValueAsync(statistic);
+		
 	}
 
 }

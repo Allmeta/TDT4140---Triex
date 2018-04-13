@@ -1,6 +1,7 @@
 package tdt4140.gr1836.app.core;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.Map;
 import tdt4140.gr1836.app.db.Database;
 import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.inbox.Messages;
+import tdt4140.gr1836.app.statistics.Statistic;
+import tdt4140.gr1836.app.statistics.Statistics;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.users.Users;
@@ -21,6 +24,10 @@ public class App {
 	private Map<String, User> users;
 	private Map<String, User> coaches;
 	private Map<String, Messages> messages;
+	
+	private Statistic myStatistics;
+	private Statistics statistics; 
+	private Map<String, Statistic> allStatistics;
 
 	private boolean waitForDatabase;
 
@@ -28,6 +35,8 @@ public class App {
 		this.database = new Database();
 		this.database.init();
 		this.user = null;
+		
+		this.statistics = new Statistics();
 	}
 
 	// User managment to DB
@@ -90,10 +99,33 @@ public class App {
 	public void submitCardioWorkout(String type, double duration, double distance, double pulse, String date) {
 		Workout cdw = new Workout(type, duration, distance, pulse, date);
 		this.database.submitCardioWorkout(cdw, this);
-		// oppdater workouts liste
-		getWorkoutsFromDB();
+		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
+		//this.workouts.addWorkout(cdw); Sånn som her?
+		try {
+			this.myStatistics = this.statistics.updateMyStatistics(this.workouts);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
+		}	
+		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
-
+	public void getStatisticsFromDB() {
+		this.setStatistics(null);
+		this.waitForDatabase = true;
+		int timer = 0;
+		this.database.getStatistics(this);
+		while (this.waitForDatabase) {
+			try {
+				Thread.sleep(300);
+				timer += 1;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (timer > 100) {
+				break;
+			}
+		}
+	}
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
 		this.waitForDatabase = true;
@@ -224,5 +256,24 @@ public class App {
 		}
 		return messages.get(ref).toList();
 	}
+	public Statistic getMyStatistics () {
+		return this.myStatistics;
+	}
+	public void setMyStatistics(Statistic statistics) {
+		this.myStatistics = statistics;
+	}
+	public void setStatistics(Statistics statistics) {
+		this.statistics = statistics;
+	}
+	public Statistics getStatistics() {
+		return this.statistics;
+	}
+	
 
+	public static void main(String[] args) throws ParseException, IOException {
+		App app = new App();
+		app.login("skotn", "test");
+		app.submitCardioWorkout("Biking", 90, 10, 100, "2018-02-02");
+
+	}
 }

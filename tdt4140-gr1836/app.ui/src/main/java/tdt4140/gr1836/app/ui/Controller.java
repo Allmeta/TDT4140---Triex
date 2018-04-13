@@ -57,8 +57,9 @@ public class Controller {
 		root.setResizable(false);
 		root.show();
 
-		// Load graph
+		// Load graph and get Statistics from db
 		app.getWorkoutsFromDB();
+		app.getStatisticsFromDB();
 
 	}
 

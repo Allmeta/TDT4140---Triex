@@ -51,6 +51,17 @@ public class Workouts implements Serializable {
 		this.Swimming = Swimming;
 	}
 
+	public void addWorkout(Workout w) {
+		if (w.getType().equals("Running")) {
+			this.addRunningWorkout(w);
+		}
+		else if (w.getType().equals("Biking")) {
+			this.addBikingWorkout(w);
+		}
+		else if (w.getType().equals("Swimming")) {
+			this.addSwimmingWorkout(w);
+		}
+	}
 	public void addRunningWorkout(Workout cw) {
 		this.Running.put(cw.getDate(), cw);
 	}
