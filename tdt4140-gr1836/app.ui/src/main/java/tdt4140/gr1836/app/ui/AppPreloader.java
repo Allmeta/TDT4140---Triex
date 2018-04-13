@@ -5,7 +5,6 @@ import javafx.application.Preloader.StateChangeNotification.Type;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppPreloader extends Preloader {
@@ -24,7 +23,7 @@ public class AppPreloader extends Preloader {
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Training app");
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("last ned.png")));
+
 		primaryStage.show();
 	}
 

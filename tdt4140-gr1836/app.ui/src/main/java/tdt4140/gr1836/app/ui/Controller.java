@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,7 +58,7 @@ public class Controller {
 		Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-		root.getIcons().add(new Image(getClass().getResourceAsStream("last ned.png")));
+
 		root.setTitle("Training app");
 		root.setScene(new Scene(parent));
 		root.initModality(Modality.APPLICATION_MODAL);
@@ -70,7 +69,7 @@ public class Controller {
 		app.getWorkoutsFromDB();
 
 	}
-	//Shows the coach stage for the app
+
 	public void showCoachStage(App app) throws IOException {
 		Stage root = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(LayoutHandler.mainCoachPane));
@@ -80,7 +79,7 @@ public class Controller {
 		Controller controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
-		root.getIcons().add(new Image(getClass().getResourceAsStream("last ned.png")));
+
 		root.setTitle("Coach Menu");
 		root.setScene(new Scene(parent));
 		root.initModality(Modality.APPLICATION_MODAL);
@@ -101,7 +100,7 @@ public class Controller {
 
 		Stage stage = new Stage();
 		stage.setTitle("Register new user");
-		stage.getIcons().add(new Image(getClass().getResourceAsStream("last ned.png")));
+
 		// Set this app to controller
 		Controller controller = loader.getController();
 		controller.setApp(app);

@@ -8,7 +8,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.App;
 
@@ -33,7 +32,6 @@ public class FxApp extends Application {
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("last ned.png")));
 		primaryStage.setTitle("Training app");
 		primaryStage.setResizable(false);
 
