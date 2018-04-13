@@ -94,6 +94,13 @@ public class App {
 			}
 		}
 	}
+	public void onlySubmitWorkout(String type, double duration, double distance, double pulse, String date) {
+		Workout cdw = new Workout(type, duration, distance, pulse, date);
+		this.database.submitCardioWorkout(cdw, this);
+		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
+		//this.workouts.addWorkout(cdw); Sånn som her?
+
+	}
 
 	public void submitCardioWorkout(String type, double duration, double distance, double pulse, String date) {
 		Workout cdw = new Workout(type, duration, distance, pulse, date);
