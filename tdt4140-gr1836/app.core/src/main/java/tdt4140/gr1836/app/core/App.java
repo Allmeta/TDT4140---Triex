@@ -36,7 +36,6 @@ public class App {
 		this.database.init();
 		this.user = null;
 		
-		this.statistics = new Statistics();
 	}
 
 	// User managment to DB
@@ -102,7 +101,7 @@ public class App {
 		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
 		//this.workouts.addWorkout(cdw); Sånn som her?
 		try {
-			this.myStatistics = this.statistics.updateMyStatistics(this.workouts);
+			this.myStatistics = this.statistics.updateMyStatistics(this.workouts, this.user.getAge());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
@@ -110,7 +109,6 @@ public class App {
 		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
 	public void getStatisticsFromDB() {
-		this.setStatistics(null);
 		this.waitForDatabase = true;
 		int timer = 0;
 		this.database.getStatistics(this);
@@ -264,6 +262,8 @@ public class App {
 	}
 	public void setStatistics(Statistics statistics) {
 		this.statistics = statistics;
+		this.myStatistics = statistics.getStatistics().get(user.getUsername());
+		
 	}
 	public Statistics getStatistics() {
 		return this.statistics;
@@ -272,8 +272,13 @@ public class App {
 
 	public static void main(String[] args) throws ParseException, IOException {
 		App app = new App();
-		app.login("skotn", "test");
+		app.login("laraolsen", "test");
+		app.getStatisticsFromDB();
+		
 		app.submitCardioWorkout("Biking", 90, 10, 100, "2018-02-02");
+		app.getUsersFromDatabase();
+		
+		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, "Oslo"));
 
 	}
 }

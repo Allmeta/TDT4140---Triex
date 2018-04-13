@@ -238,7 +238,7 @@ public class Database {
 	
 	public void getStatistics(App listenerApp) {
 		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference("statistics");
+				.getReference();
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {
