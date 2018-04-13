@@ -7,12 +7,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.StatisticsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.StatisticsController">
    <children>
       <JFXButton buttonType="RAISED" layoutX="556.0" layoutY="414.0" onAction="#onSubmit" prefWidth="100.0" styleClass="normal-button" text="Find partner" />
       <JFXButton buttonType="RAISED" layoutX="156.0" layoutY="414.0" onAction="#onCancel" styleClass="normal-button" text="Back" />
       <Label fx:id="invalidLabel" layoutX="199.0" layoutY="384.0" style="-fx-text-fill: #ff1744;" textFill="#ff1744" />
-      <AnchorPane fx:id="runCard" layoutX="20.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
+      <AnchorPane layoutX="20.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
@@ -28,6 +28,7 @@
                   <Image url="@../../images/ic_location_city_black_24dp_2x.png" />
                </image>
             </ImageView>
+            <Label fx:id="myRun" layoutX="97.0" layoutY="59.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="timeCard" layoutX="20.0" layoutY="222.0" prefHeight="170.0" prefWidth="207.0" styleClass="card">
@@ -55,12 +56,12 @@
          </children>
       </AnchorPane>
       <Label layoutX="304.0" layoutY="427.0" style="-fx-text-fill: #eceff1;" text="All data is calculated for last 30 days" textFill="#eceff1" />
-      <AnchorPane fx:id="runCard1" layoutX="285.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
+      <AnchorPane layoutX="285.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="77.0" layoutY="23.0" style="-fx-text-fill: #4e4e4e;" text="Run distance" textFill="#793131" />
+            <Label layoutX="77.0" layoutY="23.0" style="-fx-text-fill: #4e4e4e;" text="Swim distance" textFill="#793131" />
             <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/ic_face_black_24dp_2x.png" />
@@ -73,12 +74,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="runCard2" layoutX="548.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
+      <AnchorPane layoutX="548.0" layoutY="24.0" prefHeight="170.0" prefWidth="230.0" styleClass="card">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="77.0" layoutY="23.0" style="-fx-text-fill: #4e4e4e;" text="Run distance" textFill="#793131" />
+            <Label layoutX="77.0" layoutY="23.0" style="-fx-text-fill: #4e4e4e;" text="Bike distance" textFill="#793131" />
             <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/ic_face_black_24dp_2x.png" />

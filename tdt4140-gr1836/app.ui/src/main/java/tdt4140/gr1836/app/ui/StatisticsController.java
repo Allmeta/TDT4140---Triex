@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import tdt4140.gr1836.app.statistics.Statistics;
 
 public class StatisticsController extends Controller {
 
@@ -24,6 +25,12 @@ public class StatisticsController extends Controller {
 	private Label kmBikedLabel;
 	@FXML
 	private Label invalidLabel;
+	
+    @FXML
+    private Label myRun;
+    
+    
+    
 
 	/*
 	 * Checks that user have typed a positive duration and chosen a date for new
@@ -40,8 +47,13 @@ public class StatisticsController extends Controller {
 	private void loadStatistics() {
 		
 		
+		Statistics statObj = this.app.getStatistics();
+		
 		
 		//Card 1 - Distance ran compared to other users in city for the last 30 days.
+		
+		System.out.println("hjhg: " + statObj.getaverageStatistics());
+		myRun.setText(Integer.toString(statObj.getaverageStatistics().getRunKm()));
 		
 		//Card 2 - Distance swam? compared to other users in city for the last 30 days.
 		
