@@ -121,4 +121,33 @@
    -fx-padding :0.0 0.15em;
 }
 
-/* Scrollbar styling done here */
+/* Graph styling here */
+.chart{
+    -fx-background-color:transparent;
+    -fx-text-fill:#90A4AE;
+    -fx-padding:5px;
+}
+.number-axis,.category-axis,.axis-label,.char-title{
+    -fx-text-fill:#90A4AE;
+}
+.chart-plot-background{
+    -fx-background-color:transparent;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke:#3F5D5F;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #3F5D5F;
+}
+.chart-alternative-row-fill {
+    -fx-fill:transparent;
+    -fx-stroke: transparent;
+}
+.chart-bar{
+    -fx-background-color:#00e6e2;
+}
+.axis{
+    -fx-tick-label-fill:#90A4AE;
+
+}
