@@ -135,8 +135,7 @@ public class ClientsController extends Controller {
 		// Method which when you click on a coach this coach will be set to your user
 		String client = selectedClient.getText();
 		if (allClients.contains(client)) {
-			System.out.println("data found for client");
-			// showscene(clients data)
+
 		} else {
 			clientLabel.setText("Client not found, check your input");
 		}

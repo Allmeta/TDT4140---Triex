@@ -14,7 +14,6 @@ public class Controller {
 
 	protected App app;
 	protected Stage root;
-	protected String convPartner;
 
 	public void setApp(App app) {
 		this.app = app;
@@ -26,13 +25,6 @@ public class Controller {
 
 	public Stage getRoot() {
 		return this.root;
-	}
-
-	public void setConversation(String person){
-		convPartner=person;
-	}
-	public String getConvPartner(){
-		return convPartner;
 	}
 
 	// Shows a specified scene

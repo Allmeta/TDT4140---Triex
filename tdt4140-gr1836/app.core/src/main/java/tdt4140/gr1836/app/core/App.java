@@ -21,10 +21,8 @@ public class App {
 	private Map<String, User> users;
 	private Map<String, User> coaches;
 	private Map<String, Messages> messages;
-	private ArrayList<User> conversations;
 
 	private boolean waitForDatabase;
-	private Map<String, User> allUsers;
 
 	public App() throws IOException {
 		this.database = new Database();

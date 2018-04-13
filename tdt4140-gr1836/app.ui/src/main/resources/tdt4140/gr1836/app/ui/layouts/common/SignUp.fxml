@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="529.0" style="-fx-background-color: #263238;" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="529.0" style="-fx-background-color: #263238;" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.SignUpController">
    <children>
       <GridPane layoutX="67.0" layoutY="30.0" prefHeight="274.0" prefWidth="398.0">
         <columnConstraints>
@@ -30,12 +30,12 @@
             <RowConstraints maxHeight="176.8" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField fx:id="usernameField" focusColor="#ff1744" labelFloat="true" promptText="Username*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" />
-            <JFXTextField fx:id="nameField" focusColor="#ff1744" labelFloat="true" promptText="Name*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="ageField" focusColor="#ff1744" labelFloat="true" promptText="Age*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="heightField" focusColor="#ff1744" labelFloat="true" promptText="Height*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="weightField" focusColor="#ff1744" labelFloat="true" promptText="Weight*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="4" />
-            <JFXTextField fx:id="cityField" focusColor="#ff1744" labelFloat="true" promptText="City" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="5" />
+            <JFXTextField fx:id="usernameField" focusColor="#ff1744" promptText="Username*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" />
+            <JFXTextField fx:id="nameField" focusColor="#ff1744" promptText="Name" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="ageField" focusColor="#ff1744" promptText="Age*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="heightField" focusColor="#ff1744" promptText="Height*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="3" />
+            <JFXTextField fx:id="weightField" focusColor="#ff1744" promptText="Weight*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="4" />
+            <JFXTextField fx:id="cityField" focusColor="#ff1744" promptText="City" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="5" />
             <GridPane GridPane.rowIndex="6">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -69,8 +69,8 @@
                   <JFXRadioButton fx:id="coachRadioButton" prefHeight="18.0" prefWidth="178.0" text="Coach" textFill="#eceff1" toggleGroup="$userType" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <JFXPasswordField fx:id="passwordField" focusColor="#ff1744" labelFloat="true" promptText="Password*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="8" />
-            <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#ff1744" labelFloat="true" promptText="Confirm password*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="9" />
+            <JFXPasswordField fx:id="passwordField" focusColor="#ff1744" promptText="Password*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="8" />
+            <JFXPasswordField fx:id="passwordConfirmationField" focusColor="#ff1744" promptText="Confirm password*" style="-fx-prompt-text-fill: #90A4AE; -fx-text-fill: #eceff1;" unFocusColor="#eceff1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <JFXButton buttonType="RAISED" layoutX="67.0" layoutY="515.0" onAction="#onSubmit" prefHeight="38.0" prefWidth="86.0" styleClass="normal-button" text="OK" textFill="#e3f2fd" />

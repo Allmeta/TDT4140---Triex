@@ -103,7 +103,6 @@ public class AvailableCoachesController extends Controller {
 
 		loadCoaches(coaches);
 		// Burde sortere coaches etter username her
-
 		// build tree
 		final TreeItem<TempUser> root = new RecursiveTreeItem<TempUser>(coaches, RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
