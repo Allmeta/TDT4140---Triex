@@ -18,6 +18,7 @@ public class Workouts implements Serializable {
 
 	public ArrayList<TempList> getWorkoutsAsList() {
 		ArrayList<TempList> temp = new ArrayList<TempList>();
+
 		if (Running != null) {
 			for (String s : Running.keySet()) {
 				System.out.println(s);
