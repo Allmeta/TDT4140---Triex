@@ -38,7 +38,23 @@ public class StatisticsController extends Controller {
 	}
 	@FXML
 	private void loadStatistics() {
-		//Må sette labels til statistikkfeltene vi henter fra apps
+		
+		
+		
+		//Card 1 - Distance ran compared to other users in city for the last 30 days.
+		
+		//Card 2 - Distance swam? compared to other users in city for the last 30 days.
+		
+		//Card 3 - Distance biked compared to other users in city for the last 30 days.
+		
+		//Card 4 - Piechart to compare time spent on running vs swimming vs biking for the last 30 days.
+		
+		//Card 5 - Shows your estimated max pulse.
+		
+		//Card 6 - Shows your average pulse separately for biking, swimming and running for the last 30 days.
+		
+		
+		
 	}
 	@FXML
 	private void onSubmit() throws IOException {
