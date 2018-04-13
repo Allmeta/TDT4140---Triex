@@ -233,4 +233,30 @@ public class Database {
 		s.setValueAsync(cdw);
 	}
 
+	public void getConversations(String username,App app) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/" + username);
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				if (dataSnapshot != null) {
+					for(DataSnapshot d : dataSnapshot.getChildren()){
+						app.setConversationItem(d.getKey());
+					}
+					app.setWaitForDatabase(false);
+
+				} else {
+					System.out.println("null");
+					app.setWaitForDatabase(false);
+				}
+			}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("finnes ikke");
+				app.setWaitForDatabase(false);
+
+			}
+		});
+	}
 }

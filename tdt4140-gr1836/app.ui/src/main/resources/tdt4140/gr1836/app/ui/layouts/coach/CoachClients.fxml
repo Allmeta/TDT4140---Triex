@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="842.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.ClientsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="842.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.ClientsController">
    <children>
       <JFXScrollPane prefHeight="380.0" prefWidth="800.0">
          <children>
@@ -23,7 +23,7 @@
                         <TreeTableColumn fx:id="randomColumn" prefWidth="130.0" text="Random" />
                      </columns>
                   </JFXTreeTableView>
-                  <JFXTextField fx:id="selectedClient" focusColor="#ff1744" layoutX="455.0" layoutY="42.0" prefHeight="29.0" prefWidth="183.0" promptText="Write username of client here*" styleClass="text-field" unFocusColor="#595e61" />
+                  <JFXTextField fx:id="selectedClient" focusColor="#ff1744" labelFloat="true" layoutX="455.0" layoutY="42.0" prefHeight="29.0" prefWidth="183.0" promptText="Write username of client here*" styleClass="text-field" unFocusColor="#595e61" />
                   <Label fx:id="clientLabel" layoutX="110.0" layoutY="48.0" prefHeight="17.0" prefWidth="315.0" text="Write in the client you wish to review" />
                   <JFXButton fx:id="selectButton" layoutX="681.0" layoutY="34.0" onAction="#viewClient" prefHeight="1.0" styleClass="normal-button" text="Select coach" textFill="WHITE" />
                   <JFXButton layoutX="14.0" layoutY="34.0" onAction="#onBack" styleClass="normal-button" text="Back" />

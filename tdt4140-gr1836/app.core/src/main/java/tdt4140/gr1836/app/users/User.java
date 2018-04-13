@@ -1,6 +1,7 @@
 package tdt4140.gr1836.app.users;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
@@ -82,5 +83,9 @@ public class User implements Serializable {
 
 	public String getMyCoach() {
 		return this.myCoach;
+	}
+
+	public UserTempList toTempUser() {
+		return new UserTempList(getUsername(),getName(),getCity(),""+getAge());
 	}
 }
