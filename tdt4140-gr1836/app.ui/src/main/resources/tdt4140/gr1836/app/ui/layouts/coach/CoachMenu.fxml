@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.CoachMenuController">
    <children>
-      <VBox prefHeight="480.0" prefWidth="220.0" styleClass="vbox">
+      <VBox prefHeight="460.0" prefWidth="220.0" styleClass="vbox">
          <children>
             <Label onMouseClicked="#onInbox" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Inbox">
                <padding>
@@ -23,7 +23,7 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
+            <Label fx:id="logoutButton1" onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

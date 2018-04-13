@@ -9,26 +9,31 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tdt4140.gr1836.app.users.UserTempList;
+import javafx.scene.control.Label;
 
-public class CoachMenuController extends Controller{
+public class CoachMenuController extends Controller {
+
 	@FXML
-	private TableView<UserTempList> view;
-	@FXML
-	private TableColumn<UserTempList, String> name;
-	@FXML
-	private TableColumn<UserTempList, String> city;
-	@FXML
-	private TableColumn<UserTempList, String> age;
-	@FXML
-	private TableColumn<UserTempList, String> email;
+	private Label logoutButton;
 
 	
 	@FXML
 	private Button clientsBtn;
 	
+	private void initialize() {
+		// load username in logout button
+		Platform.runLater(() -> {
+			// SlogoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
+		});
+	}
+
 	@FXML
-	private void goClients() throws IOException {
-		showScene("CoachClients.fxml", this.getRoot(),this.app);
+	private void onInbox() {
+		try {
+			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	/*@FXML
 	public void initialize() {
@@ -53,8 +58,13 @@ public class CoachMenuController extends Controller{
 		view.getItems().setAll(parseClients());
 	}*/
 	@FXML
-	private void goHome() throws IOException {
-		showScene("MainMenu.fxml", this.getRoot(),this.app);
+	private void onLogOut() {
+		try {
+			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }
