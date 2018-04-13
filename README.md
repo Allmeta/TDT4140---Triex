@@ -4,7 +4,7 @@ Repository for group 36, TDT4140, Spring 2018.
 
 This is an app where a user can register their workouts and get feedback from different coaches by their choosing. 
 The app is compatible with different types of workouts and may be used by all age groups. 
-The user will be able to track their progress in different types of exercise and see their workout history which is stored using Firebase.
+The user will be able to track their progress in different types of exercises and see their workout history which is stored using Firebase.
 
 Our project implements an MVC architecture with a model communicating with a database class which communicates with Firebase.
 
@@ -37,11 +37,10 @@ To deploy this on a live system you need to have Java installed, then run the Fx
 
 ### Usage
 When you first run the FxApp you will be greeted with a login, here you will either log in using an existing user or register a new user before logging in.
-From here you can either view your previous workouts, add new workouts in form of a cardio or a strength workout or view a list of available Coaches. 
+From here you can either view your previous workouts, add new workouts in form of running, biking or swimming, or view a list of available Coaches.
+From the list of coaches you can choose one that you like as your personal coach. The coach can then view your workous and give you feedback on your progress by using the message system.
 
-Coming soon:
-Ability to choose a coach.
-A coach interface where coaches can give feedback to their users.
+As a coach you can see which clients and chosen you and view their workouts, you can then give them feedback and chat with your clients.
 
 ## Built With
 
