@@ -26,6 +26,10 @@
     -fx-background-color: #eceff1;
 }
 
+.cardLabel {
+    -fx-text-fill: #4e4e4e;
+}
+
 .normal-button {
     -fx-background-color: #2962FF;
     -fx-text-fill: #e3f2fd;
