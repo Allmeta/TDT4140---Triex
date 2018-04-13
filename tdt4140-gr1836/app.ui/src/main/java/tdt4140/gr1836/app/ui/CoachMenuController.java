@@ -30,20 +30,20 @@ public class CoachMenuController extends Controller{
 	private void goClients() throws IOException {
 		showScene("CoachClients.fxml", this.getRoot(),this.app);
 	}
-	@FXML
+	/*@FXML
 	public void initialize() {
 		Platform.runLater(()->{
 			setClients();
 		});
-	}
+	}/*
 
-	private ArrayList<UserTempList> parseClients() {
+	/*private ArrayList<UserTempList> parseClients() {
 		//if (user has this coach){
 			
 		return this.app.getUsersAsList();
-		}
+		}*/
 	//}
-	private void setClients() {
+	/*private void setClients() {
 		// fill stuff
 		name.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("name"));
 		city.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("city"));
@@ -51,7 +51,7 @@ public class CoachMenuController extends Controller{
 		email.setCellValueFactory(new PropertyValueFactory<UserTempList, String>("email"));
 
 		view.getItems().setAll(parseClients());
-	}
+	}*/
 	@FXML
 	private void goHome() throws IOException {
 		showScene("MainMenu.fxml", this.getRoot(),this.app);
