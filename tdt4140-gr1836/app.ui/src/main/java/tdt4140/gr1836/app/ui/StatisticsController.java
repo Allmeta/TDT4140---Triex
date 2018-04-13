@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.statistics.Statistics;
 
 public class StatisticsController extends Controller {
@@ -51,9 +52,10 @@ public class StatisticsController extends Controller {
 		
 		
 		//Card 1 - Distance ran compared to other users in city for the last 30 days.
-		
-		System.out.println("hjhg: " + statObj.getaverageStatistics());
-		myRun.setText(Integer.toString(statObj.getaverageStatistics().getRunKm()));
+		//Regner bare ut average en gang for å spare tid!
+		Statistic average = statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity());
+		System.out.println("hjhg: " + average.getBikeKm());
+		// My run er ikke avergae statistikk men heller myStatistic ! myRun.setText(Integer.toString());
 		
 		//Card 2 - Distance swam? compared to other users in city for the last 30 days.
 		
