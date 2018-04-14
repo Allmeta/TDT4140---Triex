@@ -22,6 +22,17 @@
     -fx-text-fill: #ff1744;
 }
 
+.card {
+    -fx-background-color: #DCDCDC;
+    -fx-pref-width: 100;
+    -fx-pref-width: 220;
+    -fx-background-radius: 7;
+}
+
+.cardLabel {
+    -fx-text-fill: #4e4e4e;
+}
+
 .normal-button {
     -fx-background-color: #2962FF;
     -fx-text-fill: #e3f2fd;

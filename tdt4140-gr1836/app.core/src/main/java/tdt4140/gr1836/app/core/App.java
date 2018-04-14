@@ -1,13 +1,17 @@
 package tdt4140.gr1836.app.core;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import tdt4140.gr1836.app.db.Database;
 import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.inbox.Messages;
+import tdt4140.gr1836.app.statistics.Statistic;
+import tdt4140.gr1836.app.statistics.Statistics;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.users.Users;
@@ -21,6 +25,11 @@ public class App {
 	private Map<String, User> users;
 	private Map<String, User> coaches;
 	private Map<String, Messages> messages;
+	
+	private Statistic myStatistics;
+	private Statistics statistics; 
+	private Map<String, Statistic> allStatistics;
+
 	private ArrayList<User> conversations;
 
 	private boolean waitForDatabase;
@@ -30,6 +39,7 @@ public class App {
 		this.database = new Database();
 		this.database.init();
 		this.user = null;
+		
 	}
 
 	// User managment to DB
@@ -42,6 +52,15 @@ public class App {
 	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 		this.user = this.database.register(username, name, age, height, weight, city, isMale, isCoach, password);
+		try {
+			this.workouts = new Workouts();
+			this.statistics = new Statistics();
+			this.myStatistics = this.statistics.updateMyStatistics(this.workouts, this.user.getAge());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
+		}	
+		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
 
 	public User login(String username, String password) {
@@ -88,14 +107,47 @@ public class App {
 			}
 		}
 	}
+	public void onlySubmitWorkout(String type, double duration, double distance, double pulse, String date) {
+		Workout cdw = new Workout(type, duration, distance, pulse, date);
+		this.database.submitCardioWorkout(cdw, this);
+		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
+		//this.workouts.addWorkout(cdw); Sånn som her?
+
+	}
 
 	public void submitCardioWorkout(String type, double duration, double distance, double pulse, String date) {
 		Workout cdw = new Workout(type, duration, distance, pulse, date);
 		this.database.submitCardioWorkout(cdw, this);
-		// oppdater workouts liste
-		getWorkoutsFromDB();
+		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
+		//this.workouts.addWorkout(cdw); Sånn som her?
+		try {
+			this.myStatistics = this.statistics.updateMyStatistics(this.workouts, this.user.getAge());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
+		}	
+		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
-
+	public void getStatisticsFromDB() {
+		this.waitForDatabase = true;
+		int timer = 0;
+		this.database.getStatistics(this);
+		while (this.waitForDatabase) {
+			try {
+				Thread.sleep(300);
+				timer += 1;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (timer > 100) {
+				break;
+			}
+		}
+	}
+	public LinkedHashMap<String, Double> findPartners(){
+		
+		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
+	}
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
 		this.waitForDatabase = true;
@@ -188,6 +240,7 @@ public class App {
 
 	public void sendMessage(String message, String referant) {
 		database.sendMessage(message, referant, user.getUsername());
+		this.conversations.add(this.users.get(referant));
 	}
 
 	public void loadMessages(String referant) {
@@ -227,6 +280,33 @@ public class App {
 		}
 		return messages.get(ref).toList();
 	}
+	public Statistic getMyStatistics () {
+		return this.myStatistics;
+	}
+	public void setMyStatistics(Statistic statistics) {
+		this.myStatistics = statistics;
+	}
+	public void setStatistics(Statistics statistics) {
+		this.statistics = statistics;
+		this.myStatistics = statistics.getStatistics().get(user.getUsername());
+		
+	}
+	public Statistics getStatistics() {
+		return this.statistics;
+	}
+	
+
+	public static void main(String[] args) throws ParseException, IOException {
+		App app = new App();
+		app.login("dinaarnesen", "test");
+		app.getStatisticsFromDB();
+		
+		app.submitCardioWorkout("Biking", 90, 10, 100, "2018-02-02");
+		app.getUsersFromDatabase();
+		
+		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, app.user.getCity()));
+	}
+
 
 	public ArrayList<User> getConversations() {
 		if(conversations==null){
@@ -238,6 +318,7 @@ public class App {
 	public void setConversationItem(String user){
 		User temp = allUsers.get(user);
 		conversations.add(temp);
+		System.out.println(user);
 	}
 
 	private void getConversationsFromDB() {
@@ -263,7 +344,24 @@ public class App {
 	}
 
 	public ArrayList<UserTempList> getClients() {
+		ArrayList<UserTempList> allClients = new ArrayList<UserTempList>();
+		try {
+			allUsers = this.getUsers();
+			String myName = this.getUser().getUsername();
+			String clientCoach;
+			// userList.sort(null);
+			for (String s : allUsers.keySet()) {
+				clientCoach = allUsers.get(s).getMyCoach();
+				if (clientCoach.equals(myName)) {
+					allClients.add(new UserTempList(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
+							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge())));
+				}
+			}
+		}
+
+		catch (NullPointerException e) {
+		}
 		//My lages for coach pls
-		return null;
+		return allClients;
 	}
 }

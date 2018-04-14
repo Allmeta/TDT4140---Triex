@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
@@ -25,8 +26,8 @@ public class AppTest {
 		// Registers a new user to be tested on
 		App app = new App();
 		app.setUser(new User("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest"));
-
-		app.submitCardioWorkout("Running", 90, 10, 160, "1999-09-09");
+		app.setMyStatistics(new Statistic());
+		app.onlySubmitWorkout("Running", 90, 10, 160, "1999-09-09");
 
 		app.register("TestUser", "Mr.David", 22, 185, 80, "Oslo", true, false, "coachTest");
 		app.register("TestCoach", "Mr.Coach", 22, 185, 80, "Oslo", true, true, "coachTest");

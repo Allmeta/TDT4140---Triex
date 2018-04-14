@@ -35,6 +35,7 @@ public class InboxController extends Controller {
 	@FXML private VBox latestConversations;
 	@FXML private ScrollPane scrollpane;
 	@FXML private VBox infoPanel;
+	@FXML private Label coachorclientLabel;
 	private String currentChat = "default";
 	private Image profile;
 	private boolean first = false;
@@ -44,10 +45,15 @@ public class InboxController extends Controller {
 		// Get coaches/users
 		// Also make listeners to load chat for EACH label :(
 		Platform.runLater(() -> {
+			//Sets label for clietns or coach
+			if (app.getUser().getIsCoach()) {
+				coachorclientLabel.setText("Your clients");
+			}
 			generatePeople();
+
 			// For auto scroll on new message
 			scrollpane.vvalueProperty().bind(scrollpane.heightProperty());
-
+			
 			initSearchListener();
 		});
 	}
@@ -108,6 +114,7 @@ public class InboxController extends Controller {
 		//account image ting
 		profile = new Image(getClass().getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
 		//add myCoach
+
 		for(UserTempList u:myCoachOrClients){
 			addDude(u,assigned);
 		}
@@ -174,6 +181,8 @@ public class InboxController extends Controller {
 		if(getConvPartner()!=u.getUsername()){
 			loadChat(u);
 		}
+		System.out.println("Tests");
+
 	}
 
 	private void loadChat(UserTempList u) {

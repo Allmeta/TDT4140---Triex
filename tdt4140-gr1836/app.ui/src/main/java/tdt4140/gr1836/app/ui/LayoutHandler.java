@@ -13,6 +13,7 @@ public class LayoutHandler {
 	public static final String newWorkoutPane = "layouts/user/CardioWorkout.fxml";
 	public static final String coachesPane = "layouts/user/Coaches.fxml";
 	public static final String historyPane = "layouts/user/History.fxml";
+	public static final String statisticsPane = "layouts/user/Statistics.fxml";
 
 	// coach panes
 	public static final String mainCoachPane = "layouts/coach/CoachMenu.fxml";
