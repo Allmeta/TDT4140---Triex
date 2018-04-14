@@ -9,8 +9,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,7 +26,7 @@ import tdt4140.gr1836.app.workouts.Workouts;
 public class Statistics implements Serializable  {
 	private Map<String,Statistic> statistics;
 	
-	Statistics() {
+	public Statistics() {
 		
 	}
 	
@@ -97,8 +101,8 @@ public class Statistics implements Serializable  {
 		return averageStatistics;
 	}
 	
-	public Map<String, Double> findPartners(Map<String, User> users, Statistic myStatistics, String city) {
-		Map<String, Double> partners = new HashMap<>();
+	public LinkedHashMap<String, Double> findPartners(Map<String, User> users, Statistic myStatistics, String city) {
+		HashMap<String, Double> partners = new HashMap<>();
 		//Finds a partner in your city based on your stats below
 		double maxPulse = myStatistics.getMaxPulse();
 		int runKm = myStatistics.getRunKm();
@@ -123,7 +127,6 @@ public class Statistics implements Serializable  {
 			user = users.get(key);	
 			if (user.getCity().equals(city)) {
 				if(statKeys.contains(user.getUsername())) {	
-					System.out.println("TEster"+user.getUsername());
 
 					userStatistics = statistics.get(user.getUsername());
 					//Funksjon for å beregne match
@@ -142,23 +145,46 @@ public class Statistics implements Serializable  {
 					matchPercent += this.compareDoubles((maxPulse-avgBikePulse), (userStatistics.getMaxPulse() -(double) userStatistics.getAvgBikePulse()));
 					matchPercent += this.compareDoubles((maxPulse-avgSwimPulse), (userStatistics.getMaxPulse() -(double) userStatistics.getAvgSwimPulse()));
 					partners.put(user.getUsername(), matchPercent);
-					System.out.println(matchPercent);
 				}
 			}
 		}
 		//går gjennom hver bruker i din by og finner den som har nærmest match
-		return partners;
+		List<String> mapKeys = new ArrayList<>(partners.keySet());
+	    List<Double> mapValues = new ArrayList<>(partners.values());
+	    Collections.sort(mapValues, Collections.reverseOrder());
+	    Collections.sort(mapKeys);
+
+	    LinkedHashMap<String, Double> sortedMap =
+	        new LinkedHashMap<>();
+
+	    Iterator<Double> valueIt = mapValues.iterator();
+	    while (valueIt.hasNext()) {
+	        Double val = valueIt.next();
+	        Iterator<String> keyIt = mapKeys.iterator();
+
+	        while (keyIt.hasNext()) {
+	            String key = keyIt.next();
+	            Double comp1 = partners.get(key);
+	            Double comp2 = val;
+
+	            if (comp1.equals(comp2)) {
+	                keyIt.remove();
+	                sortedMap.put(key, val);
+	                break;
+	            }
+	        }
+	    }
+		//return partners;
+	    return sortedMap;
 	}
 	public Double compareNumbers(int xxx, int yyy) {
 		double x=(int) xxx;
 		double y=(int) yyy;
 		Double matchPercent=0.0;
 		if (x == y) {
-			System.out.println("Nummer er like");
 			matchPercent += 0.0833;
 		}
 		else if (x==0) {
-			System.out.println("Mine tall er 0");
 			matchPercent += 0;
 		}
 		else {
@@ -169,7 +195,6 @@ public class Statistics implements Serializable  {
 				matchPercent += 0.0833*(1-(y-x)/y);
 			}
 		}
-		System.out.println(matchPercent);
 
 		return matchPercent;
 	}
@@ -189,7 +214,6 @@ public class Statistics implements Serializable  {
 				matchPercent += 0.0833*(1-(y-x)/y);
 			}
 		}
-		System.out.println(matchPercent);
 		return matchPercent;
 	}
 	

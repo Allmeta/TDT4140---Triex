@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import tdt4140.gr1836.app.db.Database;
@@ -48,6 +49,15 @@ public class App {
 	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 		this.user = this.database.register(username, name, age, height, weight, city, isMale, isCoach, password);
+		try {
+			this.workouts = new Workouts();
+			this.statistics = new Statistics();
+			this.myStatistics = this.statistics.updateMyStatistics(this.workouts, this.user.getAge());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
+		}	
+		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
 
 	public User login(String username, String password) {
@@ -130,6 +140,10 @@ public class App {
 				break;
 			}
 		}
+	}
+	public LinkedHashMap<String, Double> findPartners(){
+		
+		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
 	}
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
@@ -279,13 +293,13 @@ public class App {
 
 	public static void main(String[] args) throws ParseException, IOException {
 		App app = new App();
-		app.login("laraolsen", "test");
+		app.login("dinaarnesen", "test");
 		app.getStatisticsFromDB();
 		
 		app.submitCardioWorkout("Biking", 90, 10, 100, "2018-02-02");
 		app.getUsersFromDatabase();
 		
-		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, "Oslo"));
+		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, app.user.getCity()));
 
 	}
 }
