@@ -118,9 +118,9 @@ public class Database {
 		ref.child(username).setValueAsync(null);
 	}
 
-	public void getWorkouts(App listenerApp) {
+	public void getWorkouts(App listenerApp, String username) {
 		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference("workouts/" + listenerApp.getUser().getUsername());
+				.getReference("workouts/" + username);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
 			public void onDataChange(DataSnapshot dataSnapshot) {

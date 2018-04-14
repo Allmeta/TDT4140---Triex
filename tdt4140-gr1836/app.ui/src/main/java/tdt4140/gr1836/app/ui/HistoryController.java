@@ -63,6 +63,9 @@ public class HistoryController extends Controller {
 
 		// data
 		ObservableList<Workout> workouts = FXCollections.observableArrayList();
+		if (app.getUser().getIsCoach()) {
+			app.getClientsWorkouts(this.getClient());;
+		}
 
 		loadWorkouts(workouts);
 
@@ -76,8 +79,9 @@ public class HistoryController extends Controller {
 	@FXML
 	private void onBack() {
 		try {
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
-		} catch (IOException e) {
+			if(app.getUser().getIsCoach())this.showScene(LayoutHandler.statisticsPane, getRoot(), this.app);
+			else this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);		
+			} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

@@ -40,6 +40,8 @@ public class StatisticsController extends Controller {
 	@FXML
 	private JFXButton previousButton;
 	@FXML
+	private JFXButton historyButton;
+	@FXML
 	private Label profileLabel;
 	@FXML
 	private Label questionLabel;
@@ -79,20 +81,42 @@ public class StatisticsController extends Controller {
 	 */
 	@FXML
 	private void initialize() {
-		goButton.setOnAction((event) -> {
-		    onFind();
-		});
-		returnButton.setOnAction((event) -> {
-		    onCancel();
-		});
+		
 		Platform.runLater(() -> {
+			returnButton.setOnAction((event) -> {
+			    onCancel();
+			});
 			Statistics statObj = this.app.getStatistics();
-			loadStatistics(app.getMyStatistics(), statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity()), null, null);
+			if (app.getUser().getIsCoach()) {
+				userName.setText(this.getClient());
+				Statistic statistic = app.getStatistics().getStatistics().get(getClient());
+				app.setMyStatistics(statistic);
+				loadForCoach();
+				loadStatistics(statistic, statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity()), null, null);
+			}
+			else {
+				userName.setText(app.getUser().getUsername());
+
+				goButton.setOnAction((event) -> {
+				    onFind();
+				});
+				loadStatistics(app.getMyStatistics(), statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity()), null, null);
+			}
+			});
+	}
+	private void loadForCoach() {
+		goButton.setText("Send message");
+		goButton.setOnAction((event) -> {
+		    onSendMessage();
 		});
+		historyButton.setVisible(true);
+		historyButton.setOnAction((event) -> {
+		    onHistory();
+		});
+		questionLabel.setVisible(false);
 	}
 	private void loadStatistics(Statistic profileStatistic, Statistic statistic, Double matchPercent, String comparingName) {
 		Statistic myStatistic = app.getMyStatistics();
-		userName.setText(app.getUser().getUsername());
 		//Checks if we compare to city or users
 		if (comparingName != null) {
 			//pluss percent
@@ -213,6 +237,22 @@ public class StatisticsController extends Controller {
 		Double percentMatch = partners.get(name);
 		this.loadStatistics(statistic, statistic, percentMatch, name);
 	}
+	@FXML 
+	private void onSendMessage() {
+		try {
+			this.setConversation(this.getClient());
+			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@FXML void onHistory() {
+		try {
+			showScene(LayoutHandler.historyPane, this.getRoot(), this.app);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	@FXML
 	private void onBack() {
 		try {
@@ -225,11 +265,13 @@ public class StatisticsController extends Controller {
 	@FXML
 	private void onCancel()  {
 		try {
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
-		} catch (IOException e) {
+			if(app.getUser().getIsCoach())this.showScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
+			else this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);		
+			} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 }
 	

@@ -13,7 +13,8 @@ public class Controller {
 
 	protected App app;
 	protected Stage root;
-	protected String convPartner;
+	protected static String convPartner;
+	protected static String client;
 
 	public void setApp(App app) {
 		this.app = app;
@@ -32,6 +33,12 @@ public class Controller {
 	}
 	public String getConvPartner(){
 		return convPartner;
+	}
+	public void setClient(String person){
+		client=person;
+	}
+	public String getClient(){
+		return client;
 	}
 
 	// Shows a specified scene
@@ -89,6 +96,7 @@ public class Controller {
 
 		// Load graph
 		app.getWorkoutsFromDB();
+		app.getStatisticsFromDB();
 
 	}
 

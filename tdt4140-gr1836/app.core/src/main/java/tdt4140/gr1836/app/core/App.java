@@ -148,11 +148,28 @@ public class App {
 		
 		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
 	}
+	public void getClientsWorkouts(String client) {
+		this.setWorkouts(null);
+		this.waitForDatabase = true;
+		int timer = 0;
+		this.database.getWorkouts(this, client);
+		while (this.waitForDatabase) {
+			try {
+				Thread.sleep(300);
+				timer += 1;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (timer > 100) {
+				break;
+			}
+		}
+	}
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
 		this.waitForDatabase = true;
 		int timer = 0;
-		this.database.getWorkouts(this);
+		this.database.getWorkouts(this, this.getUser().getUsername());
 		while (this.waitForDatabase) {
 			try {
 				Thread.sleep(300);
