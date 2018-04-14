@@ -257,7 +257,7 @@ public class App {
 
 	public void sendMessage(String message, String referant) {
 		database.sendMessage(message, referant, user.getUsername());
-		this.conversations.add(this.users.get(referant));
+		if(!conversations.contains(users.get(referant))) this.conversations.add(this.users.get(referant));
 	}
 
 	public void loadMessages(String referant) {
@@ -361,7 +361,7 @@ public class App {
 	}
 
 	public ArrayList<UserTempList> getClients() {
-		ArrayList<UserTempList> allClients = new ArrayList<UserTempList>();
+		ArrayList<UserTempList> allClients = new ArrayList<>();
 		try {
 			allUsers = this.getUsers();
 			String myName = this.getUser().getUsername();
@@ -378,7 +378,6 @@ public class App {
 
 		catch (NullPointerException e) {
 		}
-		//My lages for coach pls
 		return allClients;
 	}
 }

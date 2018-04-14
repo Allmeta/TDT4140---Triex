@@ -50,7 +50,7 @@ public class InboxController extends Controller {
 			generatePeople();
 
 			// For auto scroll on new message
-			scrollpane.vvalueProperty().bind(scrollpane.heightProperty());
+			scrollpane.vvalueProperty().bind(messageFrame.heightProperty());
 			
 			initSearchListener();
 		});
@@ -74,45 +74,55 @@ public class InboxController extends Controller {
 
 	private void search(String newValue) {
 		//hide nodes if not match regex
-		for (Node n : assigned.getChildren()) {
-			if (nodeMap.get(n.getId()).getName().matches("(?i)(.*)(" + newValue + ").*")) {
-				n.setManaged(true);
-				n.setVisible(true);
+		for (Node u : assigned.getChildren()) {
+			if (nodeMap.get(u.getId()).getName().toLowerCase().contains(newValue.toLowerCase())) {
+				u.setManaged(true);
+				u.setVisible(true);
 			} else {
-				n.setManaged(false);
-				n.setVisible(false);
+				u.setManaged(false);
+				u.setVisible(false);
 			}
 		}
 		for (Node n : latestConversations.getChildren()) {
-			if (nodeMap.get(n.getId()).getName().matches("(?i)(.*)(" + newValue + ").*")) {
+			if (nodeMap.get(n.getId()).getName().toLowerCase().contains(newValue.toLowerCase())) {
 				n.setManaged(true);
 				n.setVisible(true);
 			} else {
 				n.setManaged(false);
 				n.setVisible(false);
+				System.out.println(nodeMap.get(n.getId()).getName().toLowerCase()+" / "+newValue.toLowerCase());
 			}
 		}
-		for (Node n : people.getChildren()) {
-			if (nodeMap.get(n.getId()).getName().matches("(?i)(.*)(" + newValue + ").*")) {
-				n.setManaged(true);
-				n.setVisible(true);
+		for (Node m : people.getChildren()) {
+			if (nodeMap.get(m.getId()).getName().toLowerCase().contains(newValue.toLowerCase())) {
+				m.setManaged(true);
+				m.setVisible(true);
 			} else {
-				n.setManaged(false);
-				n.setVisible(false);
+				m.setManaged(false);
+				m.setVisible(false);
 			}
 		}
 
 	}
 
 	private void generatePeople() { // works for coaches and users!!
-		ArrayList<UserTempList> coaches = parsePeople();
+		ArrayList<UserTempList> otherUsers = parsePeople();
 		ArrayList<UserTempList> recentConv = getConvInList(app.getConversations());
 		ArrayList<UserTempList> myCoachOrClients=app.getUser().getIsCoach()?app.getClients():getCoachInList();
+		//remove latestConv people from other users
+		for(UserTempList k:recentConv){
+			for(UserTempList u:otherUsers){
+				if(k.getUsername().equals(u.getUsername())){
+					otherUsers.remove(u);
+					break;
+				}
+			}
+		}
 
 		//account image ting
 		profile = new Image(getClass().getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
-		//add myCoach
 
+		//add myCoach
 		for(UserTempList u:myCoachOrClients){
 			addDude(u,assigned);
 		}
@@ -121,13 +131,14 @@ public class InboxController extends Controller {
 			addDude(u,latestConversations);
 		}
 		//Add alle users
-		for (UserTempList u : coaches) {
+		for (UserTempList u : otherUsers) {
 			addDude(u,people);
 		}
 	}
 
 	private ArrayList<UserTempList> getConvInList(ArrayList<User> conversations) {
 		ArrayList<UserTempList> temp=new ArrayList<>();
+		if (conversations==null)return new ArrayList<>();
 		for (User u:conversations){
 			temp.add(new UserTempList(u.getUsername(),u.getName(),u.getCity(),u.getAge()+""));
 		}
@@ -164,7 +175,7 @@ public class InboxController extends Controller {
 		where.getChildren().add(hbox);
 
 		// map to find nodes when searching
-		hbox.setId("" + new Date().getTime());
+		hbox.setId(randomString(5));
 		nodeMap.put(hbox.getId(), u);
 
 		// event listener
@@ -180,8 +191,16 @@ public class InboxController extends Controller {
 		else if(getConvPartner()==u.getUsername()){
 			loadChat(u);
 		}
-		System.out.println("Tests");
 
+	}
+	private String randomString(final int length) {
+		Random r = new Random(); // perhaps make it a class variable so you don't make a new one every time
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < length; i++) {
+			char c = (char)(r.nextInt((int)(Character.MAX_VALUE)));
+			sb.append(c);
+		}
+		return sb.toString();
 	}
 
 	private void loadChat(UserTempList u) {
