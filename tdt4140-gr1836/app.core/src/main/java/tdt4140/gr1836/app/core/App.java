@@ -240,6 +240,7 @@ public class App {
 
 	public void sendMessage(String message, String referant) {
 		database.sendMessage(message, referant, user.getUsername());
+		this.conversations.add(this.users.get(referant));
 	}
 
 	public void loadMessages(String referant) {
@@ -304,6 +305,7 @@ public class App {
 		app.getUsersFromDatabase();
 		
 		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, app.user.getCity()));
+	}
 
 
 	public ArrayList<User> getConversations() {
@@ -316,6 +318,7 @@ public class App {
 	public void setConversationItem(String user){
 		User temp = allUsers.get(user);
 		conversations.add(temp);
+		System.out.println(user);
 	}
 
 	private void getConversationsFromDB() {
@@ -341,7 +344,24 @@ public class App {
 	}
 
 	public ArrayList<UserTempList> getClients() {
+		ArrayList<UserTempList> allClients = new ArrayList<UserTempList>();
+		try {
+			allUsers = this.getUsers();
+			String myName = this.getUser().getUsername();
+			String clientCoach;
+			// userList.sort(null);
+			for (String s : allUsers.keySet()) {
+				clientCoach = allUsers.get(s).getMyCoach();
+				if (clientCoach.equals(myName)) {
+					allClients.add(new UserTempList(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
+							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge())));
+				}
+			}
+		}
+
+		catch (NullPointerException e) {
+		}
 		//My lages for coach pls
-		return null;
+		return allClients;
 	}
 }

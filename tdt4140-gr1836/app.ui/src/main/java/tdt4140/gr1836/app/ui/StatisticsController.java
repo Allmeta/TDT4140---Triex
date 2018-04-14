@@ -174,7 +174,8 @@ public class StatisticsController extends Controller {
 	@FXML
 	private void onSubmit()  {
 		try {
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
+			this.setConversation(new ArrayList<String>(partners.keySet()).get(currentPartner));
+			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

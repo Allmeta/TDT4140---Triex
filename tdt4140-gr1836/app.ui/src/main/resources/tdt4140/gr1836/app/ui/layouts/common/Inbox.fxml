@@ -36,7 +36,7 @@
                <content>
                   <VBox prefHeight="336.0" prefWidth="218.0">
                      <children>
-                        <Label text="Your coach">
+                        <Label fx:id="coachorclientLabel" text="Your coach">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
