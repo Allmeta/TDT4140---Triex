@@ -6,7 +6,6 @@ import java.util.*;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -19,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
@@ -158,6 +156,7 @@ public class InboxController extends Controller {
 		hbox.getStyleClass().add("btn");
 		hbox.setMaxHeight(40);
 		hbox.setAlignment(Pos.CENTER_LEFT);
+		hbox.setScaleShape(false);
 
 		hbox.getChildren().add(imageView);
 		hbox.getChildren().add(label);
@@ -178,7 +177,7 @@ public class InboxController extends Controller {
 			loadChat(u);
 		}
 		//loads chat if convPartner is set
-		if(getConvPartner()!=u.getUsername()){
+		else if(getConvPartner()==u.getUsername()){
 			loadChat(u);
 		}
 		System.out.println("Tests");

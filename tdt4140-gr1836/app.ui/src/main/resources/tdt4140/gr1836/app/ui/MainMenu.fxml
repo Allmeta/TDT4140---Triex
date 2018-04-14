@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -8,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="parent" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.MainMenuController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="parent" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.MainMenuController">
    <children>
       <VBox prefHeight="460.0" prefWidth="220.0" styleClass="vbox">
          <children>
-            <Label onMouseClicked="#onInbox" prefHeight="42.0" prefWidth="220.0" styleClass="btn" stylesheets="@style.css" text="Inbox">
+            <Label onMouseClicked="#onInbox" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Inbox">
                <padding>
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
@@ -64,7 +65,7 @@
       </VBox>
       <Pane fx:id="chartPane" layoutX="253.0" layoutY="34.0" prefHeight="387.0" prefWidth="474.0">
          <children>
-            <LineChart fx:id="lineChart" prefHeight="387.0" prefWidth="474.0" style="-fx-background-color: #eceff1;" title="Amount of workouts last 30 days">
+            <LineChart fx:id="lineChart" prefHeight="387.0" prefWidth="474.0" title="Amount of workouts last 30 days">
               <xAxis>
                 <NumberAxis side="BOTTOM" fx:id="xAxis" />
               </xAxis>
@@ -78,4 +79,7 @@
          </padding>
       </Pane>
    </children>
+   <stylesheets>
+      <URL value="@stylesheets/style.css" />
+   </stylesheets>
 </AnchorPane>
