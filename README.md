@@ -1,4 +1,4 @@
-# Training app 2k18
+# Triex
 
 Repository for group 36, TDT4140, Spring 2018.
 
