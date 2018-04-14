@@ -14,24 +14,37 @@ import javafx.scene.control.ToggleGroup;
 import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.statistics.Statistics;
 
+
 public class StatisticsController extends Controller {
+	
+
+	@FXML
+	private Statistics statObj;
 
 	@FXML
 	private Label profileLabel;
 	@FXML
-	private Label kmRanLabel;
-	@FXML
-	private Label kmSwamLabel;
-	@FXML
-	private Label kmBikedLabel;
+	private Label kmRanLabel, kmSwamLabel, kmBikedLabel;
 	@FXML
 	private Label invalidLabel;
 	
     @FXML
-    private Label myRun;
+    private Label myRun, mySwim, myBike;
     
+    @FXML
+    private Label avgCityRun, avgCitySwim, avgCityBike;
     
+    @FXML
+    private Label estMaxPulse;
     
+    @FXML
+    private Label avgPulseRun, avgPulseSwim, avgPulseBike;
+    
+    @FXML
+    private Label timeSpentRunning, timeSpentSwimming, timeSpentBiking;
+    
+    @FXML
+    private Label userName, compName;
 
 	/*
 	 * Checks that user have typed a positive duration and chosen a date for new
@@ -41,31 +54,54 @@ public class StatisticsController extends Controller {
 	@FXML
 	private void initialize() {
 		Platform.runLater(() -> {
-			loadStatistics();
+			Statistics statObj = this.app.getStatistics();
+			loadStatistics(statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity()));
 		});
 	}
 	@FXML
-	private void loadStatistics() {
+	private void loadStatistics(Statistic average) {
 		
+		userName.setText(app.getUser().getUsername());
+		compName.setText(app.getUser().getCity());
+	
 		
-		Statistics statObj = this.app.getStatistics();
+		//Calculates average once to save time.
+		
+		Statistic myStats = this.app.getMyStatistics();
 		
 		
 		//Card 1 - Distance ran compared to other users in city for the last 30 days.
-		//Regner bare ut average en gang for å spare tid!
-		Statistic average = statObj.calculateAverageInCity(app.getUsers(), app.getUser().getCity());
-		System.out.println("hjhg: " + average.getBikeKm());
-		// My run er ikke avergae statistikk men heller myStatistic ! myRun.setText(Integer.toString());
+		myRun.setText(""+ myStats.getRunKm() + " Km");
+		avgCityRun.setText(""+ average.getRunKm() + " Km");
+		
+		
+
 		
 		//Card 2 - Distance swam? compared to other users in city for the last 30 days.
+		mySwim.setText(""+ myStats.getSwimKm() + " Km");
+		avgCitySwim.setText(""+ average.getSwimKm() + " Km");
+		
 		
 		//Card 3 - Distance biked compared to other users in city for the last 30 days.
+		myBike.setText(""+ myStats.getBikeKm() + " Km");
+		avgCityBike.setText(""+ average.getBikeKm() + " Km");
 		
-		//Card 4 - Piechart to compare time spent on running vs swimming vs biking for the last 30 days.
+		
+		//Card 4 - Time spent on each excercise type
+		timeSpentRunning.setText("Running: "+myStats.getRunMin() + " Minutes");
+		timeSpentSwimming.setText("Swimming: "+myStats.getSwimMin()+ " Minutes");
+		timeSpentBiking.setText("Biking: "+myStats.getBikeMin()+ " Minutes");
+
+		
 		
 		//Card 5 - Shows your estimated max pulse.
+		estMaxPulse.setText(""+myStats.getMaxPulse());
 		
 		//Card 6 - Shows your average pulse separately for biking, swimming and running for the last 30 days.
+		avgPulseRun.setText("Running: "+myStats.getAvgRunPulse());
+		avgPulseSwim.setText("Swimming: "+myStats.getAvgSwimPulse());
+		avgPulseBike.setText("Biking: "+myStats.getAvgBikePulse());
+		
 		
 		
 		
@@ -73,6 +109,7 @@ public class StatisticsController extends Controller {
 	@FXML
 	private void onSubmit() throws IOException {
 		//Find partners, show their profiles?
+
 	}
 
 	@FXML

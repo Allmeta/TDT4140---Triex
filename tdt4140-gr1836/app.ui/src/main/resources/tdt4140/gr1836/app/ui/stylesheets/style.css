@@ -23,7 +23,10 @@
 }
 
 .card {
-    -fx-background-color: #eceff1;
+    -fx-background-color: #DCDCDC;
+    -fx-pref-width: 100;
+    -fx-pref-width: 220;
+    -fx-background-radius: 7;
 }
 
 .cardLabel {

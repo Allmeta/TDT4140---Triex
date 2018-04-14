@@ -22,7 +22,7 @@ public class AppPreloader extends Preloader {
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Training app");
+		primaryStage.setTitle("Triex");
 
 		primaryStage.show();
 	}

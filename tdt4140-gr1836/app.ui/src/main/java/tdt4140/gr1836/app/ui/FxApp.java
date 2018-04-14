@@ -33,7 +33,7 @@ public class FxApp extends Application {
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Training app");
+		primaryStage.setTitle("Triex");
 		
 		//Set icon for application
 		//primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/dogecon.png")));

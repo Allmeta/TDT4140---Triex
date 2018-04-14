@@ -66,7 +66,6 @@ public class Database {
 						listenerApp.setUser(null);
 						listenerApp.setWaitForDatabase(false);
 					} else {
-						System.out.println("correct! logged in!!");
 						listenerApp.setUser(user);
 						listenerApp.setWaitForDatabase(false);
 					}

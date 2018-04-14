@@ -51,7 +51,7 @@ public class Controller {
 		controller.setApp(app);
 		controller.setRoot(root);
 
-		root.setTitle("Training app");
+		root.setTitle("Triex");
 		root.setScene(new Scene(parent));
 		root.initModality(Modality.APPLICATION_MODAL);
 		root.setResizable(false);
