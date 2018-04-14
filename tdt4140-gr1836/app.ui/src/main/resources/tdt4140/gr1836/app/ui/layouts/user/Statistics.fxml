@@ -18,7 +18,7 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="77.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Run distance" textFill="#793131">
+            <Label layoutX="69.0" layoutY="7.0" style="-fx-text-fill: #4e4e4e;" text="Run distance" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
@@ -41,7 +41,7 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="29.0" layoutY="23.0" style="-fx-text-fill: #4e4e4e;" text="Time spent on exercises" textFill="#793131">
+            <Label layoutX="33.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Time spent on exercises" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
@@ -55,7 +55,7 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="63.0" layoutY="13.0" style="-fx-text-fill: #4e4e4e;" text="Average pulse" textFill="#793131">
+            <Label layoutX="67.0" layoutY="12.0" style="-fx-text-fill: #4e4e4e;" text="Average pulse" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -70,12 +70,15 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="29.0" layoutY="10.0" style="-fx-text-fill: #4e4e4e;" text="Estimated max pulse" textFill="#793131">
+            <Label layoutX="44.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Estimated max pulse" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label fx:id="estMaxPulse" layoutX="75.0" layoutY="66.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <ImageView fitHeight="44.0" fitWidth="33.0" layoutX="32.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="estMaxPulse" layoutX="106.0" layoutY="49.0" prefHeight="33.0" prefWidth="60.0" style="-fx-text-fill: #4e4e4e;" text="temp">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="50.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/pulse.png" />
                </image>
@@ -87,7 +90,7 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="77.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Swim distance" textFill="#793131">
+            <Label layoutX="66.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Swim distance" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
@@ -110,7 +113,7 @@
             <DropShadow blurType="ONE_PASS_BOX" height="40.0" offsetX="2.0" offsetY="2.0" radius="19.5" width="40.0" />
          </effect>
          <children>
-            <Label layoutX="77.0" layoutY="11.0" style="-fx-text-fill: #4e4e4e;" text="Bike distance" textFill="#793131">
+            <Label layoutX="69.0" layoutY="8.0" style="-fx-text-fill: #4e4e4e;" text="Bike distance" textFill="#793131">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
@@ -142,7 +145,10 @@
             </ImageView>
             <Label fx:id="userName" layoutX="87.0" layoutY="18.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
             <Label fx:id="compName" layoutX="324.0" layoutY="19.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <Label layoutX="515.0" layoutY="18.0" style="-fx-text-fill: #4e4e4e;" text="All data is from the last 30 days" />
+            <Label layoutX="515.0" layoutY="18.0" style="-fx-text-fill: #4e4e4e;" text="All data is from the last 30 days">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>
