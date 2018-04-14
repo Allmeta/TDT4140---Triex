@@ -30,7 +30,10 @@ public class App {
 	private Statistics statistics; 
 	private Map<String, Statistic> allStatistics;
 
+	private ArrayList<User> conversations;
+
 	private boolean waitForDatabase;
+	private Map<String, User> allUsers;
 
 	public App() throws IOException {
 		this.database = new Database();
@@ -170,10 +173,10 @@ public class App {
 	// Helper method for presenting coaches
 	public ArrayList<UserTempList> getCoachesAsList() {
 
-		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
+		ArrayList<UserTempList> temp = new ArrayList<>();
 		for (String s : coaches.keySet()) {
 			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(), coaches.get(s).getName(), coaches.get(s).getCity(),
-					Integer.toString(coaches.get(s).getAge()), "");
+					Integer.toString(coaches.get(s).getAge()));
 			temp.add(tmplist);
 		}
 		return temp;
@@ -183,7 +186,7 @@ public class App {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : users.keySet()) {
 			UserTempList tmplist = new UserTempList(users.get(s).getUsername(), users.get(s).getName(), users.get(s).getCity(),
-					Integer.toString(users.get(s).getAge()), "");
+					Integer.toString(users.get(s).getAge()));
 			temp.add(tmplist);
 		}
 		return temp;
@@ -191,6 +194,7 @@ public class App {
 
 	// GETTER & SETTERS
 	public void setUsers(Users value) {
+		allUsers=value.getUsers();
 		Map<String, User> tempCoach = new HashMap<String, User>();
 		Map<String, User> tempUsers = new HashMap<String, User>();
 		for (String key : value.getUsers().keySet()) {
@@ -261,7 +265,7 @@ public class App {
 
 	public void setMessages(String referant, Messages m) {
 		if (messages == null) {
-			messages = new HashMap<String, Messages>();
+			messages = new HashMap<>();
 		}
 		this.messages.put(referant, m);
 	}
@@ -301,5 +305,43 @@ public class App {
 		
 		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, app.user.getCity()));
 
+
+	public ArrayList<User> getConversations() {
+		if(conversations==null){
+			conversations=new ArrayList<>();
+			getConversationsFromDB();
+		}
+		return conversations;
+	}
+	public void setConversationItem(String user){
+		User temp = allUsers.get(user);
+		conversations.add(temp);
+	}
+
+	private void getConversationsFromDB() {
+		setWaitForDatabase(true);
+		int timer=0;
+		database.getConversations(getUser().getUsername(),this);
+		while (this.waitForDatabase) {
+			try {
+				Thread.sleep(300);
+				timer += 1;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (timer > 100) {
+				System.out.println("CONV: Wait too long");
+				break;
+			}
+		}
+	}
+
+	public User getMyCoach() {
+		return coaches.get(getUser().getMyCoach());
+	}
+
+	public ArrayList<UserTempList> getClients() {
+		//My lages for coach pls
+		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package tdt4140.gr1836.app.db;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -32,8 +33,7 @@ public class Database {
 		try {
 			FirebaseApp.getInstance();
 		} catch (IllegalStateException e) {
-
-			FileInputStream serviceAccount = new FileInputStream("tdt4140-g36-firebase-adminsdk-u74mt-fa295def3e.json");
+			FileInputStream serviceAccount = new FileInputStream(("tdt4140-g36-firebase-adminsdk-u74mt-fa295def3e.json"));
 
 			FirebaseOptions options = new FirebaseOptions.Builder()
 					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -268,4 +268,30 @@ public class Database {
 		
 	}
 
+	public void getConversations(String username,App app) {
+		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/" + username);
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				if (dataSnapshot != null) {
+					for(DataSnapshot d : dataSnapshot.getChildren()){
+						app.setConversationItem(d.getKey());
+					}
+					app.setWaitForDatabase(false);
+
+				} else {
+					System.out.println("null");
+					app.setWaitForDatabase(false);
+				}
+			}
+
+			@Override
+			public void onCancelled(DatabaseError arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("finnes ikke");
+				app.setWaitForDatabase(false);
+
+			}
+		});
+	}
 }

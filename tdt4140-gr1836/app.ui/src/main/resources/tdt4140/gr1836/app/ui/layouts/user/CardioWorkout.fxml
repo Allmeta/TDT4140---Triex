@@ -27,7 +27,7 @@
             <RowConstraints minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField fx:id="durationField" focusColor="#ff1744" promptText="Duration in minutes*" styleClass="text-field" unFocusColor="#eceff1" />
+            <JFXTextField fx:id="durationField" focusColor="#ff1744" labelFloat="true" promptText="Duration in minutes*" styleClass="text-field" unFocusColor="#eceff1" />
             <GridPane GridPane.rowIndex="5">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,9 +48,9 @@
                </children>
             </GridPane>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="distanceField" focusColor="#ff1744" promptText="Distance in km*" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="pulseField" focusColor="#ff1744" promptText="Average pulse" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="2" />
-            <JFXDatePicker fx:id="dateField" defaultColor="#ff1744" prefHeight="55.0" prefWidth="400.0" promptText="Date*" styleClass="text-field" GridPane.rowIndex="4" />
+            <JFXTextField fx:id="distanceField" focusColor="#ff1744" labelFloat="true" promptText="Distance in km*" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="pulseField" focusColor="#ff1744" labelFloat="true" promptText="Average pulse" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="2" />
+            <JFXDatePicker fx:id="dateField" defaultColor="#ff1744" overLay="true" prefHeight="55.0" prefWidth="400.0" promptText="Date*" styleClass="text-field" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="414.0" onAction="#onSubmit" styleClass="normal-button" text="OK" />
