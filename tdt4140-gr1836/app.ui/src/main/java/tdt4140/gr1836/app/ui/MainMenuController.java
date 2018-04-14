@@ -33,7 +33,7 @@ public class MainMenuController extends Controller {
 		// load username in logout button
 		Platform.runLater(() -> {
 			logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
-			setGraph();
+			if(app.getWorkouts()!=null) setGraph();
 		});
 	}
 	private void setGraph() {

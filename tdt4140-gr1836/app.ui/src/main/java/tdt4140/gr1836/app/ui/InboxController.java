@@ -170,7 +170,7 @@ public class InboxController extends Controller {
 			loadChat(u);
 		}
 		//loads chat if convPartner is set
-		if(getConvPartner()!=u.getUsername()){
+		else if(getConvPartner()==u.getUsername()){
 			loadChat(u);
 		}
 	}
