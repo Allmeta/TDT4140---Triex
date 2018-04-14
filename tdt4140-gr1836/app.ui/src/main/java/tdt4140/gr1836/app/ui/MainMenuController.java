@@ -1,9 +1,7 @@
 package tdt4140.gr1836.app.ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 import com.jfoenix.effects.JFXDepthManager;
 
@@ -11,7 +9,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import tdt4140.gr1836.app.workouts.TempList;
 
@@ -28,6 +26,7 @@ public class MainMenuController extends Controller {
 
 	@FXML
 	private Label logoutButton;
+	private Map<String,TempList> dataMap=new HashMap<>();
 
 	@FXML
 	private void initialize() {
@@ -49,7 +48,12 @@ public class MainMenuController extends Controller {
 		for (TempList w : workouts) {
 
 			if (x <= 21) {
-				series.getData().add(new XYChart.Data<>(w.getDate(), w.getPulse()));
+				XYChart.Data<String, Number> data = new XYChart.Data<>(w.getDate(), w.getPulse());
+				//Add user to reference to use for tooltip
+				//date+pulse should be unique enough reference
+				dataMap.put(w.getDate()+w.getPulse(),w);
+				series.getData().add(data);
+				//lag tooptip på hover
 			} else {
 				break;
 			}
@@ -57,9 +61,21 @@ public class MainMenuController extends Controller {
 
 		}
 		barChart.getData().add(series);
-		Platform.runLater(()->{
-			setMaxBarWidth(40,3);
-		});
+		Platform.runLater(()->setMaxBarWidth(40,3));
+		//tooltip
+		for(XYChart.Series<String,Number> s:barChart.getData()){
+			for(XYChart.Data<String,Number> d:s.getData()){
+				TempList w=dataMap.get(d.getXValue()+d.getYValue());
+				Tooltip tt=new Tooltip("Type: "+w.getType()+"\nDate: "+w.getDate()+"\nAverage pulse: "+w.getPulse()+" bpm\nDuration: "+w.getDuration()+" minutes\nDistance: "+w.getDistance()+"m");
+				tt.setStyle("");
+				Tooltip.install(d.getNode(),tt);
+				//Add class on hover
+				d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+				//Removing class on exit
+				d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+
+			}
+		}
 
 		JFXDepthManager.setDepth(chartPane, 1);
 	}

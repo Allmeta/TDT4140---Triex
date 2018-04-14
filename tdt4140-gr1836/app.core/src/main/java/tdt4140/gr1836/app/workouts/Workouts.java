@@ -17,7 +17,7 @@ public class Workouts implements Serializable {
 	// String date, String type, double pulse, double duration, Double distance)
 
 	public ArrayList<TempList> getWorkoutsAsList() {
-		ArrayList<TempList> temp = new ArrayList<TempList>();
+		ArrayList<TempList> temp = new ArrayList<>();
 
 		if (Running != null) {
 			for (String s : Running.keySet()) {

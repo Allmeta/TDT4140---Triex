@@ -151,3 +151,6 @@
     -fx-tick-label-fill:#90A4AE;
 
 }
+.onHover{
+    -fx-background-color:#b3fffe;
+}
