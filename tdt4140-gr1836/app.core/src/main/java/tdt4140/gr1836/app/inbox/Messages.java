@@ -9,7 +9,7 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Messages implements Serializable{
-	public Map<String,Message> messages;
+	private  Map<String,Message> messages;
 	public Messages() {
 		
 	}
@@ -24,5 +24,11 @@ public class Messages implements Serializable{
 		//Sort on date
 		temp.sort(Comparator.comparing(Message::getDate));
 		return temp;
+	}
+	public Map<String,Message> getMessages(){
+		return this.messages;
+	}
+	public void setMessages(Map<String,Message> messages) {
+		this.messages = messages;
 	}
 }

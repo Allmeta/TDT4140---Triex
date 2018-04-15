@@ -98,7 +98,6 @@ public class Statistics implements Serializable  {
 	
 	//Calculates a percentage match for all users in your city, used for finding potential partners or others who works out similarly to you
 	public LinkedHashMap<String, Double> findPartners(Map<String, User> users, Statistic myStatistics, String city) {
-		System.out.println(this.statistics);
 		HashMap<String, Double> partners = new HashMap<>();
 		
 		double maxPulse = myStatistics.getMaxPulse();

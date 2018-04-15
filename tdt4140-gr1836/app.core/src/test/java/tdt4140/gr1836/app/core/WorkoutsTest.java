@@ -1,9 +1,9 @@
 package tdt4140.gr1836.app.core;
-/*
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,51 +11,45 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tdt4140.gr1836.app.workouts.Workout;
-import tdt4140.gr1836.app.workouts.StrengthWorkout;
 import tdt4140.gr1836.app.workouts.Workouts;
+import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.workouts.TempList;
 
 public class WorkoutsTest {
 	private Workouts workouts;
-	private Map<String, Workout> cardio=new HashMap();
 	
 	@Before
 	public void setUp(){
 		workouts=new Workouts();
-		workouts.setWorkouts(cardio,cardio,cardio);
-		Map<String,Boolean> activity=new HashMap<>();
-		activity.put("Running", true);
-		activity.put("Swimming", false);
-		activity.put("Biking", false);
 		
-		Workout cw = new Workout("90", "1999-09-09", activity, 9, "some info");
-		StrengthWorkout sw = new StrengthWorkout("60", "1990-01-01", Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), Arrays.asList("10","10","10"), 8, "some strength info");
-		workouts.addCardioWorkout(cw);
-		workouts.addStrengthWorkout(sw);
+		workouts.setWorkouts(new HashMap<String, Workout>(), new HashMap<String, Workout>(), new HashMap<String, Workout>()); 
+		workouts.addRunningWorkout(new Workout("Running", 90, 10, 0, "2018-04-12"));
+		workouts.addBikingWorkout(new Workout("Biking", 90, 10, 0, "2018-04-13"));
+		workouts.addSwimmingWorkout(new Workout("Biking", 90, 10, 0, "2018-04-14"));
 		
-		//Lag workouts med to strength og to cardio workouts og kjør get og set på de og workout
 		
 	}
-	//Create new strenth and cardio workout set to workouts return with get
-	//getaslist
 	@Test public void getWorkoutsAndCheckValues() {
+		Workouts workouts = new Workouts();
+		workouts.setWorkouts(new HashMap<String, Workout>(), new HashMap<String, Workout>(), new HashMap<String, Workout>()); 
+		workouts.addBikingWorkout(new Workout("Biking", 90, 10, 0, "2018-04-12"));
+		workouts.addRunningWorkout(new Workout("Running", 90, 10, 0, "2018-04-12"));
+		workouts.addSwimmingWorkout(new Workout("Biking", 90, 10, 0, "2018-04-12"));
 		
-		Map<String, Workout> cwmap=workouts.getCardio();
-		assertEquals(swmap.get("1990-01-01").getDuration(),"60");
-		assertEquals(cwmap.get("1999-09-09").getDuration(),"90");
+		assertEquals(workouts.getBiking().get("2018-04-12").getDistance(), 10, 1);
 	}
+	
 	@Test public void testWorkoutsAsList() {
-		
 		ArrayList<TempList>temp=workouts.getWorkoutsAsList();
+		temp.sort(null);
 		for (TempList t:temp) {
-			if(t.getDate()=="1990-01-01") {
-				assertEquals(t.getDuration(),"60");
+			if(t.getDate()=="2018-04-12") {
+				assertEquals(t.getType(), "Running");
 			}
-			else if(t.getDate()=="1999-09-09"){
-				assertEquals(t.getDuration(),"90");
+			else if(t.getDate()=="2018-04-13"){
+				assertEquals(t.getType(), "Biking");
 			}
 		}
 	}
-	
 
-}*/
+}

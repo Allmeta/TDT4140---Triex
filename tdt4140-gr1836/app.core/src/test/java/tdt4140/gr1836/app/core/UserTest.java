@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tdt4140.gr1836.app.users.User;
+import tdt4140.gr1836.app.users.UserTempList;
 
 public class UserTest {
 	private User user;
@@ -30,7 +31,7 @@ public class UserTest {
 	}
 
 	@Test
-	public void testGetResten() {
+	public void testGetRest() {
 		assertEquals(user.getName(), "Mr.David");
 		assertEquals(user.getAge(), 22);
 		assertEquals(user.getHeight(), 185);
@@ -39,5 +40,13 @@ public class UserTest {
 		assertTrue(user.getIsMale());
 		assertFalse(user.getIsCoach());
 		assertEquals(user.getPassword(), "coachTest");
+	}
+	@Test
+	public void testUserTempList() {
+		UserTempList user = new UserTempList("Username", "Name", "City", "Age");
+		assertEquals(user.getUsername(), "Username");
+		assertEquals(user.getName(), "Name");
+		assertEquals(user.getCity(), "City");
+		assertEquals(user.getAge(),"Age");
 	}
 }
