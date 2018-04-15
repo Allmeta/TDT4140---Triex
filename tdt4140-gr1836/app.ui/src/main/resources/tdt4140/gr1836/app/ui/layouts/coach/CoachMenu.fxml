@@ -23,7 +23,7 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="logoutButton1" onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
+            <Label fx:id="logoutButton" onMouseClicked="#onLogOut" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Log out">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

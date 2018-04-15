@@ -55,11 +55,11 @@ public class SignUpController extends NavigationHandler {
 	 * the two password fields. If required fields are valid user is created and
 	 * window is closed. If form is not valid a labels text will tell the user to
 	 * fill out required fields.
+	 * Edit: Checks if username is allready taken
 	 */
 	@FXML
 	private void onSubmit() {
 
-		// Må sjekke at username ikke allerede eksisterer!
 		int age = -1;
 		int height = -1;
 		int weight = -1;
@@ -73,10 +73,11 @@ public class SignUpController extends NavigationHandler {
 		} catch (NumberFormatException e) {
 			validForm = false;
 		}
-
+		boolean nameTaken = app.getAllUsers().containsKey(usernameField.getText());
+		
 		if (usernameField.getText().equals("") || passwordField.getText().equals("")
 				|| !passwordField.getText().equals(passwordConfirmationField.getText()) || age < 0 || height < 0
-				|| weight < 0) {
+				|| weight < 0 || nameTaken) {
 			validForm = false;
 		}
 
@@ -88,7 +89,12 @@ public class SignUpController extends NavigationHandler {
 			stage.close();
 
 		} else {
-			invalidLabel.setText("Please fill out all required fields");
+			if (nameTaken) {
+				invalidLabel.setText("Username already taken");
+			}
+			else {
+				invalidLabel.setText("Please fill out all required fields");
+				}
 		}
 	}
 

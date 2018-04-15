@@ -70,15 +70,15 @@ public class Workouts implements Serializable {
 	}
 
 	public void addBikingWorkout(Workout cw) {
-		if (this.Swimming==null) {
-			this.Swimming = new HashMap<String, Workout>();
+		if (this.Biking==null) {
+			this.Biking = new HashMap<String, Workout>();
 		}
 		this.Biking.put(cw.getDate(), cw);
 	}
 
 	public void addSwimmingWorkout(Workout cw) {
-		if (this.Biking==null) {
-			this.Biking = new HashMap<String, Workout>();
+		if (this.Swimming==null) {
+			this.Swimming = new HashMap<String, Workout>();
 		}
 		this.Swimming.put(cw.getDate(), cw);
 	}

@@ -22,7 +22,7 @@ public class FxApp extends Application {
 		app = new App();
 		app.getUsersFromDatabase();
 	}
-
+	//Main functionality for running our applicaaiton
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 

@@ -55,10 +55,9 @@ public class InboxController extends NavigationHandler {
 	private Map<String, UserTempList> nodeMap = new HashMap<>();
 
 	public void initialize() {
-		// Get coaches/users
 		// Also make listeners to load chat for EACH label :(
 		Platform.runLater(() -> {
-			// Sets label for clietns or coach
+			// Sets label for client or coach
 			if (app.getUser().getIsCoach()) {
 				coachorclientLabel.setText("Your clients");
 			}
@@ -72,7 +71,7 @@ public class InboxController extends NavigationHandler {
 	}
 
 	@FXML
-	private void send() { // Function to send string to database lol
+	private void send() { 
 		app.sendMessage(messageField.getText(), currentChat);
 		addMessage(new Message(messageField.getText(), currentChat, app.getUser().getUsername()));
 		messageField.setText("");
@@ -137,7 +136,7 @@ public class InboxController extends NavigationHandler {
 			}
 		}
 
-		// account image ting
+		// account image
 		profile = new Image(NavigationHandler.class.getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
 
 		// add myCoach
@@ -148,7 +147,7 @@ public class InboxController extends NavigationHandler {
 		for (UserTempList u : recentConv) {
 			addDude(u, latestConversations);
 		}
-		// Add alle users
+		// Add all users
 		for (UserTempList u : otherUsers) {
 			addDude(u, people);
 		}

@@ -16,6 +16,70 @@ public class NavigationHandler {
 	protected static String convPartner;
 	protected static String client;
 
+	// Shows a specified scene
+	public void loadScene(String path, Stage stage, App app) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(NavigationHandler.class.getResource(path));
+		Pane parent = (Pane) loader.load();
+		// Set controller
+		NavigationHandler controller = loader.getController();
+		controller.setApp(app);
+		controller.setRoot(stage);
+
+		stage.setScene(new Scene(parent));
+
+	}
+
+	// Loads and shows main stage for app
+	public void showMainStage(App app, boolean coach) throws IOException {
+		Stage root = new Stage();
+		FXMLLoader loader;
+		if (coach) {
+			loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainCoachPane));
+			root.setTitle("Coach Menu");
+		}
+		else {
+			loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainUserPane));
+			root.setTitle("Triex");
+		}
+		
+		Pane parent = (Pane) loader.load();
+
+		// Set controller
+		NavigationHandler controller = loader.getController();
+		controller.setApp(app);
+		controller.setRoot(root);
+
+		root.setScene(new Scene(parent));
+		root.initModality(Modality.APPLICATION_MODAL);
+		root.setResizable(false);
+		root.show();
+
+		// Load graph and get Statistics from db
+		app.getWorkoutsFromDB();
+		app.getStatisticsFromDB();
+	}
+
+	// Loads and shows the add new user stage
+	public void showRegisterStage(App app) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(NavigationHandler.class.getResource(LayoutHandler.signUpPane));
+		Pane pane = loader.load();
+
+		Stage stage = new Stage();
+		stage.setTitle("Register new user");
+
+		// Set this app to controller
+		NavigationHandler controller = loader.getController();
+		controller.setApp(app);
+
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setResizable(false);
+		stage.show();
+	}
+
 	public void setApp(App app) {
 		this.app = app;
 	}
@@ -42,84 +106,6 @@ public class NavigationHandler {
 
 	public String getClient() {
 		return client;
-	}
-
-	// Shows a specified scene
-	public void loadScene(String path, Stage stage, App app) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(NavigationHandler.class.getResource(path));
-		Pane parent = (Pane) loader.load();
-		// Set controller
-		NavigationHandler controller = loader.getController();
-		controller.setApp(app);
-		controller.setRoot(stage);
-
-		stage.setScene(new Scene(parent));
-
-	}
-
-	// Loads and shows main stage for app
-	public void showMainStage(App app) throws IOException {
-		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainUserPane));
-		Pane parent = (Pane) loader.load();
-
-		// Set controller
-		NavigationHandler controller = loader.getController();
-		controller.setApp(app);
-		controller.setRoot(root);
-
-		root.setTitle("Triex");
-		root.setScene(new Scene(parent));
-		root.initModality(Modality.APPLICATION_MODAL);
-		root.setResizable(false);
-		root.show();
-
-		// Load graph and get Statistics from db
-		app.getWorkoutsFromDB();
-		app.getStatisticsFromDB();
-	}
-
-	public void showCoachStage(App app) throws IOException {
-		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainCoachPane));
-		Pane parent = (Pane) loader.load();
-
-		// Set controller
-		NavigationHandler controller = loader.getController();
-		controller.setApp(app);
-		controller.setRoot(root);
-
-		root.setTitle("Coach Menu");
-		root.setScene(new Scene(parent));
-		root.initModality(Modality.APPLICATION_MODAL);
-		root.setResizable(false);
-		root.show();
-
-		// Load graph
-		app.getWorkoutsFromDB();
-		app.getStatisticsFromDB();
-
-	}
-
-	// Loads and shows the add new user stage
-	public void showRegisterStage(App app) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(NavigationHandler.class.getResource(LayoutHandler.signUpPane));
-		Pane pane = loader.load();
-
-		Stage stage = new Stage();
-		stage.setTitle("Register new user");
-
-		// Set this app to controller
-		NavigationHandler controller = loader.getController();
-		controller.setApp(app);
-
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setResizable(false);
-		stage.show();
 	}
 
 }

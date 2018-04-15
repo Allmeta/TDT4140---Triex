@@ -45,7 +45,7 @@ public class LoginController extends NavigationHandler {
 				if (user.getIsCoach()) {
 					try {
 						// user is coach
-						showCoachStage(this.app);
+						showMainStage(this.app, true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -53,7 +53,7 @@ public class LoginController extends NavigationHandler {
 				} else {
 					try {
 						// user is not coach
-						showMainStage(this.app);
+						showMainStage(this.app, false);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -19,6 +19,7 @@ import javafx.scene.control.TreeTableColumn;
 import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.users.User;
+import tdt4140.gr1836.app.users.UserTempList;
 
 public class AvailableCoachesController extends NavigationHandler {
 	/*
@@ -31,22 +32,19 @@ public class AvailableCoachesController extends NavigationHandler {
 	private JFXTextField selectedCoach;
 
 	@FXML
-	private JFXTreeTableView<TempUser> tableView;
+	private JFXTreeTableView<UserTempList> tableView;
 
 	@FXML
-	private TreeTableColumn<TempUser, String> usernameColumn;
+	private TreeTableColumn<UserTempList, String> usernameColumn;
 
 	@FXML
-	private TreeTableColumn<TempUser, String> nameColumn;
+	private TreeTableColumn<UserTempList, String> nameColumn;
 
 	@FXML
-	private TreeTableColumn<TempUser, String> cityColumn;
+	private TreeTableColumn<UserTempList, String> cityColumn;
 
 	@FXML
-	private TreeTableColumn<TempUser, String> ageColumn;
-
-	@FXML
-	private TreeTableColumn<TempUser, String> randomColumn;
+	private TreeTableColumn<UserTempList, String> ageColumn;
 
 	@FXML
 	public void initialize() {
@@ -85,42 +83,39 @@ public class AvailableCoachesController extends NavigationHandler {
 			coachLabel.setText("Your current coach is " + myCoach + ", do you want someone else?");
 		}
 		usernameColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
+				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getUsername()));
 		nameColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
+				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getName()));
 		cityColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
+				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getCity()));
 		ageColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
+				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getAge()));
-		randomColumn.setCellValueFactory(
-				(TreeTableColumn.CellDataFeatures<TempUser, String> param) -> new ReadOnlyStringWrapper(
-						param.getValue().getValue().getRandom()));
 
 		// data
-		ObservableList<TempUser> coaches = FXCollections.observableArrayList();
+		ObservableList<UserTempList> coaches = FXCollections.observableArrayList();
 
 		loadCoaches(coaches);
 		// Burde sortere coaches etter username her
 
 		// build tree
-		final TreeItem<TempUser> root = new RecursiveTreeItem<TempUser>(coaches, RecursiveTreeObject::getChildren);
+		final TreeItem<UserTempList> root = new RecursiveTreeItem<UserTempList>(coaches, RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
 
 	}
 
-	private void loadCoaches(ObservableList<TempUser> coaches) {
+	private void loadCoaches(ObservableList<UserTempList> coaches) {
 		try {
 			allCoaches = app.getCoaches();
 
 			// userList.sort(null);
 			for (String s : allCoaches.keySet()) {
-				coaches.add(new TempUser(allCoaches.get(s).getUsername(), allCoaches.get(s).getName(),
-						allCoaches.get(s).getCity(), Integer.toString(allCoaches.get(s).getAge()), "Random shit"));
+				coaches.add(new UserTempList(allCoaches.get(s).getUsername(), allCoaches.get(s).getName(),
+						allCoaches.get(s).getCity(), Integer.toString(allCoaches.get(s).getAge())));
 			}
 		} catch (Exception e) {
 			// Label: "No coaches found"
@@ -137,42 +132,6 @@ public class AvailableCoachesController extends NavigationHandler {
 			coachLabel.setText("Your coach has been changed! Check your inbox!");
 		} else {
 			coachLabel.setText("Coach not found, check your input");
-		}
-	}
-
-	private static class TempUser extends RecursiveTreeObject<TempUser> {
-		private final String username;
-		private final String name;
-		private final String city;
-		private final String age;
-		private final String random;
-
-		public TempUser(String username, String name, String city, String age, String random) {
-			this.username = (username);
-			this.name = (name);
-			this.city = (city);
-			this.age = (age);
-			this.random = (random);
-		}
-
-		public String getUsername() {
-			return this.username;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		public String getCity() {
-			return this.city;
-		}
-
-		public String getAge() {
-			return this.age;
-		}
-
-		public String getRandom() {
-			return this.random;
 		}
 	}
 }

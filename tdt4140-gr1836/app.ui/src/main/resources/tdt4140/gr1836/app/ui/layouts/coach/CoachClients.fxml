@@ -16,11 +16,10 @@
                <children>
                   <JFXTreeTableView fx:id="tableView" layoutX="11.0" layoutY="115.0" prefHeight="318.0" prefWidth="779.0" styleClass="TableView">
                      <columns>
-                        <TreeTableColumn fx:id="usernameColumn" prefWidth="178.39999997615814" text="Username" styleClass="TableColumn"/>
-                        <TreeTableColumn fx:id="nameColumn" prefWidth="197.60003662109375" text="Name" styleClass="TableColumn"/>
-                        <TreeTableColumn fx:id="cityColumn" prefWidth="151.19998168945312" text="City" styleClass="TableColumn"/>
-                        <TreeTableColumn fx:id="ageColumn" prefWidth="117.60003662109375" text="Age" styleClass="TableColumn"/>
-                        <TreeTableColumn fx:id="randomColumn" prefWidth="130.0" text="Random" styleClass="TableColumn" />
+                        <TreeTableColumn fx:id="usernameColumn" prefWidth="227.0" styleClass="TableColumn" text="Username" />
+                        <TreeTableColumn fx:id="nameColumn" prefWidth="267.0" styleClass="TableColumn" text="Name" />
+                        <TreeTableColumn fx:id="cityColumn" prefWidth="139.0" styleClass="TableColumn" text="City" />
+                        <TreeTableColumn fx:id="ageColumn" prefWidth="145.0" styleClass="TableColumn" text="Age" />
                      </columns>
                   </JFXTreeTableView>
                   <JFXTextField fx:id="selectedClient" focusColor="#ff1744" labelFloat="true" layoutX="455.0" layoutY="42.0" prefHeight="29.0" prefWidth="183.0" promptText="Write username of client here*" styleClass="text-field" unFocusColor="#595e61" />

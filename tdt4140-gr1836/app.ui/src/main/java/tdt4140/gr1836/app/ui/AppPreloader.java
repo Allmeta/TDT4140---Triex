@@ -27,6 +27,7 @@ public class AppPreloader extends Preloader {
 		primaryStage.show();
 	}
 
+	//Functionality for preloader while waiting for the app to load
 	@Override
 	public void handleStateChangeNotification(StateChangeNotification stateChangeNotification) {
 		if (stateChangeNotification.getType() == Type.BEFORE_START) {

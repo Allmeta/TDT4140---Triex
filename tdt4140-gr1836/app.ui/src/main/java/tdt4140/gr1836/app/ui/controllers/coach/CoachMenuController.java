@@ -17,7 +17,7 @@ public class CoachMenuController extends NavigationHandler {
 	private void initialize() {
 		// load username in logout button
 		Platform.runLater(() -> {
-			// SlogoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
+			logoutButton.setText("Log out (" + app.getUser().getUsername() + ")");
 		});
 	}
 
@@ -42,6 +42,7 @@ public class CoachMenuController extends NavigationHandler {
 	@FXML
 	private void onLogOut() {
 		try {
+			this.app.reset();
 			loadScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
 		} catch (IOException e) {

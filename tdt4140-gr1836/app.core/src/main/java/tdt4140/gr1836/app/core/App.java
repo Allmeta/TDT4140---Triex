@@ -126,7 +126,7 @@ public class App {
 	//Fetches specified users workouts from database (used for finding clients workouts)
 	public void getClientsWorkouts(String client) {
 		this.setWorkouts(null);
-		this.database.getWorkouts(client);
+		this.workouts = this.database.getWorkouts(client);
 	}
 	//Deletes workout in database
 	public void deleteWorkout(String username, String type, String date) {
@@ -226,6 +226,9 @@ public class App {
 		this.users = tempUsers;
 		this.coaches = tempCoach;
 	}
+	public Map<String, User> getAllUsers(){
+		return this.allUsers;
+	}
 	public Map<String, User> getUsers() {
 		return this.users;
 	}
@@ -288,11 +291,6 @@ public class App {
 	//Based on your statistics and the average in your city, it will return a map of type username, percentage of match on other users
 	public LinkedHashMap<String, Double> findPartners(){
 		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
-	}
-
-	public static void main(String[] args) throws IOException {
-		App app = new App();
-		app.deleteUser("TestUser");
 	}
 
 }

@@ -1,3 +1,5 @@
+//Each layout will have its own location
+
 package tdt4140.gr1836.app.ui;
 
 public class LayoutHandler {
@@ -10,7 +12,7 @@ public class LayoutHandler {
 
 	// user panes
 	public static final String mainUserPane = "layouts/user/MainMenu.fxml";
-	public static final String newWorkoutPane = "layouts/user/CardioWorkout.fxml";
+	public static final String newWorkoutPane = "layouts/user/Workout.fxml";
 	public static final String coachesPane = "layouts/user/Coaches.fxml";
 	public static final String historyPane = "layouts/user/History.fxml";
 	public static final String statisticsPane = "layouts/user/Statistics.fxml";

@@ -16,8 +16,6 @@ import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.ui.LayoutHandler;
 
 public class StatisticsController extends NavigationHandler {
-
-	private Statistics statObj;
 	private LinkedHashMap<String, Double> partners;
 	private int currentPartner;
 
@@ -186,6 +184,7 @@ public class StatisticsController extends NavigationHandler {
 		});
 	}
 
+	//Sends you to the inbox with selected partner
 	@FXML
 	private void onSubmit() {
 		try {
@@ -196,6 +195,7 @@ public class StatisticsController extends NavigationHandler {
 		}
 	}
 
+	//Sends you to the next potential partner
 	@FXML
 	private void onNext() {
 		List<String> names = new ArrayList<String>(partners.keySet());
@@ -214,6 +214,7 @@ public class StatisticsController extends NavigationHandler {
 		this.loadStatistics(statistic, statistic, percentMatch, name);
 	}
 
+	//Sends you to the previous potential partner
 	@FXML
 	private void onPrevious() {
 		currentPartner -= 1;
@@ -230,6 +231,7 @@ public class StatisticsController extends NavigationHandler {
 		this.loadStatistics(statistic, statistic, percentMatch, name);
 	}
 
+	//Sends you to inbox for your selected client (only when you are logged in as coach)
 	@FXML
 	private void onSendMessage() {
 		try {
@@ -239,16 +241,18 @@ public class StatisticsController extends NavigationHandler {
 			e.printStackTrace();
 		}
 	}
-
+	//Sends you to history for your selected client (only when you are logged in as coach)
 	@FXML
 	void onHistory() {
 		try {
+			this.setClient(this.getClient());
 			loadScene(LayoutHandler.historyPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	//Sends you to the original statistics
 	@FXML
 	private void onBack() {
 		try {
@@ -258,6 +262,7 @@ public class StatisticsController extends NavigationHandler {
 		}
 	}
 
+	//Back to main menu
 	@FXML
 	private void onCancel() {
 		try {

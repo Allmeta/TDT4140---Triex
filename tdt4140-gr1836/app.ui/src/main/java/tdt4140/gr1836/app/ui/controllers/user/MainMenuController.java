@@ -112,7 +112,7 @@ public class MainMenuController extends NavigationHandler {
 	}
 
 	@FXML
-	private void onNewCardioWorkout() { /* Function for showing the Cardio Workout page */
+	private void onNewCardioWorkout() { /* Function for showing the  Workout page */
 		try {
 			loadScene(LayoutHandler.newWorkoutPane, this.getRoot(), this.app);
 		} catch (IOException e) {
@@ -150,6 +150,7 @@ public class MainMenuController extends NavigationHandler {
 	@FXML
 	private void onLogOut() { /* Redirect to login page */
 		try {
+			this.app.reset();
 			loadScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
 		} catch (IOException e) {

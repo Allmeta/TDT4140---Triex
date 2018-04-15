@@ -66,7 +66,7 @@ public class HistoryController extends NavigationHandler {
 		// data
 		ObservableList<Workout> workouts = FXCollections.observableArrayList();
 		if (app.getUser().getIsCoach()) {
-			app.getClientsWorkouts(this.getClient());;
+			app.getClientsWorkouts(this.getClient());
 		}
 
 		loadWorkouts(workouts);
