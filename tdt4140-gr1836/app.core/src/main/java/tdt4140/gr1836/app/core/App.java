@@ -60,6 +60,9 @@ public class App {
 		this.getUsersFromDatabase();
 	}
 
+	public void deleteFromDatabase(String reference) {
+		this.database.deleteFromDatabase(reference);
+	}
 	//User managment to database------------------------------------------------------------------------------------------
 	//Sets your coach to coachname
 	public void setMyCoach(String coachname) {
@@ -143,9 +146,9 @@ public class App {
 	//Sends a message to referant
 	public void sendMessage(String message, String referant) {
 		database.sendMessage(message, referant, user.getUsername());
-		User user = users.get(referant);
+		User user = allUsers.get(referant);
 		if(!conversations.contains(user) && user !=null) {
-			this.conversations.add(this.users.get(referant));
+			this.conversations.add(this.allUsers.get(referant));
 		}
 	}
 	//Retrieves specified messages from database
@@ -154,7 +157,7 @@ public class App {
 		this.messages = this.database.loadMessages(referant, user.getUsername());
 	}
 	//Retrieves conversation partners from database
-	private void getConversationsFromDB() {
+	public void getConversationsFromDB() {
 		this.conversations = this.database.getConversations(getUser().getUsername(), this.allUsers);
 	}
 	

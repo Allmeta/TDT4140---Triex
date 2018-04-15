@@ -65,6 +65,9 @@ public class Database {
 		}
 		this.instance = FirebaseDatabase.getInstance();
 	}
+	public void deleteFromDatabase(String reference) {
+		this.instance.getReference().child(reference).setValueAsync(null);
+	}
 	//UsersDatabase communication -------------------------------------------------------------------------------------
 	public User login(String username, String password) {
 		return this.usersDatabase.login(username, password);

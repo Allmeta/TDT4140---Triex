@@ -32,7 +32,7 @@ public class UsersDatabase extends CommonDatabase {
 				if (user != null) {
 					String hashedPassword = Hash.hash(password, Hash.decodeSalt(user.getSalt()));
 					if (!hashedPassword.equals(user.getPassword())) {
-					
+											
 						db.setUser(null);
 						db.setWaitForDatabase(false);
 					} else {

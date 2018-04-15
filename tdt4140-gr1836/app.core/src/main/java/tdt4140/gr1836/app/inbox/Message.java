@@ -6,10 +6,10 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Message implements Serializable{
-	public String from;
-	public String to;
-	public String message;
-	public String date;
+	private String from;
+	private String to;
+	private String message;
+	private String date;
 
 	public Message(String m, String to, String from){
 		this.from=(from);

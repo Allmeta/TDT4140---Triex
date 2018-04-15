@@ -3,6 +3,7 @@ package tdt4140.gr1836.app.workouts;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
@@ -62,14 +63,23 @@ public class Workouts implements Serializable {
 		}
 	}
 	public void addRunningWorkout(Workout cw) {
+		if (this.Running==null) {
+			this.Running = new HashMap<String, Workout>();
+		}
 		this.Running.put(cw.getDate(), cw);
 	}
 
 	public void addBikingWorkout(Workout cw) {
+		if (this.Swimming==null) {
+			this.Swimming = new HashMap<String, Workout>();
+		}
 		this.Biking.put(cw.getDate(), cw);
 	}
 
 	public void addSwimmingWorkout(Workout cw) {
+		if (this.Biking==null) {
+			this.Biking = new HashMap<String, Workout>();
+		}
 		this.Swimming.put(cw.getDate(), cw);
 	}
 
