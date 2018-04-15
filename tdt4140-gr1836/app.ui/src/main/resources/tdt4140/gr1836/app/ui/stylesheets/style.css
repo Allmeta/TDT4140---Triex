@@ -165,3 +165,17 @@
 .onHover{
     -fx-background-color:#b3fffe;
 }
+.TableView{
+   -fx-background-color: transparent;
+   -fx-text-fill: white; 
+}
+
+.TableView .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white; 
+}
+
+.TableView .table-cell{
+    -fx-text-fill: white;
+    -fx-background-color: transparent; 
+}
