@@ -42,7 +42,7 @@ public class FxApp extends Application {
 	
 
 		// Set app to controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
 
 		primaryStage.show();

@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.user;
 
 import java.io.IOException;
 
@@ -9,8 +9,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 
-public class CardioWorkoutController extends Controller {
+public class CardioWorkoutController extends NavigationHandler {
 
 	@FXML
 	private JFXTextField durationField;
@@ -63,13 +65,13 @@ public class CardioWorkoutController extends Controller {
 			}
 			this.app.submitCardioWorkout(type, duration, distance, pulse, dateField.getValue().toString());
 
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
 		}
 	}
 
 	@FXML
 	public void onCancel() throws IOException {
-		showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
+		loadScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
 	}
 
 }

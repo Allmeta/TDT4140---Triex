@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.user;
 
 import java.io.IOException;
 import java.util.*;
@@ -11,9 +11,11 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.workouts.TempList;
 
-public class MainMenuController extends Controller {
+public class MainMenuController extends NavigationHandler {
 
 	@FXML
 	private BarChart<String, Number> barChart;
@@ -103,7 +105,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onInbox(){
 		try {
-			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -112,7 +114,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onNewCardioWorkout() { /* Function for showing the Cardio Workout page */
 		try {
-			showScene(LayoutHandler.newWorkoutPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.newWorkoutPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +123,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onHistory() { /* Function for showing the workout history */
 		try {
-			showScene(LayoutHandler.historyPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.historyPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -130,7 +132,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onCoaches() { /* Function for showing list of coaches */
 		try {
-			showScene(LayoutHandler.coachesPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.coachesPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +141,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void OnStatistics() { /* Function for showing statistics */
 		try {
-			showScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -148,7 +150,7 @@ public class MainMenuController extends Controller {
 	@FXML
 	private void onLogOut() { /* Redirect to login page */
 		try {
-			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
 		} catch (IOException e) {
 			e.printStackTrace();

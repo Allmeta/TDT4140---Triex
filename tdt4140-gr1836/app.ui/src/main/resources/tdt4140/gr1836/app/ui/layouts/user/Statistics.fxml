@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.StatisticsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.StatisticsController">
    <children>
       <JFXButton fx:id="goButton" buttonType="RAISED" layoutX="556.0" layoutY="414.0" prefWidth="118.0" styleClass="normal-button" text="Find" />
       <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="156.0" layoutY="414.0" styleClass="normal-button" text="Back" />
@@ -131,7 +131,7 @@
             <Label fx:id="avgCityBike" layoutX="86.0" layoutY="90.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="21.0" layoutY="12.0" prefHeight="58.0" prefWidth="750.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 7;" styleClass="btn">
+      <AnchorPane layoutX="21.0" layoutY="12.0" prefHeight="58.0" prefWidth="750.0" style="-fx-background-color: #ffffff; -fx-background-radius: 2;" styleClass="btn">
          <children>
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>

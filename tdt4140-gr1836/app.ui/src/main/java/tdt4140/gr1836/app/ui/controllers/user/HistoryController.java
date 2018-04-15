@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,9 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.workouts.TempList;
 
-public class HistoryController extends Controller {
+public class HistoryController extends NavigationHandler {
 
 	@FXML
 	private JFXTreeTableView<Workout> tableView;
@@ -79,8 +81,8 @@ public class HistoryController extends Controller {
 	@FXML
 	private void onBack() {
 		try {
-			if(app.getUser().getIsCoach())this.showScene(LayoutHandler.statisticsPane, getRoot(), this.app);
-			else this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);		
+			if(app.getUser().getIsCoach())this.loadScene(LayoutHandler.statisticsPane, getRoot(), this.app);
+			else this.loadScene(LayoutHandler.mainUserPane, getRoot(), this.app);		
 			} catch (IOException e) {
 			e.printStackTrace();
 		}

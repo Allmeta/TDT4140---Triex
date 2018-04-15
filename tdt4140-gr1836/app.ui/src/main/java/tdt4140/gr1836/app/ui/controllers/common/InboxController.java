@@ -1,7 +1,11 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.common;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import com.jfoenix.controls.JFXTextField;
 
@@ -19,21 +23,32 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import tdt4140.gr1836.app.inbox.Message;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 
 @SuppressWarnings("restriction")
-public class InboxController extends Controller {
+public class InboxController extends NavigationHandler {
 
-	@FXML private JFXTextField messageField;
-	@FXML private JFXTextField searchField;
-	@FXML private VBox messageFrame;
-	@FXML private VBox people;
-	@FXML private VBox assigned;
-	@FXML private VBox latestConversations;
-	@FXML private ScrollPane scrollpane;
-	@FXML private VBox infoPanel;
-	@FXML private Label coachorclientLabel;
+	@FXML
+	private JFXTextField messageField;
+	@FXML
+	private JFXTextField searchField;
+	@FXML
+	private VBox messageFrame;
+	@FXML
+	private VBox people;
+	@FXML
+	private VBox assigned;
+	@FXML
+	private VBox latestConversations;
+	@FXML
+	private ScrollPane scrollpane;
+	@FXML
+	private VBox infoPanel;
+	@FXML
+	private Label coachorclientLabel;
 	private String currentChat = "default";
 	private Image profile;
 	private boolean first = false;
@@ -43,7 +58,7 @@ public class InboxController extends Controller {
 		// Get coaches/users
 		// Also make listeners to load chat for EACH label :(
 		Platform.runLater(() -> {
-			//Sets label for clietns or coach
+			// Sets label for clietns or coach
 			if (app.getUser().getIsCoach()) {
 				coachorclientLabel.setText("Your clients");
 			}
@@ -51,10 +66,11 @@ public class InboxController extends Controller {
 
 			// For auto scroll on new message
 			scrollpane.vvalueProperty().bind(messageFrame.heightProperty());
-			
+
 			initSearchListener();
 		});
 	}
+
 	@FXML
 	private void send() { // Function to send string to database lol
 		app.sendMessage(messageField.getText(), currentChat);
@@ -64,8 +80,10 @@ public class InboxController extends Controller {
 
 	@FXML
 	private void goBack() throws IOException { // go to main menu
-		if(app.getUser().getIsCoach())this.showScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
-		else this.showScene(LayoutHandler.mainUserPane, getRoot(), this.app);
+		if (app.getUser().getIsCoach())
+			this.loadScene(LayoutHandler.mainCoachPane, getRoot(), this.app);
+		else
+			this.loadScene(LayoutHandler.mainUserPane, getRoot(), this.app);
 	}
 
 	private void initSearchListener() {
@@ -73,7 +91,7 @@ public class InboxController extends Controller {
 	}
 
 	private void search(String newValue) {
-		//hide nodes if not match regex
+		// hide nodes if not match regex
 		for (Node u : assigned.getChildren()) {
 			if (nodeMap.get(u.getId()).getName().toLowerCase().contains(newValue.toLowerCase())) {
 				u.setManaged(true);
@@ -90,7 +108,7 @@ public class InboxController extends Controller {
 			} else {
 				n.setManaged(false);
 				n.setVisible(false);
-				System.out.println(nodeMap.get(n.getId()).getName().toLowerCase()+" / "+newValue.toLowerCase());
+				System.out.println(nodeMap.get(n.getId()).getName().toLowerCase() + " / " + newValue.toLowerCase());
 			}
 		}
 		for (Node m : people.getChildren()) {
@@ -108,47 +126,50 @@ public class InboxController extends Controller {
 	private void generatePeople() { // works for coaches and users!!
 		ArrayList<UserTempList> otherUsers = parsePeople();
 		ArrayList<UserTempList> recentConv = getConvInList(app.getConversations());
-		ArrayList<UserTempList> myCoachOrClients=app.getUser().getIsCoach()?app.getClients():getCoachInList();
-		//remove latestConv people from other users
-		for(UserTempList k:recentConv){
-			for(UserTempList u:otherUsers){
-				if(k.getUsername().equals(u.getUsername())){
+		ArrayList<UserTempList> myCoachOrClients = app.getUser().getIsCoach() ? app.getClients() : getCoachInList();
+		// remove latestConv people from other users
+		for (UserTempList k : recentConv) {
+			for (UserTempList u : otherUsers) {
+				if (k.getUsername().equals(u.getUsername())) {
 					otherUsers.remove(u);
 					break;
 				}
 			}
 		}
 
-		//account image ting
-		profile = new Image(getClass().getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
+		// account image ting
+		profile = new Image(NavigationHandler.class.getResourceAsStream("images/ic_account_circle_white_24dp_2x.png"));
 
-		//add myCoach
-		for(UserTempList u:myCoachOrClients){
-			addDude(u,assigned);
+		// add myCoach
+		for (UserTempList u : myCoachOrClients) {
+			addDude(u, assigned);
 		}
-		//add recent conversations
-		for(UserTempList u:recentConv){
-			addDude(u,latestConversations);
+		// add recent conversations
+		for (UserTempList u : recentConv) {
+			addDude(u, latestConversations);
 		}
-		//Add alle users
+		// Add alle users
 		for (UserTempList u : otherUsers) {
-			addDude(u,people);
+			addDude(u, people);
 		}
 	}
 
 	private ArrayList<UserTempList> getConvInList(ArrayList<User> conversations) {
-		ArrayList<UserTempList> temp=new ArrayList<>();
-		if (conversations==null)return new ArrayList<>();
-		for (User u:conversations){
-			temp.add(new UserTempList(u.getUsername(),u.getName(),u.getCity(),u.getAge()+""));
+		ArrayList<UserTempList> temp = new ArrayList<>();
+		if (conversations == null)
+			return new ArrayList<>();
+		for (User u : conversations) {
+			temp.add(new UserTempList(u.getUsername(), u.getName(), u.getCity(), u.getAge() + ""));
 		}
 		return temp;
 	}
 
 	private ArrayList<UserTempList> getCoachInList() {
 		User temp = app.getMyCoach();
-		if (temp!=null) return new ArrayList<>(Arrays.asList(temp.toTempUser()));
-		else return new ArrayList<>();
+		if (temp != null)
+			return new ArrayList<>(Arrays.asList(temp.toTempUser()));
+		else
+			return new ArrayList<>();
 	}
 
 	private void addDude(UserTempList u, VBox where) {
@@ -163,7 +184,7 @@ public class InboxController extends Controller {
 		label.setStyle("-fx-padding: 15 10 15 10;");
 
 		hbox.setStyle("-fx-pref-height: 40; -fx-pref-width: 219;");
-		hbox.setPadding(new Insets(0,0,0,30));
+		hbox.setPadding(new Insets(0, 0, 0, 30));
 		hbox.getStyleClass().add("btn");
 		hbox.setMaxHeight(40);
 		hbox.setAlignment(Pos.CENTER_LEFT);
@@ -183,21 +204,22 @@ public class InboxController extends Controller {
 			loadChat(u);
 		});
 		// load first coach as default, but not if convPartner is set!
-		if (!first && getConvPartner()==null) {
+		if (!first && getConvPartner() == null) {
 			first = true;
 			loadChat(u);
 		}
-		//loads chat if convPartner is set
-		else if(getConvPartner()==u.getUsername()){
+		// loads chat if convPartner is set
+		else if (getConvPartner() == u.getUsername()) {
 			loadChat(u);
 		}
 
 	}
+
 	private String randomString(final int length) {
 		Random r = new Random(); // perhaps make it a class variable so you don't make a new one every time
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < length; i++) {
-			char c = (char)(r.nextInt((int)(Character.MAX_VALUE)));
+		for (int i = 0; i < length; i++) {
+			char c = (char) (r.nextInt((int) (Character.MAX_VALUE)));
 			sb.append(c);
 		}
 		return sb.toString();
@@ -265,7 +287,7 @@ public class InboxController extends Controller {
 		label.setScaleShape(false);
 
 		label.setText(m.getMessage());
-//		label.setPrefHeight(Math.ceil(width/250)*height+10);
+		// label.setPrefHeight(Math.ceil(width/250)*height+10);
 
 		label.getStyleClass().add("message");
 

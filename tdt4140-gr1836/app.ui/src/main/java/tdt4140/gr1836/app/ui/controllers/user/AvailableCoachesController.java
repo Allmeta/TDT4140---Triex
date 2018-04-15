@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.user;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.users.User;
 
-public class AvailableCoachesController extends Controller {
+public class AvailableCoachesController extends NavigationHandler {
 	/*
 	 * @FXML private Button homeBtn;
 	 */
@@ -56,7 +58,7 @@ public class AvailableCoachesController extends Controller {
 	@FXML
 	private void onBack() {
 		try {
-			showScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

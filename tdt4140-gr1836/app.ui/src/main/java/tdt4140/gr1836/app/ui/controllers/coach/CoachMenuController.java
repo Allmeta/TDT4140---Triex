@@ -1,12 +1,14 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.coach;
 
 import java.io.IOException;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 
-public class CoachMenuController extends Controller {
+public class CoachMenuController extends NavigationHandler {
 
 	@FXML
 	private Label logoutButton;
@@ -22,7 +24,7 @@ public class CoachMenuController extends Controller {
 	@FXML
 	private void onInbox() {
 		try {
-			showScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.inboxPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +33,7 @@ public class CoachMenuController extends Controller {
 	@FXML
 	private void onClients() {
 		try {
-			showScene(LayoutHandler.clientsPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.clientsPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,7 +42,7 @@ public class CoachMenuController extends Controller {
 	@FXML
 	private void onLogOut() {
 		try {
-			showScene(LayoutHandler.loginPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.loginPane, this.getRoot(), this.app);
 
 		} catch (IOException e) {
 			e.printStackTrace();

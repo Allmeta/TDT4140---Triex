@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.coach;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,9 +17,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import tdt4140.gr1836.app.ui.NavigationHandler;
+import tdt4140.gr1836.app.ui.LayoutHandler;
 import tdt4140.gr1836.app.users.User;
 
-public class ClientsController extends Controller {
+public class ClientsController extends NavigationHandler {
 	/*
 	 * @FXML private Button homeBtn;
 	 */
@@ -58,7 +60,7 @@ public class ClientsController extends Controller {
 	@FXML
 	private void onBack() {
 		try {
-			showScene(LayoutHandler.mainCoachPane, this.getRoot(), this.app);
+			loadScene(LayoutHandler.mainCoachPane, this.getRoot(), this.app);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -138,7 +140,7 @@ public class ClientsController extends Controller {
 			setClient(client);
 			try {
 				//History checks if user is coach and presents clients data
-				showScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
+				loadScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

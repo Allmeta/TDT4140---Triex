@@ -9,7 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tdt4140.gr1836.app.core.App;
 
-public class Controller {
+public class NavigationHandler {
 
 	protected App app;
 	protected Stage root;
@@ -28,41 +28,44 @@ public class Controller {
 		return this.root;
 	}
 
-	public void setConversation(String person){
-		convPartner=person;
+	public void setConversation(String person) {
+		convPartner = person;
 	}
-	public String getConvPartner(){
+
+	public String getConvPartner() {
 		return convPartner;
 	}
-	public void setClient(String person){
-		client=person;
+
+	public void setClient(String person) {
+		client = person;
 	}
-	public String getClient(){
+
+	public String getClient() {
 		return client;
 	}
 
 	// Shows a specified scene
-	public void showScene(String sceneText, Stage root, App app) throws IOException {
+	public void loadScene(String path, Stage stage, App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(sceneText));
+		loader.setLocation(NavigationHandler.class.getResource(path));
 		Pane parent = (Pane) loader.load();
 		// Set controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
-		controller.setRoot(root);
+		controller.setRoot(stage);
 
-		root.setScene(new Scene(parent));
+		stage.setScene(new Scene(parent));
 
 	}
 
 	// Loads and shows main stage for app
 	public void showMainStage(App app) throws IOException {
 		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(LayoutHandler.mainUserPane));
+		FXMLLoader loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainUserPane));
 		Pane parent = (Pane) loader.load();
 
 		// Set controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
 
@@ -75,16 +78,15 @@ public class Controller {
 		// Load graph and get Statistics from db
 		app.getWorkoutsFromDB();
 		app.getStatisticsFromDB();
-
 	}
 
 	public void showCoachStage(App app) throws IOException {
 		Stage root = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(LayoutHandler.mainCoachPane));
+		FXMLLoader loader = new FXMLLoader(NavigationHandler.class.getResource(LayoutHandler.mainCoachPane));
 		Pane parent = (Pane) loader.load();
 
 		// Set controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
 		controller.setRoot(root);
 
@@ -101,17 +103,16 @@ public class Controller {
 	}
 
 	// Loads and shows the add new user stage
-
 	public void showRegisterStage(App app) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource(LayoutHandler.signUpPane));
+		loader.setLocation(NavigationHandler.class.getResource(LayoutHandler.signUpPane));
 		Pane pane = loader.load();
 
 		Stage stage = new Stage();
 		stage.setTitle("Register new user");
 
 		// Set this app to controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
 
 		Scene scene = new Scene(pane);

@@ -1,5 +1,5 @@
 
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.common;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -9,8 +9,9 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.ui.NavigationHandler;
 
-public class SignUpController extends Controller {
+public class SignUpController extends NavigationHandler {
 
 	@FXML
 	private JFXTextField usernameField;

@@ -1,4 +1,4 @@
-package tdt4140.gr1836.app.ui;
+package tdt4140.gr1836.app.ui.controllers.common;
 
 import java.io.IOException;
 
@@ -9,9 +9,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.users.User;
 
-public class LoginController extends Controller {
+public class LoginController extends NavigationHandler {
 
 	@FXML
 	private JFXTextField usernameField;
