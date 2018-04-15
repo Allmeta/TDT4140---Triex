@@ -1,3 +1,4 @@
+//Helper class for handling several users and fetching from database
 package tdt4140.gr1836.app.users;
 
 import java.util.Map;

@@ -1,3 +1,4 @@
+//Helper class for handling the message objects used for storing messages between users
 package tdt4140.gr1836.app.inbox;
 
 import java.io.Serializable;

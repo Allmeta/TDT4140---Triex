@@ -1,3 +1,4 @@
+//Helper class for handling user objects
 package tdt4140.gr1836.app.users;
 
 import java.io.Serializable;

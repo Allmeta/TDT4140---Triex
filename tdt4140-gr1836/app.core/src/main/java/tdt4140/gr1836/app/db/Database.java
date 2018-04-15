@@ -1,9 +1,15 @@
+/*
+ * Class which collects all handlers to database in one class, here we init() a connection to the Firebase, and set up all database handlers.
+ * Database consists of four parts, users (all user data), workouts (all workouts for each user), inbox (messages to and from users) 
+ * and statistics (summarized statistics for all users based on their workouts).
+ * init() must be run first to setup the connection, the a reference can be set on the instance variable to communicate with the Firebase.
+ */
 package tdt4140.gr1836.app.db;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -14,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import tdt4140.gr1836.app.core.App;
-import tdt4140.gr1836.app.inbox.Message;
 import tdt4140.gr1836.app.inbox.Messages;
 import tdt4140.gr1836.app.statistics.Statistics;
 import tdt4140.gr1836.app.statistics.Statistic;
@@ -26,8 +30,26 @@ import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
 public class Database {
-
-	User user = null;
+	//For handling individual parts of the database
+	private UsersDatabase usersDatabase;
+	private WorkoutsDatabase workoutsDatabase;
+	private InboxDatabase inboxDatabase;
+	private StatisticsDatabase statisticsDatabase;
+	
+	//The current instance to database
+	private FirebaseDatabase instance;
+	
+	public Database()  {
+		try {
+			this.init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.usersDatabase = new UsersDatabase(this.instance.getReference());
+		this.workoutsDatabase = new WorkoutsDatabase(this.instance.getReference());
+		this.inboxDatabase = new InboxDatabase(this.instance.getReference());
+		this.statisticsDatabase = new StatisticsDatabase(this.instance.getReference());
+	}
 
 	public void init() throws IOException {
 		try {
@@ -41,257 +63,66 @@ public class Database {
 
 			FirebaseApp.initializeApp(options);
 		}
+		this.instance = FirebaseDatabase.getInstance();
 	}
-
-	public void login(String username, String password, App listenerApp) {
-		// hash password, sjekk om de er stemmer med databasen
-		// hvis ikke, returner null
-		// listenerApp er appen som logger inn
-
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users/" + username);
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-
-				user = dataSnapshot.getValue(User.class);
-				if (user != null) {
-					// user exists, check pw
-					// will hash soon pls
-					String hashedPassword = Hash.hash(password, Hash.decodeSalt(user.getSalt()));
-					if (!hashedPassword.equals(user.getPassword())) {
-
-						// return null if login failed
-						// setter listenerApp sin user og variabel for venting
-						System.out.println("wrong password: ");
-						listenerApp.setUser(null);
-						listenerApp.setWaitForDatabase(false);
-					} else {
-						listenerApp.setUser(user);
-						listenerApp.setWaitForDatabase(false);
-					}
-				} else {
-					// user does not exist. login failed.
-					System.out.println("User does not exist.");
-					listenerApp.setUser(null);
-					listenerApp.setWaitForDatabase(false);
-				}
-			}
-
-			public void onCancelled(DatabaseError arg0) {
-				// return fant ikke users wtf
-				System.out.println("fk");
-				listenerApp.setWaitForDatabase(false);
-
-			}
-		});
+	//UsersDatabase communication -------------------------------------------------------------------------------------
+	public User login(String username, String password) {
+		return this.usersDatabase.login(username, password);
 	}
-
-	/*
-	 * Registrerer ny bruker i databasen
-	 */
 	public User register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
-		// hash password
-		byte[] salt = null;
-		try {
-			salt = Hash.getSalt();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		String hashedPassword = Hash.hash(password, salt);
-
-		User user = new User(username, name, age, height, weight, city, isMale, isCoach, hashedPassword);
-
-		user.setSalt(Hash.convertSalt(salt));
-
-		// Send to database
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-		DatabaseReference s = ref.child(username);
-		s.setValueAsync(user);
-		return user;
+		return this.usersDatabase.register(username, name, age, height, weight, city, isMale, isCoach, password);
 
 	}
-
 	public void deleteUser(String username) {
-		// return null på /username for å fjerne data
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-		ref.child(username).setValueAsync(null);
+		this.usersDatabase.deleteUser(username);
 	}
 
-	public void getWorkouts(App listenerApp, String username) {
-		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference("workouts/" + username);
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				if (dataSnapshot != null) {
-					listenerApp.setWorkouts(dataSnapshot.getValue(Workouts.class));
-					listenerApp.setWaitForDatabase(false);
-				} else {
-					System.out.println("User has no workouts");
-					listenerApp.setWorkouts(null);
-					listenerApp.setWaitForDatabase(false);
-				}
-			}
-
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				listenerApp.setWaitForDatabase(false);
-
-			}
-		});
-
-	}
-
-	public void submitCardioWorkout(Workout cdw, App app) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
-
-		DatabaseReference s = ref.child(app.getUser().getUsername()).child(cdw.getType()).child(cdw.getDate());
-		s.setValueAsync(cdw);
-	}
-
-	public void deleteWorkout(String username, String type, String date) {
-		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference("workouts/" + username + "/" + type + "/" + date);
-		ref.setValueAsync(null);
-	}
-
-	public void getUsers(App listenerApp) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				if (dataSnapshot != null) {
-					listenerApp.setUsers(dataSnapshot.getValue(Users.class));
-					listenerApp.setWaitForDatabase(false);
-				} else {
-					listenerApp.setUsers(null);
-					listenerApp.setWaitForDatabase(false);
-				}
-			}
-
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				listenerApp.setWaitForDatabase(false);
-
-			}
-		});
+	public Users getUsers() {
+		return this.usersDatabase.getUsers();
 	}
 
 	public void setMyCoach(String coach, String username) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-		DatabaseReference s = ref.child(username).child("myCoach");
-		s.setValueAsync(coach);
+		this.usersDatabase.setMyCoach(coach, username);
+	}
+	
+	//WorkoutsDatabase communication -------------------------------------------------------------------------------------
+	public Workouts getWorkouts(String username) {
+		return this.workoutsDatabase.getWorkouts(username);
 	}
 
-	public void sendMessage(String message, String referant, String username) {
-		//
-		// Need double reference cause I didn't find a better system ://
-
-		Message m = new Message(message, referant, username);
-		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference("inbox/" + username + "/" + referant + "/messages/" + m.getDate());
-		ref.setValueAsync(m);
-
-		ref = FirebaseDatabase.getInstance()
-				.getReference("inbox/" + referant + "/" + username + "/messages/" + m.getDate());
-		ref.setValueAsync(m);
+	public void submitCardioWorkout(Workout cdw, String username) {
+		this.workoutsDatabase.submitCardioWorkout(cdw, username);
 	}
 
-	public void loadMessages(String referant, String username, App app) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/" + username + "/" + referant);
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				if (dataSnapshot != null) {
-					Messages m = dataSnapshot.getValue(Messages.class);
-					app.setMessages(referant, m);
-
-					app.setWaitForDatabase(false);
-
-				} else {
-					System.out.println("null");
-					app.setWaitForDatabase(false);
-				}
-			}
-
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("finnes ikke");
-				app.setWaitForDatabase(false);
-
-			}
-		});
-
+	public void deleteWorkout(String username, String type, String date) {
+		this.workoutsDatabase.deleteWorkout(username, type, date);
 	}
 
 	public void submitWorkoutWithoutApp(Workout cdw, String username) {
 		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("workouts");
-
 		DatabaseReference s = ref.child(username).child(cdw.getType()).child(cdw.getDate());
 		s.setValueAsync(cdw);
 	}
 	
-	public void getStatistics(App listenerApp) {
-		DatabaseReference ref = FirebaseDatabase.getInstance()
-				.getReference();
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+	//InboxDatabase communication -------------------------------------------------------------------------------------
+	public void sendMessage(String message, String referant, String username) {
+		this.inboxDatabase.sendMessage(message, referant, username);
+	}
 
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				if (dataSnapshot != null) {
-					listenerApp.setStatistics(dataSnapshot.getValue(Statistics.class));
-					listenerApp.setWaitForDatabase(false);
-				} else {
-					System.out.println("No statistics found");
-					listenerApp.setStatistics(null);
-					listenerApp.setWaitForDatabase(false);
-				}
-			}
+	public Map<String, Messages> loadMessages(String referant, String username) {
+		return this.inboxDatabase.loadMessages(referant, username);
 
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				listenerApp.setWaitForDatabase(false);
-
-			}
-		});
-
+	}
+	public ArrayList<User> getConversations(String username, Map<String, User> allUsers) {
+		return this.inboxDatabase.getConversations(username, allUsers);
+	}
+	
+	//StatisticsDatabase communication -------------------------------------------------------------------------------------
+	public Statistics getStatistics() {
+		return this.statisticsDatabase.getStatistics();
 	}
 	public void updateStatistics(Statistic statistic, String username) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("statistics");
-
-		DatabaseReference s = ref.child(username);
-		s.setValueAsync(statistic);
-		
-	}
-
-	public void getConversations(String username,App app) {
-		DatabaseReference ref = FirebaseDatabase.getInstance().getReference("inbox/" + username);
-		ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				if (dataSnapshot != null) {
-					for(DataSnapshot d : dataSnapshot.getChildren()){
-						app.setConversationItem(d.getKey());
-					}
-					app.setWaitForDatabase(false);
-
-				} else {
-					System.out.println("null");
-					app.setWaitForDatabase(false);
-				}
-			}
-
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("finnes ikke");
-				app.setWaitForDatabase(false);
-
-			}
-		});
+		this.statisticsDatabase.updateStatistics(statistic, username);	
 	}
 }

@@ -1,3 +1,4 @@
+//Helper class for handling the Statistics objects and operating on them
 package tdt4140.gr1836.app.statistics;
 
 import java.io.Serializable;
@@ -5,10 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,20 +17,19 @@ import java.util.Map;
 import java.util.Set;
 
 import tdt4140.gr1836.app.users.User;
-import tdt4140.gr1836.app.users.Users;
 import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
+@SuppressWarnings("serial")
 public class Statistics implements Serializable  {
 	private Map<String,Statistic> statistics;
 	
 	public Statistics() {
 		
 	}
-	
+	//Takes in all users in your city and then calculates an average for the statistics values
 	public Statistic calculateAverageInCity(Map<String, User> users, String city) {
-		//Må her beregne alt 
-		//HUSK Å SETT CITY FØRST!
+
 		Statistic averageStatistics = new Statistic();
 		User user;
 		Statistic userStatistics;
@@ -95,15 +92,15 @@ public class Statistics implements Serializable  {
 			averageStatistics.setTotalSwims(Math.round(totalSwims/totalUsers));
 			
 			averageStatistics.setMaxPulse(Math.round(totalMaxPulse/totalUsers));
-			//Sender vi totalusers?
-			//totalUsers;
 		}
 		return averageStatistics;
 	}
 	
+	//Calculates a percentage match for all users in your city, used for finding potential partners or others who works out similarly to you
 	public LinkedHashMap<String, Double> findPartners(Map<String, User> users, Statistic myStatistics, String city) {
+		System.out.println(this.statistics);
 		HashMap<String, Double> partners = new HashMap<>();
-		//Finds a partner in your city based on your stats below
+		
 		double maxPulse = myStatistics.getMaxPulse();
 		int runKm = myStatistics.getRunKm();
 		int bikeKm = myStatistics.getBikeKm();
@@ -127,9 +124,8 @@ public class Statistics implements Serializable  {
 			user = users.get(key);	
 			if (user.getCity().equals(city)) {
 				if(statKeys.contains(user.getUsername())) {	
-
+					//Calculates match
 					userStatistics = statistics.get(user.getUsername());
-					//Funksjon for å beregne match
 					matchPercent=0.0;
 					matchPercent += this.compareNumbers(runKm, userStatistics.getRunKm());
 					matchPercent += this.compareNumbers(bikeKm, userStatistics.getBikeKm());
@@ -148,7 +144,7 @@ public class Statistics implements Serializable  {
 				}
 			}
 		}
-		//går gjennom hver bruker i din by og finner den som har nærmest match
+		//Sorts by percent
 		List<String> mapKeys = new ArrayList<>(partners.keySet());
 	    List<Double> mapValues = new ArrayList<>(partners.values());
 	    Collections.sort(mapValues, Collections.reverseOrder());
@@ -174,7 +170,6 @@ public class Statistics implements Serializable  {
 	            }
 	        }
 	    }
-		//return partners;
 	    return sortedMap;
 	}
 	public Double compareNumbers(int xxx, int yyy) {
@@ -217,7 +212,7 @@ public class Statistics implements Serializable  {
 		return matchPercent;
 	}
 	
-	//Lang jævla funksjon som gjør det samme tre ganga, finn snittstats for de siste tre dagan samt din maxpuls og sett dem i statistikk
+	//Updates your statistics based on all your workouts for the last 30 days
 	public Statistic updateMyStatistics(Workouts workouts, int age) throws ParseException {
 		Statistic statistic = new Statistic();
 		//Finds date 30 days ago
@@ -226,16 +221,16 @@ public class Statistics implements Serializable  {
 		Date monthAgo = Date.from(tempMonthAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		//Sett avg pulse
 		statistic.setMaxPulse(211-(age*0.64));
-		//Funker dette hvis keySettene og Maps er tomme?!?!?
 		Workout workout;
 		int totalWorkouts = 0;
 		int kilometers = 0;
 		int minutes = 0;
-		int tempPulse = 0;//Denne brukes til beregning, for hver workout tempPulse += minutes (for økt)*pulse (for økt) til slutt del på antall minutter totalt
-		Map<String, Workout> tempWorkouts = workouts.getRunning();
-		if (tempWorkouts!=null) {
+		int tempPulse = 0;
+		Map<String, Workout> tempWorkouts;
+		
+		if (workouts.getRunning()!=null) {
+			tempWorkouts = workouts.getRunning();
 			for (String key : tempWorkouts.keySet()){
 				Date date = format.parse(key);
 				if (date.after(monthAgo)) {
@@ -259,8 +254,8 @@ public class Statistics implements Serializable  {
 		minutes = 0;
 		totalWorkouts = 0;
 		tempPulse = 0;
-		tempWorkouts = workouts.getBiking();
-		if (tempWorkouts!=null) {
+		if (workouts.getBiking()!=null) {
+			tempWorkouts = workouts.getBiking();
 			for (String key : tempWorkouts.keySet()){
 				Date date = format.parse(key);
 				if (date.after(monthAgo)) {
@@ -279,13 +274,12 @@ public class Statistics implements Serializable  {
 		if(minutes>0) {
 			statistic.setAvgBikePulse(tempPulse/minutes);
 		}
-		
 		kilometers = 0;
 		minutes = 0;
 		totalWorkouts = 0;
 		tempPulse = 0;
-		tempWorkouts = workouts.getSwimming();
-		if (tempWorkouts!=null) {
+		if (workouts.getSwimming()!=null) {
+			tempWorkouts = workouts.getSwimming();
 			for (String key : tempWorkouts.keySet()){
 				Date date = format.parse(key);
 				if (date.after(monthAgo)) {
@@ -304,7 +298,6 @@ public class Statistics implements Serializable  {
 		if(minutes>0) {
 			statistic.setAvgSwimPulse(tempPulse/minutes);
 		}
-		//For nå er statistikk litt enkel, om mulig kan vi forbedre med formler som tar mer til hensyn forskjellen mellom korte og lange økter
 		return statistic;
 	}
 	
@@ -315,7 +308,4 @@ public class Statistics implements Serializable  {
 	public Map<String,Statistic> getStatistics() {
 		return this.statistics;
 	}
-
-
-
 }

@@ -1,3 +1,4 @@
+//Helper class for handling the message objects and storing them in a map
 package tdt4140.gr1836.app.inbox;
 
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public class Messages implements Serializable{
 		for(String key : this.messages.keySet()) {
 			temp.add(this.messages.get(key));
 		}
-		//sorter etter dato
+		//Sort on date
 		temp.sort(Comparator.comparing(Message::getDate));
 		return temp;
 	}

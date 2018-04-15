@@ -1,3 +1,4 @@
+//Helper class for a workout
 package tdt4140.gr1836.app.workouts;
 
 import java.io.Serializable;
@@ -8,7 +9,6 @@ import java.util.Map;
 public class Workout implements Serializable{
 	private double duration, distance, pulse;
 	private String date, type;
-
 
 	Workout(){
 		

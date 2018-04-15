@@ -1,3 +1,5 @@
+//Helper class for presetning a simple version of workout
+
 package tdt4140.gr1836.app.workouts;
 
 import java.text.DateFormat;

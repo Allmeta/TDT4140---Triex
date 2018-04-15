@@ -1,3 +1,4 @@
+//Helper class for presenting all workouts for a user
 package tdt4140.gr1836.app.workouts;
 
 import java.io.Serializable;
@@ -14,8 +15,8 @@ public class Workouts implements Serializable {
 
 	}
 
-	// String date, String type, double pulse, double duration, Double distance)
 
+	//Returns all workouts in an arralist of TempList
 	public ArrayList<TempList> getWorkoutsAsList() {
 		ArrayList<TempList> temp = new ArrayList<>();
 

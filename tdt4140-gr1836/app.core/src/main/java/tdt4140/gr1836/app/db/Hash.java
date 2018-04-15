@@ -1,3 +1,5 @@
+//Class for hashing passwords when logging in and registering users
+
 package tdt4140.gr1836.app.db;
 
 import java.security.MessageDigest;

@@ -1,3 +1,4 @@
+//Helper class which  for presenting a simple version of a user
 package tdt4140.gr1836.app.users;
 
 public class UserTempList {

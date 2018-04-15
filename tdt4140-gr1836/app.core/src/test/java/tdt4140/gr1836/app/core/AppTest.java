@@ -112,7 +112,6 @@ public class AppTest {
 		app.getUsersFromDatabase();
 		users = app.getUsers();
 		assertEquals(users.get("TestUser"), null);
-
 	}
 
 }

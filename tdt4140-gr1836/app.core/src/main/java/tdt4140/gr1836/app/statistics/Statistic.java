@@ -1,3 +1,5 @@
+//Helper class for handling the statistics for users
+
 package tdt4140.gr1836.app.statistics;
 
 import java.io.Serializable;

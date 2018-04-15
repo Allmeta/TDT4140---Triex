@@ -1,3 +1,7 @@
+/*
+ * Our main class for handling communcation to the database and our analyzing methods.
+ * Used by our JavaFX application as a model in a MVC architecture.
+ */
 package tdt4140.gr1836.app.core;
 
 import java.io.IOException;
@@ -28,27 +32,42 @@ public class App {
 	
 	private Statistic myStatistics;
 	private Statistics statistics; 
-	private Map<String, Statistic> allStatistics;
 
 	private ArrayList<User> conversations;
 
-	private boolean waitForDatabase;
 	private Map<String, User> allUsers;
 
 	public App() throws IOException {
 		this.database = new Database();
-		this.database.init();
+		//this.database.init();
 		this.user = null;
+	}
+	//Function for resetting all values when logging out
+	public void reset() {
+		this.database = new Database();
+		this.user = null;
+		this.workouts = new Workouts();
+		this.users = new HashMap<String, User>();
+		this.coaches = new HashMap<String, User>();
+		this.messages = new HashMap<String, Messages>();
 		
+		this.myStatistics = new Statistic();
+		this.statistics = new Statistics();; 
+
+		this.conversations = new ArrayList<User>();
+
+		this.allUsers = null;
+		this.getUsersFromDatabase();
 	}
 
-	// User managment to DB
+	//User managment to database------------------------------------------------------------------------------------------
+	//Sets your coach to coachname
 	public void setMyCoach(String coachname) {
 		this.database.setMyCoach(coachname, this.user.getUsername());
 		this.user.setMyCoach(coachname);
-
 	}
 
+	//Registers a new users in database
 	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 		this.user = this.database.register(username, name, age, height, weight, city, isMale, isCoach, password);
@@ -63,133 +82,93 @@ public class App {
 		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
 
+	//Logs in user from database
 	public User login(String username, String password) {
-		this.waitForDatabase = true;
-		int timer = 0;
-
-		this.database.login(username, password, this);
-		// Wait loop while waiting for login, should not last more than 30 seconds
-		// before giving error
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
+		this.user = this.database.login(username, password);
 		return this.user;
 	}
 
+	//Deletes a user  in database
 	public void deleteUser(String username) {
 		this.database.deleteUser(username);
 	}
 
-	public void getUsersFromDatabase() {// Gets all users and sets it to either coach or user
-		this.waitForDatabase = true;
-		int timer = 0;
-
-		this.database.getUsers(this);
-		// Wait loop while waiting for login, should not last more than 30 seconds
-		// before giving error
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
+	// Gets all users and sets it to either coach or user
+	public void getUsersFromDatabase() {
+		this.setUsers(this.database.getUsers());
 	}
+	//Workout managment to database------------------------------------------------------------------------------------------
+	//Submits workout only
 	public void onlySubmitWorkout(String type, double duration, double distance, double pulse, String date) {
 		Workout cdw = new Workout(type, duration, distance, pulse, date);
-		this.database.submitCardioWorkout(cdw, this);
-		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
-		//this.workouts.addWorkout(cdw); Sånn som her?
-
+		this.database.submitCardioWorkout(cdw, this.user.getUsername());
 	}
-
+	//Submits workout and updates your statistics
 	public void submitCardioWorkout(String type, double duration, double distance, double pulse, String date) {
 		Workout cdw = new Workout(type, duration, distance, pulse, date);
-		this.database.submitCardioWorkout(cdw, this);
-		this.getWorkoutsFromDB(); //Burde denne kjøres hvis vi kan oppdaterer lokalt i stede?
-		//this.workouts.addWorkout(cdw); Sånn som her?
+		this.database.submitCardioWorkout(cdw, this.user.getUsername());
+		this.workouts.addWorkout(cdw);
 		try {
 			this.myStatistics = this.statistics.updateMyStatistics(this.workouts, this.user.getAge());
 		} catch (ParseException e) {
-			e.printStackTrace();
-			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
+			e.printStackTrace(); //Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
 		}	
-		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
+		this.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
-	public void getStatisticsFromDB() {
-		this.waitForDatabase = true;
-		int timer = 0;
-		this.database.getStatistics(this);
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
-	}
-	public LinkedHashMap<String, Double> findPartners(){
-		
-		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
-	}
-	public void getClientsWorkouts(String client) {
-		this.setWorkouts(null);
-		this.waitForDatabase = true;
-		int timer = 0;
-		this.database.getWorkouts(this, client);
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
-	}
+	//Fetches all your workouts from database
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
-		this.waitForDatabase = true;
-		int timer = 0;
-		this.database.getWorkouts(this, this.getUser().getUsername());
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
+		this.workouts = this.database.getWorkouts(this.getUser().getUsername());
 	}
-
+	//Fetches specified users workouts from database (used for finding clients workouts)
+	public void getClientsWorkouts(String client) {
+		this.setWorkouts(null);
+		this.database.getWorkouts(client);
+	}
+	//Deletes workout in database
 	public void deleteWorkout(String username, String type, String date) {
 		this.database.deleteWorkout(username, type, date);
 	}
-
+	//Statistics managment to database------------------------------------------------------------------------------------------
+	//Retrieves all statistics from database
+	public void getStatisticsFromDB() {
+		this.statistics = this.database.getStatistics();
+		this.myStatistics = statistics.getStatistics().get(user.getUsername());
+	}
+	//Updates your statistics in database, used when inserting new workout
+	public void updateStatistics(Statistic myStatistics, String username) {
+		this.database.updateStatistics(myStatistics, username);
+	}
+	//Inbox managment to database------------------------------------------------------------------------------------------
+	//Sends a message to referant
+	public void sendMessage(String message, String referant) {
+		database.sendMessage(message, referant, user.getUsername());
+		User user = users.get(referant);
+		if(!conversations.contains(user) && user !=null) {
+			this.conversations.add(this.users.get(referant));
+		}
+	}
+	//Retrieves specified messages from database
+	public void loadMessages(String referant) {
+		this.messages = null;
+		this.messages = this.database.loadMessages(referant, user.getUsername());
+	}
+	//Retrieves conversation partners from database
+	private void getConversationsFromDB() {
+		this.conversations = this.database.getConversations(getUser().getUsername(), this.allUsers);
+	}
+	
+	// GETTER & SETTERS ---------------------------------------------------------------------------------------
+	//Retrieves all your conversation partners, if not yet retrieved get from database
+	public ArrayList<User> getConversations() {
+		if(conversations==null){
+			conversations=new ArrayList<>();
+			getConversationsFromDB();
+		}
+		return conversations;
+	}
 	// Helper method for presenting coaches
 	public ArrayList<UserTempList> getCoachesAsList() {
-
 		ArrayList<UserTempList> temp = new ArrayList<>();
 		for (String s : coaches.keySet()) {
 			UserTempList tmplist = new UserTempList(coaches.get(s).getUsername(), coaches.get(s).getName(), coaches.get(s).getCity(),
@@ -198,7 +177,7 @@ public class App {
 		}
 		return temp;
 	}
-
+	//Helper method for presenting all users
 	public ArrayList<UserTempList> getUsersAsList() {
 		ArrayList<UserTempList> temp = new ArrayList<UserTempList>();
 		for (String s : users.keySet()) {
@@ -208,8 +187,28 @@ public class App {
 		}
 		return temp;
 	}
-
-	// GETTER & SETTERS
+	//Helper method for presenting all clients for coach
+	public ArrayList<UserTempList> getClients() {
+		ArrayList<UserTempList> allClients = new ArrayList<>();
+		try {
+			allUsers = this.getUsers();
+			String myName = this.getUser().getUsername();
+			String clientCoach;
+			// userList.sort(null);
+			for (String s : allUsers.keySet()) {
+				clientCoach = allUsers.get(s).getMyCoach();
+				if (clientCoach.equals(myName)) {
+					allClients.add(new UserTempList(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
+							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge())));
+				}
+			}
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return allClients;
+	}
+	//Sets all users to either coach or user from all users from database
 	public void setUsers(Users value) {
 		allUsers=value.getUsers();
 		Map<String, User> tempCoach = new HashMap<String, User>();
@@ -219,75 +218,35 @@ public class App {
 				tempCoach.put(key, value.getUsers().get(key));
 			} else {
 				tempUsers.put(key, value.getUsers().get(key));
-
 			}
 		}
 		this.users = tempUsers;
 		this.coaches = tempCoach;
-
 	}
-
 	public Map<String, User> getUsers() {
 		return this.users;
 	}
-
 	public Map<String, User> getCoaches() {
 		return this.coaches;
 	}
-
 	public User getUser() {
 		return this.user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public void setWaitForDatabase(boolean b) {
-		this.waitForDatabase = b;
-	}
-
 	public Workouts getWorkouts() {
 		return this.workouts;
 	}
-
 	public void setWorkouts(Workouts value) {
 		this.workouts = value;
 	}
-
-	public void sendMessage(String message, String referant) {
-		database.sendMessage(message, referant, user.getUsername());
-		if(!conversations.contains(users.get(referant))) this.conversations.add(this.users.get(referant));
-	}
-
-	public void loadMessages(String referant) {
-		this.messages = null;
-		this.waitForDatabase = true;
-		int timer = 0;
-
-		this.database.loadMessages(referant, user.getUsername(), this);
-		// Wait loop while waiting for login, should not last more than 30 seconds
-		// before giving error
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				break;
-			}
-		}
-	}
-
 	public void setMessages(String referant, Messages m) {
 		if (messages == null) {
 			messages = new HashMap<>();
 		}
 		this.messages.put(referant, m);
 	}
-
 	public ArrayList<Message> getMessages(String ref) {
 		if (messages == null || messages.get(ref) == null) {
 			loadMessages(ref);
@@ -306,78 +265,31 @@ public class App {
 	public void setStatistics(Statistics statistics) {
 		this.statistics = statistics;
 		this.myStatistics = statistics.getStatistics().get(user.getUsername());
-		
 	}
 	public Statistics getStatistics() {
 		return this.statistics;
 	}
-	
-
-	public static void main(String[] args) throws ParseException, IOException {
-		App app = new App();
-		app.login("dinaarnesen", "test");
-		app.getStatisticsFromDB();
-		
-		app.submitCardioWorkout("Biking", 90, 10, 100, "2018-02-02");
-		app.getUsersFromDatabase();
-		
-		System.out.println(app.statistics.findPartners(app.getUsers(), app.myStatistics, app.user.getCity()));
-	}
-
-
-	public ArrayList<User> getConversations() {
-		if(conversations==null){
-			conversations=new ArrayList<>();
-			getConversationsFromDB();
-		}
-		return conversations;
-	}
+	//Sets user in your conversation partners
 	public void setConversationItem(String user){
 		User temp = allUsers.get(user);
-		conversations.add(temp);
-		System.out.println(user);
-	}
-
-	private void getConversationsFromDB() {
-		setWaitForDatabase(true);
-		int timer=0;
-		database.getConversations(getUser().getUsername(),this);
-		while (this.waitForDatabase) {
-			try {
-				Thread.sleep(300);
-				timer += 1;
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if (timer > 100) {
-				System.out.println("CONV: Wait too long");
-				break;
-			}
+		if (temp!=null) {
+			this.conversations.add(temp);
 		}
 	}
-
+	//Gets your coach
 	public User getMyCoach() {
 		return coaches.get(getUser().getMyCoach());
 	}
-
-	public ArrayList<UserTempList> getClients() {
-		ArrayList<UserTempList> allClients = new ArrayList<>();
-		try {
-			allUsers = this.getUsers();
-			String myName = this.getUser().getUsername();
-			String clientCoach;
-			// userList.sort(null);
-			for (String s : allUsers.keySet()) {
-				clientCoach = allUsers.get(s).getMyCoach();
-				if (clientCoach.equals(myName)) {
-					allClients.add(new UserTempList(allUsers.get(s).getUsername(), allUsers.get(s).getName(),
-							allUsers.get(s).getCity(), Integer.toString(allUsers.get(s).getAge())));
-				}
-			}
-		}
-
-		catch (NullPointerException e) {
-		}
-		return allClients;
+	
+	//Statistics control ----------------------------------------------------------------------------------------------
+	//Based on your statistics and the average in your city, it will return a map of type username, percentage of match on other users
+	public LinkedHashMap<String, Double> findPartners(){
+		return this.statistics.findPartners(this.users, this.myStatistics, this.user.getCity());
 	}
+
+	public static void main(String[] args) throws IOException {
+		App app = new App();
+		app.deleteUser("TestUser");
+	}
+
 }
