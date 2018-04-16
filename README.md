@@ -71,6 +71,12 @@ From here you have a few options:
 * [Maven](https://maven.apache.org/) - Dependency Management
 
 
+##Database
+
+*[Firebase](https://console.firebase.google.com/project/tdt4140-g36/database/tdt4140-g36/data)
+    -   Requires Permission
+
+
 ## Authors
 
 * **Erling Moen** - *Frontend - GUI*
