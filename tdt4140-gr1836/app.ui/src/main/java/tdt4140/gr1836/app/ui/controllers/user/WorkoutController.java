@@ -9,8 +9,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
-import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.ui.LayoutHandler;
+import tdt4140.gr1836.app.ui.NavigationHandler;
 
 public class WorkoutController extends NavigationHandler {
 
@@ -36,8 +36,7 @@ public class WorkoutController extends NavigationHandler {
 	/*
 	 * Checks that user have typed a positive duration and chosen a date for new
 	 * cardio workout. Then submits the data to database and send user back to main
-	 * menu.
-	 * Edit: Also checks if your pulse is less than your max and positive
+	 * menu. Edit: Also checks if your pulse is less than your max and positive
 	 */
 	@FXML
 	private void onSubmit() throws IOException {
@@ -52,8 +51,9 @@ public class WorkoutController extends NavigationHandler {
 		} catch (NumberFormatException e) {
 			invalidLabel.setText("Please fill out all required fields");
 		}
-		
-		if (duration > 0 && dateField.getValue() != null && distance > 0 && pulse > 0 && pulse < (220 - app.getUser().getAge())) {
+
+		if (duration > 0 && dateField.getValue() != null && distance > 0 && pulse > 40
+				&& pulse < (220 - app.getUser().getAge())) {
 			String type;
 			if (runningRadioButton.isSelected()) {
 				type = "Running";
@@ -67,12 +67,10 @@ public class WorkoutController extends NavigationHandler {
 			this.app.submitCardioWorkout(type, duration, distance, pulse, dateField.getValue().toString());
 
 			loadScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
-		}
-		else {
-			if (pulse < 0 || pulse > (220 - app.getUser().getAge())){
+		} else {
+			if (pulse < 0 || pulse > (220 - app.getUser().getAge())) {
 				invalidLabel.setText("Your pulse can't be above your max pulse");
-			}
-			else {
+			} else {
 				invalidLabel.setText("Check your input");
 			}
 		}
