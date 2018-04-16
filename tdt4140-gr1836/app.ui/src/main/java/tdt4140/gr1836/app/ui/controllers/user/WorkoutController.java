@@ -69,7 +69,7 @@ public class WorkoutController extends NavigationHandler {
 			loadScene(LayoutHandler.mainUserPane, this.getRoot(), this.app);
 		} else {
 			if (pulse < 0 || pulse > (220 - app.getUser().getAge())) {
-				invalidLabel.setText("Your pulse can't be above your max pulse");
+				invalidLabel.setText("Your pulse can't be above your max pulse or negative");
 			} else {
 				invalidLabel.setText("Check your input");
 			}

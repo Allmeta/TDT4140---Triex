@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.WorkoutController">
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.WorkoutController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css">
          <children>
@@ -56,7 +56,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="414.0" onAction="#onSubmit" styleClass="normal-button" text="OK" />
+            <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="200.0" layoutY="414.0" onAction="#onSubmit" styleClass="normal-button" text="OK" />
             <JFXButton buttonType="RAISED" layoutX="313.0" layoutY="414.0" onAction="#onCancel" styleClass="normal-button" text="Cancel" />
             <Label fx:id="invalidLabel" layoutX="199.0" layoutY="384.0" style="-fx-text-fill: #ff1744;" textFill="#ff1744" />
             <Label layoutX="511.0" layoutY="384.0" text="* Required fields" textFill="#90a4ae" />

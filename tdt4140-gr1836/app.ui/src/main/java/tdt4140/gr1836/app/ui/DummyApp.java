@@ -7,8 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -17,6 +19,7 @@ import tdt4140.gr1836.app.core.App;
 import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.statistics.Statistics;
 import tdt4140.gr1836.app.users.User;
+import tdt4140.gr1836.app.users.UserTempList;
 import tdt4140.gr1836.app.workouts.Workout;
 import tdt4140.gr1836.app.workouts.Workouts;
 
@@ -29,12 +32,15 @@ public class DummyApp extends App {
 	private Statistics statistics;
 	private Statistic statistic;
 	private Map<String, User> users;
+	private Map<String, User> allUsers;
 	private Map<String, User> coaches;
+	
 	
 	public DummyApp() throws IOException {
 		this.user=null;
 		this.coachUser = new User("coachFxBoy", "Mr.Coach", 20, 185, 80, "Trondheim", true, true, "coachTest");
-		this.correctUser = new User("testFxBoy", "Mr.TestFx", 20, 185, 80, "Trondheim", true, false, "coachTest");	
+		this.correctUser = new User("testFxBoy", "Mr.TestFx", 20, 185, 80, "Trondheim", true, false, "coachTest");
+		correctUser.setMyCoach("coachFxBoy");
 		users = new HashMap<String, User>();
 		coaches = new HashMap<String, User>();
 		coaches.put("coachFxBoy", coachUser);
@@ -43,7 +49,8 @@ public class DummyApp extends App {
 		users.put("temp2", new User("temp2", "Mr.TestFx", 20, 185, 80, "Trondheim", true, false, "coachTest"));	
 		users.put("temp3", new User("temp3", "Mr.TestFx", 20, 185, 80, "Trondheim", true, false, "coachTest"));	
 		
-
+		allUsers = users;
+		allUsers.put("coachFxBoy", coachUser);
 		
 		Map <String, Statistic> allStatistics = new HashMap<String, Statistic>();
 		statistic = new Statistic(200.0, 0, 10, 10, 100, 100, 100, 1, 1, 4, 150, 150, 150);
@@ -53,12 +60,12 @@ public class DummyApp extends App {
 		allStatistics.put("temp3", new Statistic(200.0, 0, 10, 10, 100, 100, 100, 1, 1, 4, 150, 150, 150));
 
 		statistics = new Statistics();
-		statistics.setStatistics(allStatistics);
+		statistics.setStatistics(allStatistics);	
+	}
+	public void reset() {
 		
 	}
-	
-	
-	public void registerregister(String username, String name, int age, int height, int weight, String city, boolean isMale,
+	public void register(String username, String name, int age, int height, int weight, String city, boolean isMale,
 			boolean isCoach, String password) {
 	System.out.println("Register");
 	}
@@ -92,6 +99,15 @@ public class DummyApp extends App {
 	}
 	public void getStatisticsFromDB() {
 		//Allready done in decleration
-		
+	}
+	public Statistics getStatistics() {
+		return this.statistics;
+	}
+	public Statistic getMyStatistics() {
+		return this.statistic;
+	}
+	public LinkedHashMap<String, Double> findPartners() {
+		LinkedHashMap<String, Double> partners = this.statistics.findPartners(users, statistic, correctUser.getCity());
+		return partners;
 	}
 }

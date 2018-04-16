@@ -27,7 +27,6 @@ public class NavigationHandler {
 		controller.setRoot(stage);
 
 		stage.setScene(new Scene(parent));
-
 	}
 
 	// Loads and shows main stage for app

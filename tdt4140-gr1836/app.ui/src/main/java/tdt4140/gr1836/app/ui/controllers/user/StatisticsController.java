@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import tdt4140.gr1836.app.statistics.Statistic;
 import tdt4140.gr1836.app.statistics.Statistics;
 import tdt4140.gr1836.app.ui.NavigationHandler;
@@ -20,6 +21,8 @@ public class StatisticsController extends NavigationHandler {
 	private int currentPartner;
 
 	@FXML
+	private Image image;
+	@FXML
 	private JFXButton goButton;
 	@FXML
 	private JFXButton returnButton;
@@ -29,6 +32,8 @@ public class StatisticsController extends NavigationHandler {
 	private JFXButton previousButton;
 	@FXML
 	private JFXButton historyButton;
+	@FXML
+	private Label avgLabel;
 	@FXML
 	private Label profileLabel;
 	@FXML
@@ -105,6 +110,7 @@ public class StatisticsController extends NavigationHandler {
 			onHistory();
 		});
 		questionLabel.setVisible(false);
+		avgLabel.setText("Average data for city");
 	}
 	
 	private String timeSpent(int time) {
@@ -131,7 +137,11 @@ public class StatisticsController extends NavigationHandler {
 			avgPulseLabel.setText(comparingName + "'s average pulse");
 			maxPulseLabel.setText(comparingName + "'s estimated max pulse");
 			timeLabel.setText(comparingName + "'s time spent on exercises");
-		} else {
+		}
+		else if (app.getUser().getIsCoach()) {
+			compName.setText("Your clients city");
+		}
+		else {
 			compName.setText("Your city (" + app.getUser().getCity() + ")");
 		}
 
@@ -184,6 +194,9 @@ public class StatisticsController extends NavigationHandler {
 		avgPulseLabel.setText("Average pulse");
 		maxPulseLabel.setText("Estimated max pulse");
 		timeLabel.setText("Time spent on exercises");
+		
+		avgLabel.setText("Average data for "+name);
+		//Set imageimage
 
 		goButton.setText("Send message!");
 		returnButton.setText("Cancel");
@@ -220,6 +233,7 @@ public class StatisticsController extends NavigationHandler {
 			previousButton.setVisible(true);
 		}
 		String name = names.get(currentPartner);
+		avgLabel.setText("Average data for "+name);
 		Statistic statistic = app.getStatistics().getStatistics().get(name);
 		Double percentMatch = partners.get(name);
 		this.loadStatistics(statistic, statistic, percentMatch, name);
@@ -237,6 +251,7 @@ public class StatisticsController extends NavigationHandler {
 			nextButton.setVisible(true);
 		}
 		String name = names.get(currentPartner);
+		avgLabel.setText("Average data for "+name);
 		Statistic statistic = app.getStatistics().getStatistics().get(name);
 		Double percentMatch = partners.get(name);
 		this.loadStatistics(statistic, statistic, percentMatch, name);

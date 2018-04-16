@@ -82,6 +82,11 @@ public class App {
 			e.printStackTrace();
 			//Error happened while parsing date from database, see statisticsAnalyzer updateMyStatistics()
 		}	
+		if (allUsers == null) {
+			allUsers = new HashMap<String, User>();
+		}
+		
+		this.allUsers.put(username, this.user);
 		this.database.updateStatistics(this.myStatistics, this.user.getUsername());
 	}
 

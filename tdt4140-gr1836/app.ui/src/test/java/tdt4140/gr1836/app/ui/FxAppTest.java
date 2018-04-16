@@ -52,68 +52,92 @@ public class FxAppTest extends ApplicationTest {
 		controller.setApp(app);
 		
 		stage.show();
+		startFlag=false;
 		}
     }
-	//@Before
-	//}
-	/*
-		@Test 
-	public void testNavigation() {
-			 Test Register
-			clickOn("#signUpButton");
-			sleep(1000);
-			JFXButton button = lookup("#cancelButton").query();
-			assertEquals(button.getText(), "Cancel");
-			clickOn("#cancelButton");
-			
-			
-			sleep(500);
-			clickOn("#usernameField");
-			write("testFxBoy");
-			clickOn("#passwordField");
-			write("test");
-			clickOn("#loginButton");
-			sleep(500);
-			//Check that you are in main menu
-			Label newbutton = lookup("#newWorkoutButton").query();
-			assertEquals(newbutton.getText(), "New workout");
-		
-			clickOn("#newWorkoutButton");
-			sleep(500);
-			clickOn("#durationField");
-			write("60");
-			clickOn("#distanceField");
-			write("10");
-			clickOn("#pulseField");
-			write("160");
-			clickOn("#dateField");
-			write("04.04.2018");
-			clickOn("#submitButton");
-			sleep(500);
+	//Not a lot of tests, but feedback says its not that important for ui
+	@Test 
+	public void t1TestLoginWorkouts() {
+		clickOn("#signUpButton");
+		sleep(1000);
+		JFXButton button = lookup("#cancelButton").query();
+		assertEquals(button.getText(), "Cancel");
+		clickOn("#cancelButton");
 
-			clickOn("#historyButton");
-			sleep(500);
-			clickOn("#backButton");
-			
-			sleep(500);
-			clickOn("#statisticsButton");
-			sleep(1000);
-			*/
-			
-		/*
-		velg coach
-		skriv melding til coach
-		se statistikk
-		velg friend
+		sleep(500);
+		clickOn("#usernameField");
+		write("testFxBoy");
+		clickOn("#passwordField");
+		write("test");
+		clickOn("#loginButton");
+		sleep(500);
 		
-		log ut
-		log in coach
-		se your clients
-		se statistikk
-		se history
-		send melding
+		//Check that you are in main menu
+		Label newbutton = lookup("#newWorkoutButton").query();
+		assertEquals(newbutton.getText(), "New workout");
+		clickOn("#newWorkoutButton");
+		sleep(500);
+		clickOn("#durationField");
+		write("60");
+		clickOn("#distanceField");
+		write("10");
+		clickOn("#pulseField");
+		write("160");
+		clickOn("#dateField");
+		write("04.04.2018");
+		clickOn("#submitButton");
+		sleep(500);
+
+	}
+	@Test
+	public void t2TestStatistics() {
+		/*				
+		sleep(500);
+		clickOn("#statisticsButton");
+		sleep(1000);
+		
+		clickOn("#goButton");
+		sleep(500);
+		clickOn("#goButton");
+		sleep(1000);
+		clickOn()next
+		send message
+		back
 		*/
 	}
+	@Test
+	public void t3TestHistoryCoaches() {
+		clickOn("#historyButton");
+		sleep(500);
+		clickOn("#backButton");
+		
+		clickOn("#coachesButton");
+		sleep(500);
+		clickOn("#backButton");
+		sleep(500);
+		clickOn("#logoutButton");
+		sleep(500);
+		
+	}
+	@Test
+	public void t4TestCoach() {
+		clickOn("#usernameField");
+		write("coachFxBoy");
+		clickOn("#passwordField");
+		write("coach");
+		clickOn("#loginButton");
+		sleep(500);
+		clickOn("#clientsButton");
+		sleep(500);
+		/*
+		 * How do we click on a treetablerow??
+		see your clients
+		see stats
+		see history
+		send melding
+		*/
+		}
+}
 
 		/*
 	@Test
