@@ -16,18 +16,17 @@
                   <JFXTreeTableView fx:id="tableView" layoutX="10.0" layoutY="14.0" prefHeight="338.0" prefWidth="779.0">
                      <columns>
                         <TreeTableColumn fx:id="usernameColumn" prefWidth="178.39999997615814" text="Username" />
-                        <TreeTableColumn fx:id="nameColumn" prefWidth="197.60003662109375" text="Name" />
-                        <TreeTableColumn fx:id="cityColumn" prefWidth="151.19998168945312" text="City" />
-                        <TreeTableColumn fx:id="ageColumn" prefWidth="117.60003662109375" text="Age" />
-                        <TreeTableColumn fx:id="randomColumn" prefWidth="130.0" text="Random" />
+                        <TreeTableColumn fx:id="nameColumn" prefWidth="230.39996337890625" text="Name" />
+                        <TreeTableColumn fx:id="cityColumn" prefWidth="244.7999267578125" text="City" />
+                        <TreeTableColumn fx:id="ageColumn" prefWidth="124.0001220703125" text="Age" />
                      </columns>
                   </JFXTreeTableView>
                </children>
             </AnchorPane>
          </children>
       </JFXScrollPane>
-      <JFXButton fx:id="selectButton" layoutX="191.0" layoutY="380.0" onAction="#viewClient" prefHeight="1.0" prefWidth="162.0" styleClass="normal-button" text="Choose selected client" textFill="WHITE" />
+      <JFXButton layoutX="191.0" layoutY="380.0" onAction="#viewClient" prefHeight="1.0" prefWidth="190.0" styleClass="normal-button" text="Choose selected client" textFill="WHITE" />
       <JFXButton layoutX="77.0" layoutY="380.0" onAction="#onBack" styleClass="normal-button" text="Back" />
-      <Label fx:id="clientLabel" layoutX="426.0" layoutY="393.0" prefHeight="18.0" prefWidth="306.0" text="Currently, you do not have a coach assigned." />
+      <Label fx:id="clientLabel" layoutX="426.0" layoutY="393.0" prefHeight="18.0" prefWidth="306.0" text="You have not chosen a client" />
    </children>
 </AnchorPane>

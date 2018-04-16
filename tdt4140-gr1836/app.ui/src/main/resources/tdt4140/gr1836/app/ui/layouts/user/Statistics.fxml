@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.StatisticsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.StatisticsController">
    <children>
-      <JFXButton fx:id="goButton" buttonType="RAISED" layoutX="548.0" layoutY="414.0" prefWidth="119.0" styleClass="normal-button" text="Find" />
+      <JFXButton fx:id="goButton" buttonType="RAISED" layoutX="504.0" layoutY="414.0" prefWidth="119.0" styleClass="normal-button" text="Find" />
       <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="87.0" layoutY="414.0" styleClass="normal-button" text="Back" />
       <Label fx:id="invalidLabel" layoutX="199.0" layoutY="384.0" style="-fx-text-fill: #ff1744;" textFill="#ff1744" />
       <AnchorPane layoutX="20.0" layoutY="89.0" prefHeight="138.0" prefWidth="0.0" styleClass="card">
@@ -178,7 +178,7 @@
       </AnchorPane>
       <JFXButton fx:id="previousButton" buttonType="RAISED" layoutX="285.0" layoutY="414.0" onAction="#onPrevious" styleClass="normal-button" text="Previous" visible="false" />
       <JFXButton fx:id="nextButton" buttonType="RAISED" layoutX="419.0" layoutY="414.0" onAction="#onNext" styleClass="normal-button" text="Next" visible="false" />
-      <Label fx:id="questionLabel" layoutX="285.0" layoutY="427.0" text="Are your looking for a workout partner?" />
+      <Label fx:id="questionLabel" layoutX="266.0" layoutY="427.0" text="Are your looking for a workout partner?" />
       <JFXButton fx:id="historyButton" buttonType="RAISED" layoutX="682.0" layoutY="414.0" minWidth="79.0" prefWidth="79.0" styleClass="normal-button" text="History" visible="false" />
       <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="324.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
          <image>
