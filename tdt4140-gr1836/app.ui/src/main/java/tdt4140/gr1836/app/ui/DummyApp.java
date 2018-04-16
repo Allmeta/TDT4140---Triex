@@ -110,4 +110,12 @@ public class DummyApp extends App {
 		LinkedHashMap<String, Double> partners = this.statistics.findPartners(users, statistic, correctUser.getCity());
 		return partners;
 	}
+	public ArrayList<UserTempList> getClients(){
+		ArrayList<UserTempList> allClients = new ArrayList<>();
+		allClients.add(new UserTempList(correctUser.getUsername(), correctUser.getName(),
+				correctUser.getCity(), Integer.toString(correctUser.getAge())));
+		return allClients;
+
+	}
+
 }
