@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -14,12 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.MainMenuController">
    <children>
       <VBox layoutX="-16.0" layoutY="14.0" prefHeight="480.0" prefWidth="220.0" styleClass="vbox">
          <children>
-            <Label onMouseClicked="#onNewCardioWorkout" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="New workout">
+            <Label fx:id="newWorkoutButton" onMouseClicked="#onNewCardioWorkout" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="New workout">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -27,7 +21,7 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label onMouseClicked="#onHistory" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Workout history">
+            <Label fx:id="historyButton" onMouseClicked="#onHistory" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Workout history">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -35,12 +29,12 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label onMouseClicked="#onInbox" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Inbox">
+            <Label fx:id="inboxButton" onMouseClicked="#onInbox" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Inbox">
                <padding>
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label onMouseClicked="#onCoaches" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Available coaches">
+            <Label fx:id="coachesButton" onMouseClicked="#onCoaches" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Available coaches">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -48,7 +42,7 @@
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label onMouseClicked="#OnStatistics" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Statistics">
+            <Label fx:id="statisticsButton" onMouseClicked="#OnStatistics" prefHeight="42.0" prefWidth="220.0" styleClass="btn" text="Statistics">
                <padding>
                   <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                </padding>

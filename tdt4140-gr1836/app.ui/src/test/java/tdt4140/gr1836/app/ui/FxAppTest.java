@@ -1,5 +1,4 @@
 package tdt4140.gr1836.app.ui;
-/*
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,7 +11,10 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
 import org.junit.Test;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit.ApplicationTest;
+
+import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,7 +40,7 @@ public class FxAppTest extends ApplicationTest {
 		if (startFlag==true) {
         DummyApp app = new DummyApp();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(FxApp.class.getResource("Login.fxml"));	
+		loader.setLocation(FxApp.class.getResource(LayoutHandler.loginPane));	
 		Parent root = loader.load();
 		
 		Scene scene = new Scene(root, 380, 550);
@@ -46,7 +48,7 @@ public class FxAppTest extends ApplicationTest {
 		stage.setTitle("Testing training app");
 		
 		//Set app to controller
-		Controller controller = loader.getController();
+		NavigationHandler controller = loader.getController();
 		controller.setApp(app);
 		
 		stage.show();
@@ -54,160 +56,140 @@ public class FxAppTest extends ApplicationTest {
     }
 	//@Before
 	//}
-	
+	/*
+		@Test 
+	public void testNavigation() {
+			 Test Register
+			clickOn("#signUpButton");
+			sleep(1000);
+			JFXButton button = lookup("#cancelButton").query();
+			assertEquals(button.getText(), "Cancel");
+			clickOn("#cancelButton");
+			
+			
+			sleep(500);
+			clickOn("#usernameField");
+			write("testFxBoy");
+			clickOn("#passwordField");
+			write("test");
+			clickOn("#loginButton");
+			sleep(500);
+			//Check that you are in main menu
+			Label newbutton = lookup("#newWorkoutButton").query();
+			assertEquals(newbutton.getText(), "New workout");
+		
+			clickOn("#newWorkoutButton");
+			sleep(500);
+			clickOn("#durationField");
+			write("60");
+			clickOn("#distanceField");
+			write("10");
+			clickOn("#pulseField");
+			write("160");
+			clickOn("#dateField");
+			write("04.04.2018");
+			clickOn("#submitButton");
+			sleep(500);
+
+			clickOn("#historyButton");
+			sleep(500);
+			clickOn("#backButton");
+			
+			sleep(500);
+			clickOn("#statisticsButton");
+			sleep(1000);
+			*/
+			
+		/*
+		velg coach
+		skriv melding til coach
+		se statistikk
+		velg friend
+		
+		log ut
+		log in coach
+		se your clients
+		se statistikk
+		se history
+		send melding
+		*/
+	}
+
+		/*
 	@Test
-	public void t1_go_to_register_and_cancel() {
-		clickOn("#RegisterBtn");
+	public void t1_go_to_register_and_cancel(FxRobot robot) {
+		robot.clickOn("#signUpButton");
 		sleep(1000);
-		Button button = lookup("#closeBtn").query();
+		JFXButton button = lookup("#cancelButton").query();
 		assertEquals(button.getText(), "Cancel");
-		clickOn("#closeBtn");
+		robot.clickOn("#cancelButton");
+		startFlag=false;
 	}
 	
 	@Test
 	public void t2_register_user() {
 		//Registrerer ikke med dummyapp, men tester bare javafx
-		clickOn("#RegisterBtn");
-		sleep(1000);
+		sleep(200);
+		clickOn("#signUpButton");
+		sleep(2000);
 		clickOn("#usernameField");
+		sleep(200);
 		write("testFxBoy");
 		clickOn("#nameField");
 		write("Mr.TestFx");
-		clickOn("#addressField");
-		write("computer");
+		clickOn("#ageField");
+		write("22");
+		clickOn("#heightField");
+		write("180");
+		clickOn("#weightField");
+		write("80");
 		clickOn("#cityField");
 		write("Trondheim");
-		clickOn("#phoneField");
-		write("1234");
-		clickOn("#emailField");
-		write("hasselhoff@yahoo");
 		clickOn("#passwordField");
 		write("test");
-		clickOn("#confirmPasswordField");
+		clickOn("#passwordConfirmationField");
 		write("test");
-		clickOn("#confirmBtn");
+		clickOn("#submitButton");
 	}
 	@Test 
 	public void t3_log_in_invalid_password() {
-		clickOn("#userNameField");
+		sleep(200);
+		clickOn("#usernameField");
 		write("testFxBoy");
 		clickOn("#passwordField");
 		write("wrong");
-		clickOn("#submitBtn");
+		clickOn("#loginButton");
 		sleep(500);
-		Label label = lookup("#loginText").query();
-		assertEquals(label.getText(), "Wrong input");
+		Label label = lookup("#invalidLabel").query();
+		assertEquals(label.getText(), "Invalid login");
 	}
 	@Test 
 	public void t4_log_in_invalid_username() {
-		clickOn("#userNameField");
+		sleep(200);
+		clickOn("#usernameField");
 		write("nonexistant");
 		clickOn("#passwordField");
 		write("test");
-		clickOn("#submitBtn");
+		clickOn("#loginButton");
 		sleep(500);
-		Label label = lookup("#loginText").query();
-		assertEquals(label.getText(), "Wrong input");
+		Label label = lookup("#invalidLabel").query();
+		assertEquals(label.getText(), "Invalid login");
 		
 	}
 	@Test 
 	public void t5_log_in() {
+		sleep(200);
 		sleep(500);
-		clickOn("#userNameField");
+		clickOn("#usernameField");
 		write("testFxBoy");
 		clickOn("#passwordField");
 		write("test");
-		clickOn("#submitBtn");
+		clickOn("#loginButton");
 		sleep(500);
 		//Check that you are in main menu
-		Button newbutton = lookup("#goNew").query();
-		assertEquals(newbutton.getText(), "Add new workout");
+		JFXButton newbutton = lookup("#logoutButton").query();
+		//sleep(500);
+		//assertEquals(newbutton.getText(), "Log out (testFxBoy");
 		startFlag=false;
-	}/*
-	@Test 
-	public void t6_login_as_coach() {
-		sleep(500);
-		clickOn("#userNameField");
-		write("coachFxBoy");
-		clickOn("#passwordField");
-		write("coach");
-		clickOn("#submitBtn");
-		sleep(500);
-		//Check that you are in main menu
-		Button newbutton = lookup("#clientsBtn").query();
-		assertEquals(newbutton.getText(), "Clients");
-		//Heretter skal ikke login eller register testes mer
-		startFlag=false;
-		
-	}*/
-/*
-	@Test
-	public void t7_navigate_app() {
-		sleep(500);
-		Button button = new Button();
-		clickOn("#goNew");
-		sleep(500);
-		clickOn("#cardioBtn");
-		sleep(500);
-		clickOn("#homeBtn");
-		
-		sleep(500);
-		clickOn("#goNew");
-		sleep(500);
-		clickOn("#strengthBtn");
-		sleep(500);
-		clickOn("#homeBtn");
-
-		sleep(500);
-		clickOn("#goPast"); 
-		sleep(500);
-		
 	}
-	@Test 
-	public void t8_go_check_out_workouts() {
-		
-	}/*
-	@Test
-	public void t6_navigate_useless_scenes() {
-		//Goes through scenes not currently in use, only to check that the system doesn't crash.
-		//Goes to strength and cardio, clicks home cancel for both, goes to past, clicks home
-		sleep(1000);
-		Button button = new Button();
-		clickOn("#goNew");
-		sleep(100);
-		clickOn("#cardioBtn");
-		sleep(1000);
-		button = lookup("#CancelCardioWorkout").query();
-		assertEquals(button.getText(), "Cancel");
-		clickOn("#CancelCardioWorkout");
-		sleep(100);
-		clickOn("#goNew");
-		sleep(100);
-		clickOn("#strengthBtn");
-		sleep(1000);
-		button = lookup("#CancelStrengthWorkout").query();
-		assertEquals(button.getText(), "Cancel");
-		clickOn("#CancelStrengthWorkout");
-		//Test past workout
-	}*/
-/*
-    @Test Denne er kanskje ikke nødvendig for ui testing
-    public void delete_user_try_login() {
-    	//Sletter opprettet bruker for  deretter å teste login på nytt
-    	//Må endres til sletter i textfil
-    	Database dbTest = new Database();
-    	dbTest.deleteUser("testFxBoy");
-    	clickOn("#LoginBtn");
-		sleep(500);
-		clickOn("#userNameField");
-		write("testFxBoy");
-		clickOn("#passwordField");
-		write("test");
-		clickOn("#confirmBtn");
-		sleep(3000);
-		Label label = lookup("#loginText").query();
-		assertEquals(label.getText(), "Wrong input");
-		clickOn("#closeBtn");
-    }*/
-
-
+}*/

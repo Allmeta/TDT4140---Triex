@@ -3,7 +3,6 @@ package tdt4140.gr1836.app.ui.controllers.user;
 import java.io.IOException;
 import java.util.Map;
 
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -16,8 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
-import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.ui.LayoutHandler;
+import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.users.User;
 import tdt4140.gr1836.app.users.UserTempList;
 
@@ -28,8 +27,6 @@ public class AvailableCoachesController extends NavigationHandler {
 	private Map<String, User> allCoaches;
 	@FXML
 	private Label coachLabel;
-	@FXML
-	private JFXTextField selectedCoach;
 
 	@FXML
 	private JFXTreeTableView<UserTempList> tableView;
@@ -67,20 +64,9 @@ public class AvailableCoachesController extends NavigationHandler {
 	 */
 
 	private void setCoaches() {
-		// fill stuff
-		/*
-		 * name.setCellValueFactory(new PropertyValueFactory<UserTempList,
-		 * String>("name")); city.setCellValueFactory(new
-		 * PropertyValueFactory<UserTempList, String>("city"));
-		 * age.setCellValueFactory(new PropertyValueFactory<UserTempList,
-		 * String>("age")); email.setCellValueFactory(new
-		 * PropertyValueFactory<UserTempList, String>("email"));
-		 * 
-		 * view.getItems().setAll(parseCoaches());
-		 */
 		String myCoach = this.app.getUser().getMyCoach();
 		if (!myCoach.equals("")) {
-			coachLabel.setText("Your current coach is " + myCoach + ", do you want someone else?");
+			coachLabel.setText("Your current coach is " + myCoach);
 		}
 		usernameColumn.setCellValueFactory(
 				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
@@ -102,7 +88,8 @@ public class AvailableCoachesController extends NavigationHandler {
 		// Burde sortere coaches etter username her
 
 		// build tree
-		final TreeItem<UserTempList> root = new RecursiveTreeItem<UserTempList>(coaches, RecursiveTreeObject::getChildren);
+		final TreeItem<UserTempList> root = new RecursiveTreeItem<UserTempList>(coaches,
+				RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
 
@@ -125,13 +112,19 @@ public class AvailableCoachesController extends NavigationHandler {
 	@FXML
 	private void updateCoach() {
 		// Method which when you click on a coach this coach will be set to your user
-		String coach = selectedCoach.getText();
-		User updatedCoach = allCoaches.get(coach);
-		if (updatedCoach != null) {
-			app.setMyCoach(coach);
-			coachLabel.setText("Your coach has been changed! Check your inbox!");
-		} else {
-			coachLabel.setText("Coach not found, check your input");
+		TreeItem<UserTempList> selectedRow = tableView.getSelectionModel().getSelectedItem();
+		if (selectedRow != null) {
+			String coachUsername = selectedRow.getValue().getUsername();
+			User updatedCoach = allCoaches.get(coachUsername);
+			if (updatedCoach != null) { // user exists in database
+				app.setMyCoach(coachUsername);
+				coachLabel.setText("Your new coach is " + selectedRow.getValue().getName());
+			} else {
+				coachLabel.setText("Please select a coach.");
+			}
+		}
+		else {
+			coachLabel.setText("Please select a coach.");
 		}
 	}
 }

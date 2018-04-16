@@ -2,7 +2,6 @@ package tdt4140.gr1836.app.ui.controllers.coach;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -17,9 +16,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
-import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.ui.LayoutHandler;
-import tdt4140.gr1836.app.users.User;
+import tdt4140.gr1836.app.ui.NavigationHandler;
 import tdt4140.gr1836.app.users.UserTempList;
 
 public class ClientsController extends NavigationHandler {
@@ -93,7 +91,6 @@ public class ClientsController extends NavigationHandler {
 				(TreeTableColumn.CellDataFeatures<UserTempList, String> param) -> new ReadOnlyStringWrapper(
 						param.getValue().getValue().getAge()));
 
-
 		// data
 		ObservableList<UserTempList> clients = FXCollections.observableArrayList();
 
@@ -101,7 +98,8 @@ public class ClientsController extends NavigationHandler {
 		// Burde sortere coaches etter username her
 
 		// build tree
-		final TreeItem<UserTempList> root = new RecursiveTreeItem<UserTempList>(clients, RecursiveTreeObject::getChildren);
+		final TreeItem<UserTempList> root = new RecursiveTreeItem<UserTempList>(clients,
+				RecursiveTreeObject::getChildren);
 		tableView.setRoot(root);
 		tableView.setShowRoot(false);
 
@@ -112,24 +110,30 @@ public class ClientsController extends NavigationHandler {
 		for (UserTempList s : myClients) {
 			clients.add(s);
 			myClientsNames.add(s.getUsername());
-			}
+		}
 	}
 
 	@FXML
 	private void viewClient() {
 		// Method which when you click on a coach this coach will be set to your user
-		String client = selectedClient.getText();
-		if (myClientsNames.contains(client)) {
-			setClient(client);
-			try {
-				//History checks if user is coach and presents clients data
-				loadScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		TreeItem<UserTempList> selectedRow = tableView.getSelectionModel().getSelectedItem();
+		if (selectedRow != null) {
+			String client = selectedRow.getValue().getUsername();
+			if (myClientsNames.contains(client)) {
+				setClient(client);
+				try {
+					// History checks if user is coach and presents clients data
+					loadScene(LayoutHandler.statisticsPane, this.getRoot(), this.app);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				clientLabel.setText("Please select a client");
 			}
-		} else {
-			clientLabel.setText("Client not found, check your input");
+		}
+		else {
+			clientLabel.setText("Please select a client");
 		}
 	}
 }

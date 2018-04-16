@@ -122,6 +122,9 @@ public class App {
 	public void getWorkoutsFromDB() {
 		this.setWorkouts(null);
 		this.workouts = this.database.getWorkouts(this.getUser().getUsername());
+		if (this.workouts==null) {
+			this.workouts = new Workouts();
+		}
 	}
 	//Fetches specified users workouts from database (used for finding clients workouts)
 	public void getClientsWorkouts(String client) {

@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.WorkoutController">
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.WorkoutController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css">
          <children>
@@ -32,6 +31,10 @@
               </rowConstraints>
                <children>
                   <JFXTextField fx:id="durationField" focusColor="#ff1744" labelFloat="true" promptText="Duration in minutes*" styleClass="text-field" unFocusColor="#eceff1" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="distanceField" focusColor="#ff1744" labelFloat="true" promptText="Distance in km*" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="pulseField" focusColor="#ff1744" labelFloat="true" promptText="Average pulse" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="2" />
+                  <JFXDatePicker fx:id="dateField" defaultColor="#ff1744" overLay="true" prefHeight="55.0" prefWidth="400.0" promptText="Date*" styleClass="text-field" GridPane.rowIndex="4" />
                   <GridPane GridPane.rowIndex="5">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,10 +54,6 @@
                         <JFXRadioButton fx:id="bikingRadioButton" styleClass="radio" text="Biking" toggleGroup="$exerciseType" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3" />
-                  <JFXTextField fx:id="distanceField" focusColor="#ff1744" labelFloat="true" promptText="Distance in km*" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="pulseField" focusColor="#ff1744" labelFloat="true" promptText="Average pulse" styleClass="text-field" unFocusColor="#eceff1" GridPane.rowIndex="2" />
-                  <JFXDatePicker fx:id="dateField" defaultColor="#ff1744" overLay="true" prefHeight="55.0" prefWidth="400.0" promptText="Date*" styleClass="text-field" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="414.0" onAction="#onSubmit" styleClass="normal-button" text="OK" />
