@@ -140,18 +140,18 @@ public class StatisticsController extends NavigationHandler {
 		avgCityBike.setText("" + statistic.getBikeKm() + " Km");
 
 		// Card 4 - Time spent on each excercise type
-		timeSpentRunning.setText("Running: " + profileStatistic.getRunMin() + " Minutes");
-		timeSpentSwimming.setText("Swimming: " + profileStatistic.getSwimMin() + " Minutes");
-		timeSpentBiking.setText("Biking: " + profileStatistic.getBikeMin() + " Minutes");
+		timeSpentRunning.setText("" + profileStatistic.getRunMin() + " Minutes");
+		timeSpentSwimming.setText("" + profileStatistic.getSwimMin() + " Minutes");
+		timeSpentBiking.setText("" + profileStatistic.getBikeMin() + " Minutes");
 
 		// Card 5 - Shows your estimated max pulse.
 		estMaxPulse.setText("" + profileStatistic.getMaxPulse());
 
 		// Card 6 - Shows your average pulse separately for biking, swimming and running
 		// for the last 30 days.
-		avgPulseRun.setText("Running: " + profileStatistic.getAvgRunPulse());
-		avgPulseSwim.setText("Swimming: " + profileStatistic.getAvgSwimPulse());
-		avgPulseBike.setText("Biking: " + profileStatistic.getAvgBikePulse());
+		avgPulseRun.setText("" + profileStatistic.getAvgRunPulse());
+		avgPulseSwim.setText("" + profileStatistic.getAvgSwimPulse());
+		avgPulseBike.setText("" + profileStatistic.getAvgBikePulse());
 
 	}
 

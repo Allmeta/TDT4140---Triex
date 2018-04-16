@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.StatisticsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="parent" stylesheets="@../../stylesheets/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1836.app.ui.controllers.user.StatisticsController">
    <children>
       <JFXButton fx:id="goButton" buttonType="RAISED" layoutX="556.0" layoutY="414.0" prefWidth="118.0" styleClass="normal-button" text="Find" />
       <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="156.0" layoutY="414.0" styleClass="normal-button" text="Back" />
@@ -45,9 +45,24 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label fx:id="timeSpentRunning" layoutX="29.0" layoutY="48.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <Label fx:id="timeSpentBiking" layoutX="29.0" layoutY="106.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <Label fx:id="timeSpentSwimming" layoutX="29.0" layoutY="77.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="timeSpentRunning" layoutX="70.0" layoutY="48.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="timeSpentBiking" layoutX="70.0" layoutY="106.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="timeSpentSwimming" layoutX="70.0" layoutY="77.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/run.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="35.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/swim.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="36.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/bike.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="284.0" layoutY="254.0" prefHeight="138.0" prefWidth="0.0" styleClass="card">
@@ -60,9 +75,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="avgPulseSwim" layoutX="60.0" layoutY="74.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <Label fx:id="avgPulseBike" layoutX="60.0" layoutY="104.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
-            <Label fx:id="avgPulseRun" layoutX="60.0" layoutY="43.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="avgPulseSwim" layoutX="77.0" layoutY="74.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="avgPulseBike" layoutX="77.0" layoutY="104.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
+            <Label fx:id="avgPulseRun" layoutX="77.0" layoutY="43.0" style="-fx-text-fill: #4e4e4e;" text="temp" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="548.0" layoutY="254.0" prefHeight="138.0" prefWidth="0.0" styleClass="card">
@@ -80,7 +95,7 @@
                </font></Label>
             <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="50.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/pulse.png" />
+                  <Image url="@../../images/pulseheart.png" />
                </image>
             </ImageView>
          </children>
@@ -149,11 +164,36 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="557.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/ic_location_city_black_24dp_2x.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="575.0" layoutY="10.0" style="-fx-text-fill: #4e4e4e;" text="  = Average in your city">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <JFXButton fx:id="previousButton" buttonType="RAISED" layoutX="285.0" layoutY="414.0" onAction="#onPrevious" styleClass="normal-button" text="Previous" visible="false" />
       <JFXButton fx:id="nextButton" buttonType="RAISED" layoutX="419.0" layoutY="414.0" onAction="#onNext" styleClass="normal-button" text="Next" visible="false" />
       <Label fx:id="questionLabel" layoutX="285.0" layoutY="427.0" text="Are your looking for a workout partner?" />
       <JFXButton fx:id="historyButton" buttonType="RAISED" layoutX="682.0" layoutY="414.0" prefWidth="118.0" styleClass="normal-button" text="History" visible="false" />
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="324.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/run.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="322.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/swim.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="27.0" layoutX="323.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/bike.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
