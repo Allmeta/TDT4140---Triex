@@ -130,6 +130,7 @@ public class ClientsController extends NavigationHandler {
 				}
 			} else {
 				clientLabel.setText("Please select a client");
+
 			}
 		}
 		else {
