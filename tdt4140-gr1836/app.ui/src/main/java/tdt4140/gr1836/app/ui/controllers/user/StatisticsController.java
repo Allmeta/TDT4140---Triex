@@ -106,6 +106,16 @@ public class StatisticsController extends NavigationHandler {
 		});
 		questionLabel.setVisible(false);
 	}
+	
+	private String timeSpent(int time) {
+		int hours = time/60;
+		int minutes = time % 60;
+		
+		return hours + " Hours " + minutes + " Minutes";
+	
+	}
+	
+	
 
 	private void loadStatistics(Statistic profileStatistic, Statistic statistic, Double matchPercent,
 			String comparingName) {
@@ -140,9 +150,12 @@ public class StatisticsController extends NavigationHandler {
 		avgCityBike.setText("" + statistic.getBikeKm() + " Km");
 
 		// Card 4 - Time spent on each excercise type
-		timeSpentRunning.setText("" + profileStatistic.getRunMin() + " Minutes");
-		timeSpentSwimming.setText("" + profileStatistic.getSwimMin() + " Minutes");
-		timeSpentBiking.setText("" + profileStatistic.getBikeMin() + " Minutes");
+		
+
+		
+		timeSpentRunning.setText("" + timeSpent(profileStatistic.getRunMin()));
+		timeSpentSwimming.setText("" + timeSpent(profileStatistic.getSwimMin()));
+		timeSpentBiking.setText("" + timeSpent(profileStatistic.getBikeMin()));
 
 		// Card 5 - Shows your estimated max pulse.
 		estMaxPulse.setText("" + profileStatistic.getMaxPulse());
