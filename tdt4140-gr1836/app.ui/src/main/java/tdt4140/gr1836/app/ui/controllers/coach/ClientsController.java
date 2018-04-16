@@ -3,7 +3,6 @@ package tdt4140.gr1836.app.ui.controllers.coach;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -26,10 +25,9 @@ public class ClientsController extends NavigationHandler {
 	 */
 	private ArrayList<UserTempList> myClients = new ArrayList<UserTempList>();
 	private ArrayList<String> myClientsNames = new ArrayList<String>();
+
 	@FXML
 	private Label clientLabel;
-	@FXML
-	private JFXTextField selectedClient;
 
 	@FXML
 	private JFXTreeTableView<UserTempList> tableView;
@@ -132,8 +130,7 @@ public class ClientsController extends NavigationHandler {
 				clientLabel.setText("Please select a client");
 
 			}
-		}
-		else {
+		} else {
 			clientLabel.setText("Please select a client");
 		}
 	}
