@@ -56,8 +56,9 @@ public class FxAppTest extends ApplicationTest {
 		}
     }
 	//Not a lot of tests, but feedback says its not that important for ui
+	
+	 // Commented out tests since they keep failing on git, just uncomment to run them'
 	/*
-	 * Commented out tests since they keep failing on git, just uncomment to run them
 	@Test 
 	public void t1TestLoginWorkouts() {
 		clickOn("#signUpButton");
@@ -92,23 +93,6 @@ public class FxAppTest extends ApplicationTest {
 
 	}
 	@Test
-	public void t2TestStatistics() {
-					
-		sleep(500);
-		clickOn("#statisticsButton");
-		sleep(1000);
-		
-		clickOn("#goButton");
-		sleep(500);
-		clickOn("#goButton");
-		sleep(1000);
-		clickOn()next
-		send message
-		back
-		*/
-		/*
-	}
-	@Test
 	public void t3TestHistoryCoaches() {
 		clickOn("#historyButton");
 		sleep(500);
@@ -133,11 +117,23 @@ public class FxAppTest extends ApplicationTest {
 		clickOn("#clientsButton");
 		sleep(500);
 		
-		 * How do we click on a treetablerow??
-		see your clients
-		see stats
-		see history
-		send melding
-		*/
-		}
+	}*/
+}
+/*Does not work properly
+@Test
+public void t2TestStatistics() {
+				
+	sleep(500);
+	clickOn("#statisticsButton");
+	sleep(1000);
+	
+	clickOn("#goButton");
+	sleep(500);
+	clickOn("#goButton");
+	sleep(1000);
+	clickOn()next
+	send message
+	back
+	
+}*/
 
